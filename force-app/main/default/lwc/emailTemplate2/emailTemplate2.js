@@ -1,0 +1,166 @@
+// contactEmailForm.js
+
+import { LightningElement, api, wire } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { getRecord } from 'lightning/uiRecordApi';
+//import { getUser } from 'lightning/uiCurrentUser';
+
+import sendmail from '@salesforce/apex/EmailTemplate1.sendEmail';
+
+const fields = [
+    'Contact.Email','Contact.Name'
+];
+
+export default class emailTemplate2 extends LightningElement {
+  
+
+    @api toName;
+    @api subject;
+    @api recordId;
+    @api ccAddress ;
+    @api toAddress;
+    @api body;
+
+
+    @wire(getRecord, { recordId: '$recordId', fields })
+    wiredContact({ error, data }) {
+        if (data) {
+            console.log('inside');
+            this.toName=data.fields.Name.value;
+            this.toAddress = data.fields.Email.value;
+            console.log(this.toAddress);
+        } else if (error) {
+            this.showErrorToast(error);
+        }
+    }
+
+
+
+    items = [
+        {
+            type: 'avatar',
+            href: 'https://www.salesforce.com',
+            label: this.toName ,
+            src: 'https://www.lightningdesignsystem.com/assets/images/avatar1.jpg',
+            fallbackIconName: 'standard:user',
+            variant: 'circle',
+            alternativeText: 'User avatar',
+            isLink: true,
+        },
+        {
+            type: 'avatar',
+            href: '',
+            label: 'Avatar Pill 2',
+            src: 'https://www.lightningdesignsystem.com/assets/images/avatar2.jpg',
+            fallbackIconName: 'standard:user',
+            variant: 'circle',
+            alternativeText: 'User avatar',
+        },
+        {
+            type: 'avatar',
+            href: 'https://www.google.com',
+            label: 'Avatar Pill 3',
+            src: 'https://www.lightningdesignsystem.com/assets/images/avatar3.jpg',
+            fallbackIconName: 'standard:user',
+            variant: 'circle',
+            alternativeText: 'User avatar',
+            isLink: true,
+        },
+    ];
+
+
+
+
+
+
+
+   
+    // @wire(getUser)
+    // wiredUser({ error, data }) {
+    //     if (data) {
+    //         console.log('insideget user email')
+    //         this.ccAddress = data.email;
+    //         console.log(this.ccAddress);
+    //     } else if (error) {
+    //         this.showErrorToast(error);
+    //     }
+    // }
+
+
+handleEmailChange(event){
+    this.toAddress = event.target.value;
+    console.log(this.toAddress);
+} 
+handleCcEmailChange(event){
+    this.ccAddress=event.target.value;
+    console.log(this.ccAddress);
+}
+handleSubjectChange(event){
+    this.subject=event.target.value;
+    console.log(this.subject);
+}
+handleBodyChange(event){
+    this.body=event.target.value;
+    console.log(this.body);
+}
+
+    handleSendEmail() {
+        console.log('inside handle mail');
+        if (!this.toAddress) {
+            this.showErrorToast('Please enter a valid email address for the recipient.');
+            return;
+        }
+
+        if (!this.subject) {
+            this.showErrorToast('Please enter a subject for the email.');
+            return;
+        }
+
+        if (!this.body || this.body.length < 5) {
+            this.showErrorToast('Please enter a message of at least 10 characters.');
+            return;
+        }
+        
+        
+     sendmail({email: this.toAddress,Subject: this.subject,Message: this.body}).then(() => {
+                console.log('inside send mail  2');
+                console.log(this.toAddress);
+                console.log(this.ccAddress);
+                console.log(this.subject);
+                console.log(this.body);
+                console.log('mail function exit');
+                this.showSuccessToast();
+                this.clearForm();
+            })
+            .catch((error) => {
+                this.showErrorToast(error);
+            });
+    }
+
+    clearForm() {
+        this.toAddress = '';
+        this.ccAddress = '';
+        this.subject = '';
+        this.body = '';
+    }
+
+    showSuccessToast() {
+        const toastEvent = new ShowToastEvent({
+            title: 'Email Sent',
+            message: 'Your email was sent successfully.',
+            variant: 'success'
+        });
+        this.dispatchEvent(toastEvent);
+    }
+
+    showErrorToast(message) {
+        const toastEvent = new ShowToastEvent({
+            title: 'Error',
+            message,
+            variant: 'error'
+        });
+        this.dispatchEvent(toastEvent);
+    }
+
+    
+}

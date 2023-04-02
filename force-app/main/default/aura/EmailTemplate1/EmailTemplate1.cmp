@@ -1,0 +1,67 @@
+<aura:component description="EmailParticipants" implements="flexipage:availableForAllPageTypes,force:hasRecordId"  controller="EmailTemplate1">
+    <!-- <ltng:require styles="{!join(',', $Resource.YA_Styles + '/LT_YA_Global_Css.css', $Resource.YA_Styles + '/LT_External_Typography.css', $Resource.Y_Styles + '/psStyles.css', $Resource.Y_Styles + '/popupCSS.css')}"/>    
+-->
+    <aura:attribute name="Spinner" type="boolean" default="false"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+	
+    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="12" padding="around-small">
+        <lightning:card>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_2-of-2">
+                    <div class="slds-p-bottom_medium slds-p-left_medium slds-border_bottom">
+                        <div class="slds-media">
+                            <div class="slds-media__figure slds-p-right_medium">
+                            <div class="slds-icon slds-page-header__icon ">
+                                <lightning:icon iconName="action:email" size="small"/>
+                            </div>
+                            </div>
+                            <div class="slds-media__body">
+                                <div class="slds-p-top_small">
+                                  
+                                     <div>
+                                        <h2>Contact Record Id: {!v.recordId}</h2>
+                                        <p>Contact Name: {!v.contactRecord.Name}</p>
+                                        <p>Contact Email: {!v.contactRecord.Email}</p>
+                                    </div>
+                                <h1>
+                                    <span class="slds-page-header__title" title="Email Participants">Custom Email </span>
+                                </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="slds-p-around_medium">
+
+                        <div class="slds-box">
+                           
+                        	<label class="slds-form-element__label" for="form-element-01">Email Address</label>
+							<div class="slds-form-element__control">
+								<input type="text" id="txtEmail" class="slds-input" /> 
+							</div>
+							<label class="slds-form-element__label" for="form-element-01">Subject</label>
+							<div class="slds-form-element__control">
+								<input type="text" id="txtSubject" class="slds-input" />
+							</div>							
+							<label class="slds-form-element__label" for="form-element-01">Message</label>
+							<div class="slds-form-element__control">
+                             <input type="text" id="txtMessage" class="slds-input" /> 
+							<!-- <lightning:inputRichText value="{!v.message}" placeholder="Content for Participants"/> -->
+						       
+  							</div>
+                            
+                             <div class="slds-grid slds-gutters slds-text-align_center slds-p-top--small">
+                                <div class="slds-col">
+                                    <button class="slds-button slds-button_neutral" onclick="{!c.Send}">Send Email</button>                           
+                                </div>
+                    		</div>
+                       
+                        </div>
+                     </div>
+
+                </div>
+            </div>
+        </lightning:card>
+    </lightning:layoutItem>
+
+</aura:component>
