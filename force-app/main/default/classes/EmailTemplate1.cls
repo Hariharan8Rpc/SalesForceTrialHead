@@ -1,15 +1,19 @@
 public with sharing class EmailTemplate1 {    
    @AuraEnabled
-    public static string sendEmail(String email, String Subject, String Message){
+    public static string sendEmail(String email,String bccAddress,String ccAddress, String Subject, String Message){
         System.debug('inside the mail method'+email+ subject);
         String sMessage='';
         try{
             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
             String[] toAddresses = new String[] {email}; 
+            String[] bccAddresses = new String[] {bccAddress}; 
+            String[] ccAddresses = new String[] {ccAddress}; 
             mail.setToAddresses(toAddresses);
             mail.setSubject(Subject);
             mail.setHtmlBody(Message);
-            
+            mail.setCcAddresses(ccAddresses);
+            mail.setBccAddresses(bccAddresses);
+            // mail.setCcAddresses(new List<String>{ccAddress});
             Messaging.SendEmailResult [] results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
             sMessage='Success';
         }
@@ -25,4 +29,10 @@ public with sharing class EmailTemplate1 {
        System.debug('contact id  '+currentRecordId); 
         return contact;
            }   
+           
+    @AuraEnabled(cacheable=true)
+    public static String getUserEmail() {
+        return UserInfo.getUserEmail();
+    }
+    
 }

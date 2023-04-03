@@ -2,49 +2,72 @@
 <template>
        <lightning-card title="Email">
            <!-- code start -->
-            <div class="slds-p-around_medium">
-                <lightning-pill-container items={items} ></lightning-pill-container>
-                <lightning-pill-container items={toAddress}> </lightning-pill-container>
-                <div class="emailui-pill_pill">
-                </div>
+        <div class="slds-p-around_medium">
             <table>
               <tbody>
                 <tr>
                     <td>
                         <div  class="slds-col slds-size_3-of-4 slds-form-element__label">
-                            <label class="slds-form-element__label" for="recipients-to">To</label>
+                            <label class="slds-form-element__label" for="bcc" >From :</label>
+                          </div>   
+                    </td>
+                    <td>
+                        <div class="slds-col slds-size_6-of-6 slds-form-element__control" style="margin-bottom: 10px;">                    
+                            <lightning-pill-container items={items} ></lightning-pill-container>
+                        </div>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>
+                        <div  class="slds-col slds-size_3-of-4 slds-form-element__label" >
+                            <label class="slds-form-element__label" for="recipients-to">To :</label>
                           </div>                  
                     </td>
                     <td>
-                        <div class="slds-col slds-size_6-of-6 slds-form-element__control">                    
-                            <lightning-input type="email" value={toAddress} onchange={handleEmailChange} variant="label-hidden"></lightning-input> 
+                        <div class="slds-col slds-size_5-of-6 slds-form-element__control" style="margin-bottom: 10px;">                    
+                            <lightning-input type="email" value={toAddress} onchange={handleEmailChange} variant="label-hidden"></lightning-input>      
+                        </div>                      
+                    </td>
+                    <td>
+                        <div class="slds-col slds-size_1-of-6 slds-form-element__control">
+                            <a onclick={showInputField} >Cc</a>
                         </div>
                     </td>
                 </tr>  
-                 <tr aria-colspan="2">
-                    <td>  <div >
-                        <hr class="solid">
-                    </div>  
-                </td>
-                 </tr>                    
+                <!-- cc -->
+                <tr>
+                    <td>
+                        <template if:true={showField}>
+                        <div  class="slds-col slds-size_3-of-4 slds-form-element__label" >
+                            <label class="slds-form-element__label" for="recipients-to">CC :</label>
+                          </div>    
+                        </template>              
+                    </td>
+                    <td>
+                        <div class="slds-col slds-size_6-of-6 slds-form-element__control" style="margin-bottom: 10px;">                                               
+                            <template if:true={showField}>
+                                <div class="slds-col slds-size_6-of-6 slds-form-element__control" style="margin-bottom: 10px;">    
+                                    <lightning-input id="recipients-to" type="email" value={ccAddress} onchange={handleCcEmailChange} variant="label-hidden"></lightning-input> 
+                                </div>
+                            </template>
+                        </div>
+                    </td>
+                </tr>    
+                
+
                 <tr>
                     <td>
                         <div  class="slds-col slds-size_3-of-4 slds-form-element__label">
-                            <label class="slds-form-element__label" for="cc">CC :</label>
-                          </div>      
-                       
+                            <label class="slds-form-element__label" for="bcc" >Bcc :</label>
+                          </div>   
                     </td>
                     <td>
-                        <div class="slds-col slds-size_6-of-6 slds-form-element__control">                    
-                            <lightning-input  id="cc" label="CC" type="set" value={ccAddress} onchange={handleCcEmailChange} variant="label-hidden"></lightning-input>                 
+                        <div class="slds-col slds-size_6-of-6 slds-form-element__control" style="margin-bottom: 10px;">                    
+                            <lightning-input  id="bcc" label="bCC" type="set" value={bccAddress} onchange={handlebbcEmailChange} variant="label-hidden"></lightning-input>                 
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <div >
-                        <hr class="solid">
-                    </div>  
-               </tr>     
+                
                 <tr>
                     <td>
                         <div  class="slds-col slds-size_3-of-4 slds-form-element__label">
@@ -52,25 +75,15 @@
                           </div>                         
                     </td>
                     <td>
-                        <div class="slds-col slds-size_6-of-6 slds-form-element__control">                    
+                        <div class="slds-col slds-size_6-of-6 slds-form-element__control" style="margin-bottom: 10px;">                    
                             <lightning-input class="slds-input slds-input_bare" label="Subject" type="text" value={subject} onchange={handleSubjectChange} variant="label-hidden"></lightning-input>
-                        </div>
-                      
+                        </div>                      
                     </td>
                 </tr>
-                <tr>
-                    <div >
-                        <hr class="solid">
-                    </div>  
-               </tr>         
               </tbody>
             </table>
-    
-          
-               
-              
-                <lightning-input-rich-text label="Body" value={body} onchange={handleBodyChange} placeholder="Enter the message...."></lightning-input-rich-text>
-                <div class="slds-m-top_medium">
+                <lightning-input-rich-text  label="Body" value={body} onchange={handleBodyChange} placeholder="Enter the message...."></lightning-input-rich-text>
+                <div class="slds-grid slds-grid_align-end">
                     <lightning-button label="Send Email" variant="brand" onclick={handleSendEmail}></lightning-button>
                 </div>
             </div>

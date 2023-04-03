@@ -1,26 +1,45 @@
 // contactEmailForm.js
 
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, api, wire,track} from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { getRecord } from 'lightning/uiRecordApi';
-//import { getUser } from 'lightning/uiCurrentUser';
-
+import { getRecord,getFieldValue } from 'lightning/uiRecordApi';
+// import { getUserInfo } from 'lightning/uiRecordApi';
 import sendmail from '@salesforce/apex/EmailTemplate1.sendEmail';
-
+import getUserEmail from '@salesforce/apex/EmailTemplate1.getUserEmail';
 const fields = [
     'Contact.Email','Contact.Name'
 ];
 
 export default class emailTemplate2 extends LightningElement {
-  
-
     @api toName;
     @api subject;
     @api recordId;
-    @api ccAddress ;
+    @api ccAddress;
+    @api bccAddress;
     @api toAddress;
     @api body;
+    @api  userEmail;
+        
+    @track emailid ='';
 
+    @track showField = false;
+
+  bodyContent='--------------------Contact Detail----------------';
+    showInputField() {
+        this.showField = true;
+    }
+
+    connectedCallback() {
+        getUserEmail()
+            .then(result => {
+                this.userEmail = result;
+                this.bccAddress=result;
+                this.emailid=result;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     @wire(getRecord, { recordId: '$recordId', fields })
     wiredContact({ error, data }) {
@@ -28,64 +47,25 @@ export default class emailTemplate2 extends LightningElement {
             console.log('inside');
             this.toName=data.fields.Name.value;
             this.toAddress = data.fields.Email.value;
+            this.body=this.bodyContent+ data.fields.Name.value;
             console.log(this.toAddress);
         } else if (error) {
             this.showErrorToast(error);
         }
     }
 
-
-
     items = [
         {
             type: 'avatar',
-            href: 'https://www.salesforce.com',
-            label: this.toName ,
+            href: 'https://mindful-shark-5lad46-dev-ed.trailblaze.lightning.force.com/lightning/r/User/0052w00000FIRThAAP/view',
+            label:'hariharangounder1@gmail.com',
             src: 'https://www.lightningdesignsystem.com/assets/images/avatar1.jpg',
             fallbackIconName: 'standard:user',
             variant: 'circle',
             alternativeText: 'User avatar',
-            isLink: true,
-        },
-        {
-            type: 'avatar',
-            href: '',
-            label: 'Avatar Pill 2',
-            src: 'https://www.lightningdesignsystem.com/assets/images/avatar2.jpg',
-            fallbackIconName: 'standard:user',
-            variant: 'circle',
-            alternativeText: 'User avatar',
-        },
-        {
-            type: 'avatar',
-            href: 'https://www.google.com',
-            label: 'Avatar Pill 3',
-            src: 'https://www.lightningdesignsystem.com/assets/images/avatar3.jpg',
-            fallbackIconName: 'standard:user',
-            variant: 'circle',
-            alternativeText: 'User avatar',
-            isLink: true,
-        },
+            isLink: false,
+        }
     ];
-
-
-
-
-
-
-
-   
-    // @wire(getUser)
-    // wiredUser({ error, data }) {
-    //     if (data) {
-    //         console.log('insideget user email')
-    //         this.ccAddress = data.email;
-    //         console.log(this.ccAddress);
-    //     } else if (error) {
-    //         this.showErrorToast(error);
-    //     }
-    // }
-
 
 handleEmailChange(event){
     this.toAddress = event.target.value;
@@ -94,6 +74,11 @@ handleEmailChange(event){
 handleCcEmailChange(event){
     this.ccAddress=event.target.value;
     console.log(this.ccAddress);
+}
+
+handlebccEmailChange(event){
+    this.bccAddress=event.target.value;
+    console.log(this.bccAddress);
 }
 handleSubjectChange(event){
     this.subject=event.target.value;
@@ -120,9 +105,8 @@ handleBodyChange(event){
             this.showErrorToast('Please enter a message of at least 10 characters.');
             return;
         }
-        
-        
-     sendmail({email: this.toAddress,Subject: this.subject,Message: this.body}).then(() => {
+    
+     sendmail({email: this.toAddress, Subject: this.subject, ccAddress:this.ccAddress, bccAddress: this.bccAddress,Message: this.body}).then(() => {
                 console.log('inside send mail  2');
                 console.log(this.toAddress);
                 console.log(this.ccAddress);
@@ -160,7 +144,5 @@ handleBodyChange(event){
             variant: 'error'
         });
         this.dispatchEvent(toastEvent);
-    }
-
-    
+    }    
 }
