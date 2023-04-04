@@ -18,7 +18,7 @@ export default class emailTemplate2 extends LightningElement {
     @api bccAddress;
     @api toAddress;
     @api body;
-    @api  userEmail;
+    @api userEmail;
         
     @track emailid ='';
 
