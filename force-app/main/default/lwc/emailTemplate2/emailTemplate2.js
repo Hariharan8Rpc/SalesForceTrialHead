@@ -106,7 +106,8 @@ handleBodyChange(event){
             return;
         }
     
-     sendmail({email: this.toAddress, Subject: this.subject, ccAddress:this.ccAddress, bccAddress: this.bccAddress,Message: this.body}).then(() => {
+     sendmail({email: this.toAddress, Subject: this.subject, ccAddress:this.ccAddress, bccAddress: this.bccAddress,Message: this.body})
+     .then(() => {
                 console.log('inside send mail  2');
                 console.log(this.toAddress);
                 console.log(this.ccAddress);
