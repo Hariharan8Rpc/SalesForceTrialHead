@@ -1,4 +1,5 @@
 @RestResource(urlMapping='/Accountcontact/*')
+
 // /services/apexrest/Accountcontact/0012w00001PVxp1AAD    end point url
 
 
@@ -18,14 +19,15 @@ global with sharing class AccountRest {
         RestRequest req = RestContext.request;
         RestResponse res = RestContext.response;
         String accountId = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
-        Account result = [SELECT Id, Name, Phone, Website FROM Account WHERE Id = :accountId];
+        // Account result = [SELECT Id, Name, Phone, Website FROM Account WHERE Id = :accountId];
+        Account result = [SELECT Id, Name, Phone, Website,(SELECT Name From Contacts)FROM Account WHERE Id = :accountId];
         return result;
     }
   
   @HttpPost
     global static String doPost(String name,
         String phone, String website) {
-        Account account = new Account();
+        Account account = new Account(); 
         account.Name = name;
         account.phone = phone;
         account.website = website;

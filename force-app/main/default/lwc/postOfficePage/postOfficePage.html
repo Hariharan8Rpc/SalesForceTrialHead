@@ -1,0 +1,75 @@
+<template>
+    <lightning-card title="Postal Code Lookup">
+        <div class="slds-m-around_medium">
+            <lightning-input type="text" label="Enter Postal Code" value={postalCode} onchange={handlePostalCodeChange}></lightning-input>
+            <lightning-button label="search" variant="brand" onclick={handleButtonClick}></lightning-button>
+        </div>
+        <template if:true={postalCodeDetails}>
+            <h1>here is the postal detail</h1>
+            <div class="slds-m-around_medium">
+                <!-- <lightning-badge label={postalCodeDetails.Message}></lightning-badge> -->
+                <template for:each={postalCodeDetails} for:item="office1">
+                    <div key={office1.Pincode} class="slds-m-around_medium">
+                        <lightning-badge label={office1.Message}></lightning-badge>
+                        <!-- <template for:each={office1.PostOffice} for:item="office">
+                            <div key={office.Pincode} class="slds-m-around_medium">
+                                <p><strong>Name:</strong> {office.Name}</p>
+                                <p><strong>Circle:</strong> {office.Circle}</p>
+                                <p><strong>District:</strong> {office.District}</p>
+                                <p><strong>Block:</strong> {office.Block}</p>
+                                <p><strong>State:</strong> {office.State}</p>
+                                <p><strong>Country:</strong> {office.Country}</p>
+                                <p><strong>Pincode:</strong> {office.Pincode}</p>
+                             </div>
+                        </template> -->
+
+                     
+                            <div class="slds-table_bordered slds-table_striped slds-table_fixed-layout">
+                                <table class="slds-table slds-table_cell-buffer">
+                                    <thead>
+                                        <tr class="slds-text-title_caps">
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Name">Name</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Circle">Circle</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="District">District</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Block">Block</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="State">State</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Country">Country</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Pincode">Pincode</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={office1.PostOffice} for:item="office">
+                                            <tr key={office.Pincode}>
+                                                <td data-label="Name">{office.Name}</td>
+                                                <td data-label="Circle">{office.Circle}</td>
+                                                <td data-label="District">{office.District}</td>
+                                                <td data-label="Block">{office.Block}</td>
+                                                <td data-label="State">{office.State}</td>
+                                                <td data-label="Country">{office.Country}</td>
+                                                <td data-label="Pincode">{office.Pincode}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                      
+                  </div>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>
