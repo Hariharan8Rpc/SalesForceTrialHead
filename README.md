@@ -241,3 +241,32 @@ custom apex rest class callouts url end points
 
 1 import current page reference from lightning/Navigation
 2 import publish subscribe from c/pub sub file
+  https://github.com/developerforce/pubsub/blob/master/force-app/main/default/lwc/pubsub/pubsub.js
+
+  copy the oubsub lib code from the above git 
+3 implement publish  event 
+- 1st param current page reference
+- 2nd param event name
+- 3rd param variable or reference that has to be passed to subscribe method. 
+
+
+ publishEvent(){
+        fireEvent(this.objectReference,'EventFromPub',this.postalCode);
+    }
+
+4  create subscrie
+- in subscribe implemt connected callback and disconnected callback 
+
+in connected call back
+- param 1 event name 
+- param 2 method that has to be called in subscribe wor working 
+- param 3 current page;
+
+  connectedCallback(){
+        registerListener('EventFromPub',this.handlePublish,this);
+    }
+
+    disconnectedCallback(){
+        unregisterAllListeners(this);
+    }
+    
