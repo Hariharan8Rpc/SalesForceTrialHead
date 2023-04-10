@@ -214,6 +214,10 @@ Streaming APi's
 Bulk Api's
 
 ### Lwc 
+### modules  building lightning web component
+
+
+
 @wire Read data 
 @api
  '$field name'
@@ -227,3 +231,13 @@ custom apex rest class callouts url end points
 /services/apexrest/Accountcontact/0012w00001PVxp1AAD
 
 
+### lwc communicating with unrelated component using publish subscribe
+# different Methods
+- samplepage ref
+- registered listner 
+- unregistered listner 
+- unregisteredAll Listner
+- fire event
+
+1 import current page reference from lightning/Navigation
+2 import publish subscribe from c/pub sub file
