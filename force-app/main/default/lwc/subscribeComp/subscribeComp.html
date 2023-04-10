@@ -3,7 +3,6 @@
         <template if:true={postalCodeDetails}>
             <h1>here is the postal detail</h1>
             <div class="slds-m-around_medium">
-                <!-- <lightning-badge label={postalCodeDetails.Message}></lightning-badge> -->
                 <template for:each={postalCodeDetails} for:item="office1">
                     <div key={office1.Pincode} class="slds-m-around_medium">
                         <lightning-badge label={office1.Message}></lightning-badge>                     
