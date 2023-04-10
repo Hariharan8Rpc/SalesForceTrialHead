@@ -1,18 +1,12 @@
 import { LightningElement, api,track,wire} from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import PostOffice from '@salesforce/apex/PostOfficeEndPoint.getPostOficeInfo';
+
 // import message from '@salesforce/apex/PostOfficeEndPoint.cls_PostOffice.message';
 // import Name from '@salesforce/apex/PostOfficeEndPoint.cls_PostOffice.Name';{
 export default class postOfficePage extends LightningElement {
   @track postalCode;
   @track postalCodeDetails;
-  @track Postal = {
-      message: 'hello test of   the array',
-      PostOffice: [
-        { Circle: 'nfjwfj', Country: 'uewiiue', District: 'efwgfewgf', Name: 'ewgew',PinCodeState:'ewgfewgf',State:'ewgg  r',Pincode:null},
-      ]
-    };
-  
 
   handlePostalCodeChange(event) {
       this.postalCode = event.target.value;
