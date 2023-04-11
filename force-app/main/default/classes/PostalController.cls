@@ -9,9 +9,8 @@ public with sharing class PostalController {
     @AuraEnabled(cacheable=true)
     public static void getPostOfficeInfo(){
         System.debug('inside controller calll');
-         PostOfficeEndPoint endPoint = new PostOfficeEndPoint();
-        PostOffice = endPoint.getPostOficeInfo(postalCode);
-        
+        //  PostOfficeEndPoint endPoint = new PostOfficeEndPoint();
+        PostOffice = PostOfficeEndPoint.getPostOficeInfo(postalCode);
         system.debug('----p0stal---'+PostOffice);
     }
 }

@@ -8,13 +8,13 @@ global class PostOfficeEndPoint {
             public String Status;	//Success
         //  public cls_PostOffice[] PostOffice;
            @AuraEnabled
-             public List<Cls_PostOffice> PostOffice= new List<Cls_PostOffice>();
+             public List<Cls_PostOffice> PostOffice = new List<Cls_PostOffice>();
         }
 
       global  class cls_PostOffice {
           @AuraEnabled
             public String Name;	
-            // public cls_Description Description;
+            // public cls_Description Descriptio n;
             public String BranchType;	
             public String DeliveryStatus;
           @AuraEnabled
