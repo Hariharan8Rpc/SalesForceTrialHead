@@ -1,0 +1,47 @@
+<apex:page controller="PostalController">
+    <apex:pageBlock>
+        <apex:pageBlockSection>
+            <apex:form>
+                <apex:inputText value="{!postalCode}" />
+                <apex:commandButton action="{!getPostOfficeInfo}" value="Get" />
+              </apex:form>
+              </apex:pageBlockSection>
+              <apex:pageBlockSection>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Circle</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Pincode</th>
+                        </tr>
+                    </thead>
+                    <h1>  {!PostOffice} </h1>
+                  <!-- <tbody>
+                        <apex:repeat value="{!PostOffice}" var="office1">
+                            <td> hello inside iterator</td>
+                           <apex:repeat value="{!office1.PostOffice} " var="office">
+                                <tr>
+                                    <td>{!office.Name}</td>
+                                    <td>{!office.Circle}</td>
+                                    <td>{!office.District}</td>
+                                    <td>{!office.Block}</td>
+                                    <td>{!office.State}</td>
+                                    <td>{!office.Country}</td>
+                                    <td>{!office.Pincode}</td>
+                                </tr>
+                           </apex:repeat>
+                        </apex:repeat>
+                    </tbody>  -->
+                </table>
+                <apex:pageBlockTable value="{!PostOffice}" var="office1">
+                    <apex:pageBlockTable value="{!office1.PostOffice}" var ="office">
+                        <apex:column value="{!office.Name}"/>
+                    </apex:pageBlockTable> 
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

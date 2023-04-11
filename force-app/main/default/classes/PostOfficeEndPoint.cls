@@ -9,7 +9,6 @@ global class PostOfficeEndPoint {
         //  public cls_PostOffice[] PostOffice;
            @AuraEnabled
              public List<Cls_PostOffice> PostOffice= new List<Cls_PostOffice>();
-           
         }
 
       global  class cls_PostOffice {
@@ -36,7 +35,7 @@ global class PostOfficeEndPoint {
 
 		@AuraEnabled (cacheable=true)
         public static List<cls_PostOffice1> getPostOficeInfo(Integer postalCode) {
-            List<cls_PostOffice1> postOffices= new List<cls_PostOffice1>();
+            List<cls_PostOffice1> postOffices = new List<cls_PostOffice1>();
             // Map<String,cls_PostOffice1> map = new Map<String,cls_PostOffice1>();
             Http http=new Http();
             String addr=String.ValueOf(postalCode);
@@ -57,8 +56,7 @@ global class PostOfficeEndPoint {
               // system.debug(result);
               }
            System.debug(postOffices);
-            // for(cls_PostOffice1 s:postOffices){
-                
+            // for(cls_PostOffice1 s:postOffices){ 
             //     System.debug(s.PostOffice);
             //  System.debug(s.PostOffice.size());     					
             // }
