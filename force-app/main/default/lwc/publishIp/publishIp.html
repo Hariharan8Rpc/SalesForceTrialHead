@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Postal Code Lookup">
+        <div class="slds-m-around_medium">
+            <lightning-input type="text" label="Enter IP Address" value={ipAddress} onchange={handleipChange}></lightning-input>
+            <lightning-button label="search" variant="brand" onclick={handleButtonClick}></lightning-button>
+        </div>
+        <template if:true={list}>
+    
+            <h1>here is the IP detail</h1>
+            <div class="slds-m-around_medium">
+                <!-- <lightning-badge label={postalCodeDetails.Message}></lightning-badge> -->
+                <!-- <Lightning-repeat value={ipList} var="list"> -->
+                    <table>
+                        <tr> 
+                           <td><b>IP</b></td>
+                         <td> {list.ip}</td>
+                        </tr>
+                        <tr>
+                        <td><B>Continent</B></td>
+                        <td>{list.continent_name}</td>
+                        </tr>
+                        <tr>
+                        <td><b>Country</b></td>
+                        <td>{list.country_name}</td>
+                        </tr>
+                        <tr>
+                        <td><b>Region Name</b></td>
+                        <td>{list.region_name}</td>
+                        </tr>
+                        <tr>
+                        <td><b>City</b></td>
+                        <td>{list.city}</td>
+                        </tr>
+                        <tr>
+                        <td><b>Zip</b></td>
+                        <td>{list.zip}</td>
+                        </tr>          
+                   </table>
+                     
+                   <!-- </apex:repeat> -->
+            </div>
+
+        </template>
+        <lightning-map map-markers={mapMarkers}>
+    </lightning-map>
+    </lightning-card>
+</template>
