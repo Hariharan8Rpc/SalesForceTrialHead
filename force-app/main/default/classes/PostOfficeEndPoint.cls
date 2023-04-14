@@ -1,37 +1,50 @@
 global class PostOfficeEndPoint {
     // https://api.postalpincode.in/pincode/571201   
 
+    public static Integer postalCode{get;set;}
+    
+    public static List<PostOfficeEndPoint.cls_PostOffice1> PostOffice {get;set;}    
        global class cls_PostOffice1 {
             @AuraEnabled
-            public String Message;
+            public String Message { get; set; }
            @AuraEnabled
-            public String Status;	//Success
+            public String Status{ get; set; }	//Success
         //  public cls_PostOffice[] PostOffice;
            @AuraEnabled
-             public List<Cls_PostOffice> PostOffice = new List<Cls_PostOffice>();
+           public List<cls_PostOffice> PostOffice {get;set;}    
+
+           //  public List<Cls_PostOffice> PostOffice = new List<Cls_PostOffice>();
         }
 
       global  class cls_PostOffice {
           @AuraEnabled
-            public String Name;	
+            public String Name{ get; set; }
             // public cls_Description Descriptio n;
-            public String BranchType;	
-            public String DeliveryStatus;
+            public String BranchType{ get; set; }
+            public String DeliveryStatus{ get; set; }
           @AuraEnabled
-            public String Circle;	
+            public String Circle{ get; set; }	
           @AuraEnabled
-            public String District;
-            public String Division;	//Kodagu
-            public String Region;	//South Karnataka
+            public String District{ get; set; }
+            public String Division{ get; set; }	//Kodagu
+            public String Region{ get; set; }	//South Karnataka
           @AuraEnabled  
-            public String Block;
+            public String Block{ get; set; }
           @AuraEnabled
-            public String State;
+            public String State{ get; set; }
           @AuraEnabled
-            public String Country;
+            public String Country{ get; set; }
           @AuraEnabled
-            public String Pincode;	//571201
+            public String Pincode{ get; set; }	//571201
         }
+
+        public static void getPostOfficeInfo(){
+          System.debug('inside controller calll');
+          //  PostOfficeEndPoint endPoint = new PostOfficeEndPoint();
+          PostOffice = getPostOficeInfo(postalCode);
+          system.debug('----p0stal---'+PostOffice);
+      }
+
 
 		@AuraEnabled (cacheable=true)
         public static List<cls_PostOffice1> getPostOficeInfo(Integer postalCode) {
@@ -51,7 +64,9 @@ global class PostOfficeEndPoint {
                 // Map<String,cls_PostOffice1> results1 = (Map<String,cls_PostOffice1>)JSON.deserialize(res);
                 // map=(Map<String,cls_PostOffice1>)json.deserialize(res.getbody(),Map<String,cls_PostOffice1>.class); 
                postOffices=(List<cls_PostOffice1>)json.deserialize(res.getbody(),List<cls_PostOffice1>.class);
-               System.debug(postOffices);
+             
+              //  PostOffice=postOffices;
+                 System.debug(postOffices);
               //  cls_PostOffice1 result = (cls_PostOffice1) JSON.deserialize(res.getBody(), cls_PostOffice1.class);
               // system.debug(result);
               }
