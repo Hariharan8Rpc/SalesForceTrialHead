@@ -41,7 +41,7 @@ public class ipStack{
 		public String native;	//हिन्दी
 	}
 */
-
+	
    public static ipStack parse(String json){
 		return (ipStack) System.JSON.deserialize(json, ipStack.class);
 	}
@@ -53,26 +53,30 @@ public class ipStack{
       //  134.201.250.155 
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        
+        ipStack result =new ipStack();
        String endpoint='http://api.ipstack.com/'+ipAddress+'?access_key=77a75cf9355a039271ee8f8786dd636e';
        //  String endpoint='http://api.ipstack.com/134.201.250.155?access_key=77a75cf9355a039271ee8f8786dd636e';
         request.setEndpoint(endpoint);
         request.setMethod('GET');
         System.debug('endpoint '+ endpoint);
-        system.debug('response'+request);
-        HttpResponse response = http.send(request);        
-        if (response.getStatusCode() == 200) {
-            ipStack result = (ipStack) JSON.deserialize(response.getBody(), ipStack.class);
-			system.debug(result);
-        //   system.debug(result.PostOffice);
-            return result;
-        } else {
-            return null;
+        system.debug('request'+request);
+        HttpResponse response = http.send(request);    
+		
+		if (response.getStatusCode() == 106 && response.getbody() != null ) {
+			system.debug('response T '+response.getbody());	  
+		}
+
+        if (response.getStatusCode() == 200 && response.getbody() != null ) {
+          result = (ipStack) JSON.deserialize(response.getBody(), ipStack.class);
+		  
+		  system.debug('result '+result);
         }
+		
+		return result;
+		//  else {
+        //     return null;
+        // }
     }
-    
-    
-	
     public ipStack ipList {get;set;}
 
 	@AuraEnabled

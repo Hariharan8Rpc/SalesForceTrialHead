@@ -16,26 +16,20 @@ export default class PublishIp extends LightningElement {
             .then(result => {
                 console.log('IP List : ', result);    
                 this.list=result;
-                if (result) {
-                    console.log('IP List : ', result);                
+                if (result && result.length > 0) {
+                    console.log('IP List 1: ', result);                
                     this.list=result;
                     this.dispatchEvent(new ShowToastEvent({
                       title: 'Done',
                       message: 'Results fetched',
                       variant: 'success'
                   }));
-                  
                  this.mapMarkers = [
                     {
                         location: {
                             Latitude: this.list.latitude,
                             Longitude: this.list.longitude,
                         },
-                        value: 'SF1',
-                        // Extra info for tile in list & info window
-                        icon: 'standard:account',
-                        title: 'Julies Kitchen', // e.g. Account.Name
-                        description: 'This is a long description',
                     },
                 ];
 
