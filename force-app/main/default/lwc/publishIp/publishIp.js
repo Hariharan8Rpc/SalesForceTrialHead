@@ -5,7 +5,7 @@ import getIpDetail from '@salesforce/apex/ipStack.getIpInfo';
 export default class PublishIp extends LightningElement {
  @track ipAddress;
  @track list;
- @track mapMarkers=[];
+ @track mapMarkers;
     handleipChange(event) {
         this.ipAddress = event.target.value;
         console.log('ipaddress'+this.ipAddress);
@@ -28,9 +28,14 @@ export default class PublishIp extends LightningElement {
                  this.mapMarkers = [
                     {
                         location: {
-                            Latitude: this.list.Latitude,
-                            Longitude: this.list.Longitude,
+                            Latitude: this.list.latitude,
+                            Longitude: this.list.longitude,
                         },
+                        value: 'SF1',
+                        // Extra info for tile in list & info window
+                        icon: 'standard:account',
+                        title: 'Julies Kitchen', // e.g. Account.Name
+                        description: 'This is a long description',
                     },
                 ];
 

@@ -34,14 +34,25 @@
                         <tr>
                         <td><b>Zip</b></td>
                         <td>{list.zip}</td>
-                        </tr>          
+                        </tr>     
+                        <tr>
+                            <td><b>Latitude</b></td>
+                            <td>{list.latitude}</td>
+                        </tr>  
+                        <tr>
+                            <td><b>Longitude</b></td>
+                            <td>{list.longitude}</td>
+                        </tr>       
                    </table>
                      
                    <!-- </apex:repeat> -->
             </div>
 
         </template>
+        <template if:true={list}>
         <lightning-map map-markers={mapMarkers}>
-    </lightning-map>
+        </lightning-map>
+        </template>
+   
     </lightning-card>
 </template>
