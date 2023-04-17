@@ -1,5 +1,4 @@
 import { LightningElement ,track} from 'lwc';
-
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getIpDetail from '@salesforce/apex/ipStack.getIpInfo';
 export default class PublishIp extends LightningElement {
@@ -12,11 +11,11 @@ export default class PublishIp extends LightningElement {
     }
 
     handleButtonClick() {
-        getIpDetail({ ipAddress: this.ipAddress })
+        getIpDetail({ ipAddress: this.ipAddress})
             .then(result => {
                 console.log('IP List : ', result);    
-                this.list=result;
-                if (result && result.length > 0) {
+              //  this.list=result;
+                if (result) {
                     console.log('IP List 1: ', result);                
                     this.list=result;
                     this.dispatchEvent(new ShowToastEvent({
@@ -32,7 +31,6 @@ export default class PublishIp extends LightningElement {
                         },
                     },
                 ];
-
                 } else {
                     throw new Error(' error .');
                 }
@@ -47,6 +45,4 @@ export default class PublishIp extends LightningElement {
                 }));
             });
     }
-    
-   
 }
