@@ -135,7 +135,12 @@ Example LeadProcess
 # Queueable Apex is essentially a superset of future methods- 
 - a simplified interface without start and finish methods and even allows you to utilize more than just primitive arguments!
 - System.enqueueJob() method, which returns a job ID that you can monitor.
-
+- Syntax
+public class SomeClass implements Queueable {
+    public void execute(QueueableContext context) {
+        // awesome code here
+    }
+}
 
 ### scheduleable apex
 The Apex Scheduler lets you delay execution so that you can run Apex classes at a specified time. 
