@@ -15,9 +15,9 @@ export default class postOfficePage extends LightningElement {
   handleButtonClick() {
     PostOffice({ postalCode: this.postalCode })
         .then(result => {
-            if (result && result && result.length > 0) {
-                // this.postalCodeDetails = JSON.stringify(result);
-            //     const parsedResult = JSON.parse(result);
+            if (result && result.length > 0) {
+            // this.postalCodeDetails = JSON.stringify(result);
+            // const parsedResult = JSON.parse(result);
                 console.log('Postal Code : ', result);
             // this.postalCodeDetails = parsedResult[0].PostOffice;
             // console.log('PostOffice Details: ', JSON.stringify(parsedResult[0].PostOffice));

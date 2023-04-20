@@ -14,7 +14,7 @@ public class ipStack{
 	@AuraEnabled
 	public String region_code{get;set;}	//KA
 	@AuraEnabled
-	public String region_name{get;set;}	//Karnataka
+	public String region_name{get;set;}	    //Karnataka
 	@AuraEnabled
 	public String city{get;set;}	//Bengaluru
 	@AuraEnabled

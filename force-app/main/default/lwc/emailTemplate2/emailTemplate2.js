@@ -49,6 +49,8 @@ export default class emailTemplate2 extends LightningElement {
             this.toAddress = data.fields.Email.value;
             this.body=this.bodyContent+ data.fields.Name.value;
             console.log(this.toAddress);
+            console.log(this.recordId);
+
         } else if (error) {
             this.showErrorToast(error);
         }
@@ -106,17 +108,25 @@ handleBodyChange(event){
             return;
         }
     
-     sendmail({email: this.toAddress, Subject: this.subject, ccAddress:this.ccAddress, bccAddress: this.bccAddress,Message: this.body})
-     .then(() => {
+     sendmail({contId:this.recordId,email: this.toAddress, Subject: this.subject, ccAddress:this.ccAddress, bccAddress: this.bccAddress,Message: this.body})
+     .then(result => {
+     //   () => {
+        if( result=="Success"){
                 console.log('inside send mail  2');
                 console.log(this.toAddress);
-                console.log(this.ccAddress);
-                console.log(this.subject);
-                console.log(this.body);
+                // console.log(this.ccAddress);
+                // console.log(this.subject);
+                // console.log(this.body);
+                console.log(this.recordId);
+                console.log(result);
+                this.showSuccessToast(result);
                 console.log('mail function exit');
-                this.showSuccessToast();
                 this.clearForm();
-            })
+            }
+            else{
+                this.showErrorToast(result);
+            }
+          })
             .catch((error) => {
                 this.showErrorToast(error);
             });
@@ -129,10 +139,10 @@ handleBodyChange(event){
         this.body = '';
     }
 
-    showSuccessToast() {
+    showSuccessToast(message) {
         const toastEvent = new ShowToastEvent({
             title: 'Email Sent',
-            message: 'Your email was sent successfully.',
+            message: message, //'Your email was sent successfully.',
             variant: 'success'
         });
         this.dispatchEvent(toastEvent);
@@ -141,7 +151,7 @@ handleBodyChange(event){
     showErrorToast(message) {
         const toastEvent = new ShowToastEvent({
             title: 'Error',
-            message,
+            message:message,
             variant: 'error'
         });
         this.dispatchEvent(toastEvent);
