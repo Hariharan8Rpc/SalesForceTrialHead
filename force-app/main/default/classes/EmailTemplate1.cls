@@ -12,7 +12,7 @@ public with sharing class EmailTemplate1 {
             // template id  of the template so it can be populated in the template
           //  Id templateId='00X2w000000OAmlEAG';
             Id whatid1=contId;
-          String  templateName='DemoMail';
+          String  templateName='Demo2';
             //Classic eMail Template
             Id templateId = [SELECT Id FROM EmailTemplate WHERE Name = :templateName AND IsActive = true].Id;
             system.debug('inside the classs id    '+templateId);
