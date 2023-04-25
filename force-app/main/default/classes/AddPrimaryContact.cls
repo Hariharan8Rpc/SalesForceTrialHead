@@ -6,7 +6,6 @@ public class AddPrimaryContact implements Queueable {
 		this.con= records;
         this.abbr=abbr1;
     }
-    
         public void execute(QueueableContext context) {
         List<Account> accounts = [select name from account where billingstate=:abbr LIMIT 200];
         List<Contact> contacts = new List<Contact>();
@@ -15,7 +14,5 @@ public class AddPrimaryContact implements Queueable {
            contacts.add(con);
         }
         insert contacts;
-}
-  
-    
+}    
 }

@@ -3,10 +3,10 @@ public class Batcheg implements Database.Batchable<sObject>, Database.Stateful {
 //Read through cron objects 
 //  Id batchJobId = Database.executeBatch(new RunThisBatch(), 200);
 public Integer records=0;
+
     public Database.QueryLocator start(Database.BatchableContext bc) {
        String name='Amruthesh';
         return Database.getQueryLocator(
-        
       	'SELECT createddate,Name FROM Contact where Name=:name'
       );
     }
@@ -15,7 +15,6 @@ public Integer records=0;
         System.debug('Entered execute method');
        // Date today = Date.today();
        // List<Contact> contactList=new List<Contact>();
-        
         //for(Contact con : conlist){
          //   Date myDate=con.CreatedDate.Date();
          //   con.Created_Day_Count__c=myDate.daysBetween(today);
@@ -23,6 +22,7 @@ public Integer records=0;
        // }
        // update contactList;
     }
+
     public void finish(Database.BatchableContext bc){
         // execute any post-processing operations
         System.debug('---'+records);

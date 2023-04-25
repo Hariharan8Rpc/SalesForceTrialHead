@@ -128,6 +128,9 @@ public class BatchClass implements Database.Batchable<Account>{
 }
 
 
+## to test batch class call batch with the 
+ DataBase.executeBatch(objname  of the batch); 
+
 Example LeadProcess
 
 ###Queueable Apex
