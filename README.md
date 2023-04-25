@@ -145,6 +145,16 @@ public class SomeClass implements Queueable {
 ### scheduleable apex
 The Apex Scheduler lets you delay execution so that you can run Apex classes at a specified time. 
 
+// Seconds Minutes Hours Day_of_month Month Day_of_week optional_year
+String sch = '20 30 8 10 2 ?';
+String jobID = System.schedule('Comments for the schedule', 'time', schedulabele that  has to be performed);
+
+public class SomeClass implements Schedulable {
+    public void execute(SchedulableContext ctx) {
+        // awesome code here
+    }
+}
+
 ### Apex callouts
   SOAP -> xml
   REST-> JSON

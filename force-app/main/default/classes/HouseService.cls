@@ -1,6 +1,7 @@
 public with sharing class HouseService {
     @AuraEnabled(cacheable=true)
-    public static List<House__c> getRecords() { 
+    public static List<House__c>   getRecords() { 
+        
         try {
             // Create a list of House records from a SOQL query
             List<House__c> lstHouses = [
