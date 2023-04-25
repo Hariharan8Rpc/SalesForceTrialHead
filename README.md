@@ -77,6 +77,14 @@ after delete	Not allowed.		  Not allowed.                     Not applicable.
 after undelete	Not allowed.		  Allowed.		           Allowed. 
 
 
+### Overriding the classes
+- Methods and classes are final by default.
+- The virtual definition modifier allows extension and overrides.
+- The override keyword must be used explicitly on methods that override base class methods.
+
+
+
+
 ### Lightning Web Components decorators include
 ## @api: 
 Marks a field as public. Public properties define the API for a component.
