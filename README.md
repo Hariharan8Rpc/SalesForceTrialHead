@@ -304,25 +304,31 @@ in connected call back
 
 
 ### GITHUB
-- git config --global user.name "First Last"
-
-- git config --global user.email "you@email.com"
+- TO init repo to the locL MACHINE
+ git config --global user.name "First Last"
+ git config --global user.email "you@email.com"
 
 - use auto carrage return line feed when multiple os handled files used
-
 git config --global core.autocrlf true
 
 - create branch git branch branchname
-
-- to move pointer to that branch use git checkout my feature branch
+- to move pointer to that branch use 
+git checkout myfeaturebranch
 
 - TO add file to staging
-git add file name
+git add filename
 
-- to commit changes git commit-m "commit message"
+- to commit changes 
+git commit-m "commit message"
 
 - to publish the branch to remote repo
+git push -u origin mybranchname     then enter user name and password
 
-git push -u origin mybranchname then enter user name and password
 
-read mea changes cgverwdfghd
+- to find fifference in thhe code 
+- Shows the recent made chandes logs 
+git log --oneline --grap  
+
+- to check the difference that has been made inthe both files
+ git diff code code
+ 
