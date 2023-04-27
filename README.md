@@ -313,6 +313,7 @@ git config --global core.autocrlf true
 
 - create branch git branch branchname
 - to move pointer to that branch use 
+
 git checkout myfeaturebranch
 
 - TO add file to staging
@@ -327,7 +328,7 @@ git push -u origin mybranchname     then enter user name and password
 
 - to find fifference in thhe code 
 - Shows the recent made chandes logs 
-git log --oneline --grap  
+git log --oneline --graph
 
 - to check the difference that has been made inthe both files
  git diff code code
