@@ -301,4 +301,28 @@ in connected call back
  - def
  Custom metadata is customizable, deployable, packageable, and upgradeable application metadata. First you create a custom metadata type, which defines the form of the application metadata. Then you build reusable functionality that determines the behavior based on metadata of that type. 
 - 
+
+
+### GITHUB
+- git config --global user.name "First Last"
+
+- git config --global user.email "you@email.com"
+
+- use auto carrage return line feed when multiple os handled files used
+
+git config --global core.autocrlf true
+
+- create branch git branch branchname
+
+- to move pointer to that branch use git checkout my feature branch
+
+- TO add file to staging
+git add file name
+
+- to commit changes git commit-m "commit message"
+
+- to publish the branch to remote repo
+
+git push -u origin mybranchname then enter user name and password
+
 read mea changes 
