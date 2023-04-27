@@ -331,4 +331,19 @@ git log --oneline --grap
 
 - to check the difference that has been made inthe both files
  git diff code code
- 
+
+- undoing changes  
+git revert
+
+- git reset command that can help rewind the history of our project,
+git reset --soft
+git reset --mixed
+git reset --hard
+
+- git rebase is used to reright history so you can use it care
+git rebase
+
+- commit --amend to make a modification to the last commit you made.
+commit --amend
+
+
