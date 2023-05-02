@@ -304,49 +304,57 @@ in connected call back
 
 
 ### GITHUB
-| TO init repo to the locL MACHINE|
+| TO init repo to the locL MACHINE |
 | --- |
  |git config --global user.name "First Last" |
 | git config --global user.email "you@email.com" |
-| --- |
+
 | use auto carrage return line feed when multiple os handled files used |
 | --- |
 | git config --global core.autocrlf true |
-| --- |
+
 | create branch git branch branchname |
-| --- |
  | to move pointer to that branch use |
 | --- |
 | git checkout myfeaturebranch |
+
 | TO add file to staging |
+| --- |
 | git add filename |
-| --- |
+
 | to commit changes  |
+| --- |
 | git commit-m "commit message" |
-| --- |
+
 | to publish the branch to remote repo |
+| --- |
  |git push -u origin mybranchname     then enter user name and password |
-| --- |
+
 | Shows the recent made chandes logs  |
+| --- |
 | git log --oneline --graph |
-| --- |
+
 |to check the difference that has been made inthe both files |
- | git diff code code |
 | --- |
+ | git diff code code |
+
 | undoing changes  |
 | --- |
 | git revert|
-| --- |
+
 |git reset command that can help rewind the history of our project,|
 | --- |
 |git reset --soft |
 | git reset --mixed |
 | git reset --hard |
-| --- |
+
+
 | git rebase is used to reright history so you can use it care |
+| --- |
 | git rebase |
-| --- |
+
 | commit --amend to make a modification to the last commit you made. |
-| commit --amend |
 | --- |
+| commit --amend |
+
 
