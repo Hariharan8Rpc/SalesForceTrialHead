@@ -187,7 +187,7 @@ Base end point  @RestResource(urlMapping='/Account/*').
 
 ## method visiblity should be global static
 |Annotation	Action	Details|
-
+| Method | description |
 | --- | --- |
 | @HttpGet |	Read	Reads or retrieves records |
 |@HttpPost |	Create	Creates records|
