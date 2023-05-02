@@ -187,12 +187,13 @@ Base end point  @RestResource(urlMapping='/Account/*').
 
 ## method visiblity should be global static
 |Annotation	Action	Details|
+
 | --- | --- |
-| @HttpGet |	Read	Reads or retrieves records.|
-|@HttpPost |	Create	Creates records.|
-|@HttpDelete |	Delete	Deletes records.|
-|@HttpPut |	Upsert	Typically used to update existing records or create records.|
-|@HttpPatch |	Update	Typically used to update fields in existing records.|
+| @HttpGet |	Read	Reads or retrieves records |
+|@HttpPost |	Create	Creates records|
+|@HttpDelete |	Delete	Deletes records |
+|@HttpPut |	Upsert	Typically used to update existing records or create records |
+|@HttpPatch |	Update	Typically used to update fields in existing records |
 
 
 ## example
