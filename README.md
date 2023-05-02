@@ -65,16 +65,15 @@ trigger TriggerName on ObjectName (trigger_events) {
 
 The following table lists considerations about certain actions in different trigger events:
 
-Trigger Event |	Can change fields    |	Can update original object    |  Can delete original object
-		 using trigger.new	using an update DML operation    using a delete DML operation
-------------------------------------------------------------------------------------------------------
-before insert	Allowed.	          Not applicable.	           Not applicable. 
-after insert    Not allowed  		  Not allowed.   	           Allowed.	
-before update	Allowed.	          Not allowed. 			   Not allowed.
-after update	Not allowed.		  Allowed. 			   Not allowed. 
-before delete	Not allowed. 		  Allowed. 		           Not allowed. 
-after delete	Not allowed.		  Not allowed.                     Not applicable. 
-after undelete	Not allowed.		  Allowed.		           Allowed. 
+|Trigger Event |	Can change fields using trigger.new | Can update original object using an update DML operation | Can delete original object using a delete DML operation |
+| --- | --- | --- | --- |
+|before insert | Allowed |  Not applicable | Not applicable. |
+| after insert | Not allowed| Not allowed. | Allowed |
+| before update | Allowed. |          Not allowed. 	|		   Not allowed.|
+| after update	| Not allowed.	|	  Allowed. 	|		   Not allowed. |
+| before delete	| Not allowed. 	|	  Allowed. 	|	           Not allowed. |
+| after delete	| Not allowed.	|	  Not allowed.   |                  Not applicable. | 
+| after undelete | Not allowed.	|	  Allowed.	|	           Allowed. |
 
 
 ### Overriding the classes
