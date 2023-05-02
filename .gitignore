@@ -38,6 +38,6 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
-# permissions
+# permissionsSets
 
 *-meta.xml
