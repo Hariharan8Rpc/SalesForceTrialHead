@@ -335,10 +335,11 @@ git log --oneline --graph
 - undoing changes  
 git revert
 
-- git reset command that can help rewind the history of our project,
-git reset --soft
-git reset --mixed
-git reset --hard
+|git reset command that can help rewind the history of our project,|
+| --- |
+|git reset --soft |
+| git reset --mixed |
+| git reset --hard |
 
 - git rebase is used to reright history so you can use it care
 git rebase
