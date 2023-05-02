@@ -65,16 +65,15 @@ trigger TriggerName on ObjectName (trigger_events) {
 
 The following table lists considerations about certain actions in different trigger events:
 
-Trigger Event |	Can change fields    |	Can update original object    |  Can delete original object
-		 using trigger.new	using an update DML operation    using a delete DML operation
-------------------------------------------------------------------------------------------------------
-before insert	Allowed.	          Not applicable.	           Not applicable. 
-after insert    Not allowed  		  Not allowed.   	           Allowed.	
-before update	Allowed.	          Not allowed. 			   Not allowed.
-after update	Not allowed.		  Allowed. 			   Not allowed. 
-before delete	Not allowed. 		  Allowed. 		           Not allowed. 
-after delete	Not allowed.		  Not allowed.                     Not applicable. 
-after undelete	Not allowed.		  Allowed.		           Allowed. 
+|Trigger Event |	Can change fields using trigger.new | Can update original object using an update DML operation | Can delete original object using a delete DML operation |
+| --- | --- | --- | --- |
+|before insert | Allowed |  Not applicable | Not applicable. |
+| after insert | Not allowed| Not allowed. | Allowed |
+| before update | Allowed. |          Not allowed. 	|		   Not allowed.|
+| after update	| Not allowed.	|	  Allowed. 	|		   Not allowed. |
+| before delete	| Not allowed. 	|	  Allowed. 	|	           Not allowed. |
+| after delete	| Not allowed.	|	  Not allowed.   |                  Not applicable. | 
+| after undelete | Not allowed.	|	  Allowed.	|	           Allowed. |
 
 
 ### Overriding the classes
@@ -118,6 +117,7 @@ Use @track only if a field contains an object or an array and if you want the fr
 ## implements Database.Batchable<> 
 
 ##Example
+``` java
 public class BatchClass implements Database.Batchable<Account>{
    public Iterable<Account> start(Database.BatchableContext info){
        return new CustomIterable();
@@ -134,7 +134,7 @@ public class BatchClass implements Database.Batchable<Account>{
    public void finish(Database.BatchableContext info){
    }
 }
-
+```
 
 ## to test batch class call batch with the 
  DataBase.executeBatch(objname  of the batch); 
@@ -147,16 +147,18 @@ Example LeadProcess
 - a simplified interface without start and finish methods and even allows you to utilize more than just primitive arguments!
 - System.enqueueJob() method, which returns a job ID that you can monitor.
 - Syntax
+``` java
 public class SomeClass implements Queueable {
     public void execute(QueueableContext context) {
         // awesome code here
     }
 }
-
+```
 ### scheduleable apex
 The Apex Scheduler lets you delay execution so that you can run Apex classes at a specified time. 
 
 // Seconds Minutes Hours Day_of_month Month Day_of_week optional_year
+``` java 
 String sch = '20 30 8 10 2 ?';
 String jobID = System.schedule('Comments for the schedule', 'time', schedulabele that  has to be performed);
 
@@ -165,7 +167,7 @@ public class SomeClass implements Schedulable {
         // awesome code here
     }
 }
-
+```
 ### Apex callouts
   SOAP -> xml
   REST-> JSON
@@ -184,16 +186,17 @@ Base end point  @RestResource(urlMapping='/Account/*').
 ### http Methods
 
 ## method visiblity should be global static
-Annotation	Action	Details
-@HttpGet	Read	Reads or retrieves records.
-@HttpPost	Create	Creates records.
-@HttpDelete	Delete	Deletes records.
-@HttpPut	Upsert	Typically used to update existing records or create records.
-@HttpPatch	Update	Typically used to update fields in existing records.
+|Annotation	Action	Details|
+| --- |
+|@HttpGet	Read	Reads or retrieves records.|
+|@HttpPost	Create	Creates records.|
+|@HttpDelete	Delete	Deletes records.|
+|@HttpPut	Upsert	Typically used to update existing records or create records.|
+|@HttpPatch	Update	Typically used to update fields in existing records.|
 
 
 ## example
-
+``` java
 @RestResource(urlMapping='/Account/*')
 global with sharing class MyRestResource {
     @HttpGet
@@ -201,26 +204,26 @@ global with sharing class MyRestResource {
         // Add your code
     }
 }
-
+```
 ## Rest With  Put 
-
+``` java
 @HttpPut
 global static ID upsertCase(){
 //body
 return id;
 }
-
+```
 ### SOAP
 Define your class as global. Add the webservice keyword and the static definition modifier to each method you want to expose.                                                                                                     
 
 ## Example 
+``` java
 global with sharing class MySOAPWebService {
     webservice static Account getRecord(String id) {
         // Add your code
     }
 }
-
-
+```
 ### Iterators & Iterable
 
 While
@@ -241,8 +244,6 @@ Bulk Api's
 
 ### Lwc 
 ### modules  building lightning web component
-
-
 
 @wire Read data 
 @api
@@ -274,12 +275,11 @@ custom apex rest class callouts url end points
 - 1st param current page reference
 - 2nd param event name
 - 3rd param variable or reference that has to be passed to subscribe method. 
-
-
+```
  publishEvent(){
         fireEvent(this.objectReference,'EventFromPub',this.postalCode);
     }
-
+```
 4  create subscrie
 - in subscribe implemt connected callback and disconnected callback 
 
@@ -287,7 +287,7 @@ in connected call back
 - param 1 event name 
 - param 2 method that has to be called in subscribe wor working 
 - param 3 current page;
-
+```
   connectedCallback(){
         registerListener('EventFromPub',this.handlePublish,this);
     }
@@ -295,7 +295,7 @@ in connected call back
     disconnectedCallback(){
         unregisterAllListeners(this);
     }
-    
+   ``` 
 ### Custom Metadata Types    
  -   suffix with __mtd
  - def
@@ -304,47 +304,57 @@ in connected call back
 
 
 ### GITHUB
-- TO init repo to the locL MACHINE
- git config --global user.name "First Last"
- git config --global user.email "you@email.com"
+| TO init repo to the locL MACHINE |
+| --- |
+ |git config --global user.name "First Last" |
+| git config --global user.email "you@email.com" |
 
-- use auto carrage return line feed when multiple os handled files used
-git config --global core.autocrlf true
+| use auto carrage return line feed when multiple os handled files used |
+| --- |
+| git config --global core.autocrlf true |
 
-- create branch git branch branchname
-- to move pointer to that branch use 
+| create branch git branch branchname |
+ | to move pointer to that branch use |
+| --- |
+| git checkout myfeaturebranch |
 
-git checkout myfeaturebranch
+| TO add file to staging |
+| --- |
+| git add filename |
 
-- TO add file to staging
-git add filename
+| to commit changes  |
+| --- |
+| git commit-m "commit message" |
 
-- to commit changes 
-git commit-m "commit message"
+| to publish the branch to remote repo |
+| --- |
+ |git push -u origin mybranchname     then enter user name and password |
 
-- to publish the branch to remote repo
-git push -u origin mybranchname     then enter user name and password
+| Shows the recent made chandes logs  |
+| --- |
+| git log --oneline --graph |
+
+|to check the difference that has been made inthe both files |
+| --- |
+ | git diff code code |
+
+| undoing changes  |
+| --- |
+| git revert|
+
+|git reset command that can help rewind the history of our project,|
+| --- |
+|git reset --soft |
+| git reset --mixed |
+| git reset --hard |
 
 
-- to find fifference in thhe code 
-- Shows the recent made chandes logs 
-git log --oneline --graph
+| git rebase is used to reright history so you can use it care |
+| --- |
+| git rebase |
 
-- to check the difference that has been made inthe both files
- git diff code code
-
-- undoing changes  
-git revert
-
-- git reset command that can help rewind the history of our project,
-git reset --soft
-git reset --mixed
-git reset --hard
-
-- git rebase is used to reright history so you can use it care
-git rebase
-
-- commit --amend to make a modification to the last commit you made.
-commit --amend
+| commit --amend to make a modification to the last commit you made. |
+| --- |
+| commit --amend |
 
 
