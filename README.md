@@ -187,12 +187,12 @@ Base end point  @RestResource(urlMapping='/Account/*').
 
 ## method visiblity should be global static
 |Annotation	Action	Details|
-| --- |
-|@HttpGet	Read	Reads or retrieves records.|
-|@HttpPost	Create	Creates records.|
-|@HttpDelete	Delete	Deletes records.|
-|@HttpPut	Upsert	Typically used to update existing records or create records.|
-|@HttpPatch	Update	Typically used to update fields in existing records.|
+| ---| --- |
+|@HttpGet |	Read	Reads or retrieves records.|
+|@HttpPost |	Create	Creates records.|
+|@HttpDelete |	Delete	Deletes records.|
+|@HttpPut |	Upsert	Typically used to update existing records or create records.|
+|@HttpPatch |	Update	Typically used to update fields in existing records.|
 
 
 ## example
@@ -270,12 +270,12 @@ custom apex rest class callouts url end points
 2 import publish subscribe from c/pub sub file
   https://github.com/developerforce/pubsub/blob/master/force-app/main/default/lwc/pubsub/pubsub.js
 
-  copy the oubsub lib code from the above git 
+  copy the Pubsub lib code from the above git 
 3 implement publish  event 
 - 1st param current page reference
 - 2nd param event name
 - 3rd param variable or reference that has to be passed to subscribe method. 
-```
+``` javascript
  publishEvent(){
         fireEvent(this.objectReference,'EventFromPub',this.postalCode);
     }
@@ -287,7 +287,7 @@ in connected call back
 - param 1 event name 
 - param 2 method that has to be called in subscribe wor working 
 - param 3 current page;
-```
+``` javascript
   connectedCallback(){
         registerListener('EventFromPub',this.handlePublish,this);
     }
