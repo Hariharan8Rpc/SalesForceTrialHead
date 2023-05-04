@@ -10,9 +10,14 @@ global with sharing class AccountRest {
         RestRequest req = RestContext.request;
         RestResponse res = RestContext.response;
         String accountId = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
-        Account account = [SELECT Id FROM Account WHERE Id = :accountId];
+        if(
+            Account.SObjectType.getDescribe().isAccessible() &&
+            Schema.SObjectType.Account.fields.Id.isAccessible()
+        ) {
+        Account  account = [SELECT Id FROM Account WHERE Id = :accountId];
         delete account;
     }
+}
   
     @HttpGet
     global static Account doGet() {

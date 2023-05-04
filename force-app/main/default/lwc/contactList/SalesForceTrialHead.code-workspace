@@ -6,6 +6,10 @@
 		{
 			"name": "troubleshoot-lwc",
 			"path": "D:/hari/troubleshoot-lwc"
+		},
+		{
+			"name": "visualforce-to-lwc",
+			"path": "../../../../../visualforce-to-lwc"
 		}
 	],
 	"settings": {
