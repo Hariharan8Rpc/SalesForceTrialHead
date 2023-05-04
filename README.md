@@ -19,19 +19,6 @@ The `sfdx-project.json` file contains useful configuration information for your 
 
 ###  NOTES FOR Understanding
 
-### username of Trial hEAD   hariharangounder1@wise-raccoon-4p39ek.com
-
-https://mindful-shark-5lad46-dev-ed.trailblaze.my.salesforce.com/
-hariharangounder1@mindful-shark-5lad46.com
-gAw9uHxcT001rK8278ZhUdwy    token
-###reRender & rendered attributes in Salesforce;
-1de2w00000T0IBVAA3
-
-
-
-
-00D2w00000RJb7I!ARoAQIpp2HHP_zXliFApYaO_wBGKgrEXdJANDyEFCoz1o_AEjS1hRhRKKD3u8UO8zCJ4tAkxmPO.xa2uDtAsgSMaNHjxqnwb
-
 ## What is rendered Attribute?
  It is a Boolean value weather the component is rendered on visualforce page.
  If it is not specified, default value is always true.
