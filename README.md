@@ -106,7 +106,7 @@ Use @track only if a field contains an object or an array and if you want the fr
   ```  java 
   ProcessAccounts bjob =new  ProcessAccounts();
     database.executeBatch(bjob);   //2000
-    ``
+  ```
 ## implements Database.Batchable<> 
 - Refer ProcessAcccounts.cls   for eg
 ##Example
