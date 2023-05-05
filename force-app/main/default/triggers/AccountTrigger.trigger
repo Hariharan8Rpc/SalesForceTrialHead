@@ -7,6 +7,9 @@ trigger AccountTrigger on Account (after insert) {
 
         for(Account acc :Trigger.new){
             FutureTaskCreator.createTask(acc.Id);
+            QueuableTaskCreator qjob= new QueuableTaskCreator(acc.Id);
+            ID jobId =System.enqueueJob(qjob);
+            System.debug('Queuable Job ID'+ jobId);
         }
    
 }
