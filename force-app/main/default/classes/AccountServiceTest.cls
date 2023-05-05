@@ -15,6 +15,5 @@ private class AccountServiceTest {
     System.assertEquals( acctName, accts[0].Name, 'incorrect name' );
     System.assertEquals( acctNumber, accts[0].AccountNumber, 'incorrect account number' );
     System.assertEquals( tickerSymbol, accts[0].TickerSymbol, 'incorrect ticker symbol' );
-  
   }
 }
