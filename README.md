@@ -94,7 +94,7 @@ Use @track only if a field contains an object or an array and if you want the fr
 - Call async from triggers, etc, where callouts are not permitted.
 - allouts enable Apex to invoke external web or HTTP services. Apex Web services allow an external application to invoke Apex methods through Web services
 - Future methods can’t be used in Visualforce controllers in getMethodName(), setMethodName(), nor in the constructor.
-
+[Future Method Example ]{https://github.com/Hariharan8Rpc/SalesForceTrialHead/blob/master/force-app/main/default/classes/FutureTaskCreator.cls}
 ### BAtch 
 - if you specify Database.Stateful in the class definition, you can maintain state across these transactions.
 - When using Database.Stateful, only instance member variables retain their values between transactions.
@@ -102,7 +102,7 @@ Use @track only if a field contains an object or an array and if you want the fr
 - If you don’t specify Database.Stateful, all static and instance member variables are set back to their original values.
 
 ## implements Database.Batchable<> 
-
+[Batchable Example]{https://github.com/Hariharan8Rpc/SalesForceTrialHead/blob/master/force-app/main/default/classes/ProcessAccounts.cls}
 ##Example
 ``` java
 public class BatchClass implements Database.Batchable<Account>{
@@ -134,6 +134,7 @@ Example LeadProcess
 - a simplified interface without start and finish methods and even allows you to utilize more than just primitive arguments!
 - System.enqueueJob() method, which returns a job ID that you can monitor.
 - Syntax
+[Queueable Example]{https://github.com/Hariharan8Rpc/SalesForceTrialHead/blob/master/force-app/main/default/classes/QueuableTaskCreator.cls}
 ``` java
 public class SomeClass implements Queueable {
     public void execute(QueueableContext context) {
