@@ -100,7 +100,13 @@ Use @track only if a field contains an object or an array and if you want the fr
 - When using Database.Stateful, only instance member variables retain their values between transactions.
 - Static member variables don’t retain their values and are reset between transactions
 - If you don’t specify Database.Stateful, all static and instance member variables are set back to their original values.
-
+- By default the batch scope will be 200
+- Max scope is
+# To execute bacth job in ananonymous window
+  ```  java 
+  ProcessAccounts bjob =new  ProcessAccounts();
+    database.executeBatch(bjob);   //2000
+    ``
 ## implements Database.Batchable<> 
 - Refer ProcessAcccounts.cls   for eg
 ##Example
@@ -136,6 +142,8 @@ Example LeadProcess
 [Queueable Example]
 - Refer QueuableTaskCreator.cls    
 ``` java
+// QueuableTaskCreator qjob= new QueuableTaskCreator(acc.Id);
+// To cla  the quequabel method pass the id of the record with it 
 public class SomeClass implements Queueable {
     public void execute(QueueableContext context) {
         // awesome code here
