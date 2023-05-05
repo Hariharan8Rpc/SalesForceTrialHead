@@ -56,11 +56,11 @@ The following table lists considerations about certain actions in different trig
 | --- | --- | --- | --- |
 |before insert | Allowed |  Not applicable | Not applicable. |
 | after insert | Not allowed| Not allowed. | Allowed |
-| before update | Allowed. |          Not allowed. 	|		   Not allowed.|
-| after update	| Not allowed.	|	  Allowed. 	|		   Not allowed. |
-| before delete	| Not allowed. 	|	  Allowed. 	|	           Not allowed. |
-| after delete	| Not allowed.	|	  Not allowed.   |                  Not applicable. | 
-| after undelete | Not allowed.	|	  Allowed.	|	           Allowed. |
+| before update | Allowed. |  Not allowed. 	|	Not allowed.|
+| after update	| Not allowed.	|	  Allowed. 	|	 Not allowed. |
+| before delete	| Not allowed. 	|	  Allowed. 	|	   Not allowed. |
+| after delete	| Not allowed.	|	  Not allowed.   |   Not applicable. | 
+| after undelete | Not allowed.	|	  Allowed.	|	  Allowed. |
 
 
 ### Overriding the classes
@@ -94,15 +94,21 @@ Use @track only if a field contains an object or an array and if you want the fr
 - Call async from triggers, etc, where callouts are not permitted.
 - allouts enable Apex to invoke external web or HTTP services. Apex Web services allow an external application to invoke Apex methods through Web services
 - Future methods can’t be used in Visualforce controllers in getMethodName(), setMethodName(), nor in the constructor.
-
+- refer FutureTaskCreator.cls  for eg
 ### BAtch 
 - if you specify Database.Stateful in the class definition, you can maintain state across these transactions.
 - When using Database.Stateful, only instance member variables retain their values between transactions.
 - Static member variables don’t retain their values and are reset between transactions
 - If you don’t specify Database.Stateful, all static and instance member variables are set back to their original values.
-
+- By default the batch scope will be 200
+- Max scope is
+# To execute bacth job in ananonymous window
+  ```  java 
+  ProcessAccounts bjob =new  ProcessAccounts();
+    database.executeBatch(bjob);   //2000
+    ``
 ## implements Database.Batchable<> 
-
+- Refer ProcessAcccounts.cls   for eg
 ##Example
 ``` java
 public class BatchClass implements Database.Batchable<Account>{
@@ -122,7 +128,6 @@ public class BatchClass implements Database.Batchable<Account>{
    }
 }
 ```
-
 ## to test batch class call batch with the 
  DataBase.executeBatch(objname  of the batch); 
 
@@ -134,7 +139,11 @@ Example LeadProcess
 - a simplified interface without start and finish methods and even allows you to utilize more than just primitive arguments!
 - System.enqueueJob() method, which returns a job ID that you can monitor.
 - Syntax
+[Queueable Example]
+- Refer QueuableTaskCreator.cls    
 ``` java
+// QueuableTaskCreator qjob= new QueuableTaskCreator(acc.Id);
+// To cla  the quequabel method pass the id of the record with it 
 public class SomeClass implements Queueable {
     public void execute(QueueableContext context) {
         // awesome code here
