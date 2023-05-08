@@ -11,7 +11,6 @@ global with sharing class AccountRest {
         RestResponse res = RestContext.response;
         String accountId = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
         if(
-                            //stash
             Account.SObjectType.getDescribe().isAccessible() &&
             Schema.SObjectType.Account.fields.Id.isAccessible()
         ) {
