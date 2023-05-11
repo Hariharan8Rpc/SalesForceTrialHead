@@ -22,6 +22,7 @@ The `sfdx-project.json` file contains useful configuration information for your 
 ## What is rendered Attribute?
  It is a Boolean value weather the component is rendered on visualforce page.
  If it is not specified, default value is always true.
+ 
 
 ## What is reRender Attribute?
  This attribute is useful to render some other visualforce component based Boolean value.
