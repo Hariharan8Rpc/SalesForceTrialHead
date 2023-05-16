@@ -1,15 +1,23 @@
-<apex:page standardController="Employee__c" recordSetVar="Employees">
+<apex:page standardController="EmployeeProject__c" recordSetVar="Employees" > 
+<!-- <apex:page Controller="ExtensionEmployeeController">-->
     <apex:pageBlock title="Project Demo">
     <apex:pageBlockSection title="Employees">
     <apex:pageBlockTable value="{!Employees}" var="emp">
-        <apex:column value="{!emp.Name}"/>
-         <apex:column value="{!emp.Department__c}"/>
-        <apex:column value="{!emp.Address__r.Name}" />
-        <apex:column value="{!emp.Address__r.State__c}" />
-        <apex:column value="{!emp.Address__r.City__c}" />
-        <apex:column value="{!emp.Address__r.Pincode__c}" />
-       <!-- <apex:column value="{!emp.Employee_Projects__r}"/> -->
+        <apex:column value="{!emp.Employee__r.Name}"/>
+        <apex:column value="{!emp.Project__r.Domain__c}"/>
     </apex:pageBlockTable>
+        
+         <apex:pageBlockTable value="{!Employees}" var="emp">
+      
+         <apex:column value="{!emp.Employee__r.Address__r.Name}" />
+        <apex:column value="{!emp.Employee__r.Address__r.State__c}" />
+        <apex:column value="{!emp.Employee__r.Address__r.City__c}" />
+        <apex:column value="{!emp.Employee__r.Address__r.Pincode__c}" />
+        
+    </apex:pageBlockTable>
+        
+        
+        
         </apex:pageBlockSection>
     </apex:pageBlock>
 </apex:page>
