@@ -1,0 +1,15 @@
+<apex:page standardController="Employee__c" recordSetVar="Employees">
+    <apex:pageBlock title="Project Demo">
+    <apex:pageBlockSection title="Employees">
+    <apex:pageBlockTable value="{!Employees}" var="emp">
+        <apex:column value="{!emp.Name}"/>
+         <apex:column value="{!emp.Department__c}"/>
+        <apex:column value="{!emp.Address__r.Name}" />
+        <apex:column value="{!emp.Address__r.State__c}" />
+        <apex:column value="{!emp.Address__r.City__c}" />
+        <apex:column value="{!emp.Address__r.Pincode__c}" />
+       <!-- <apex:column value="{!emp.Employee_Projects__r}"/> -->
+    </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

@@ -10,6 +10,7 @@
                 <apex:repeat value="{!PostOffice}" var="office1">
                     <h1> {!office1.Message}</h1>
                     <apex:pageBlockTable value="{!office1.PostOffice}" var ="office">
+            
                         <apex:column value="{!office.Name}" headerValue="Name"/>
                         <apex:column value="{!office.Circle}" headerValue="Circle"/>
                         <apex:column value="{!office.District}" headerValue="District"/>
