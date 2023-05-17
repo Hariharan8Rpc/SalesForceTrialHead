@@ -1,23 +1,47 @@
-<apex:page standardController="EmployeeProject__c" recordSetVar="Employees" > 
-<!-- <apex:page Controller="ExtensionEmployeeController">-->
-    <apex:pageBlock title="Project Demo">
-    <apex:pageBlockSection title="Employees">
-    <apex:pageBlockTable value="{!Employees}" var="emp">
-        <apex:column value="{!emp.Employee__r.Name}"/>
-        <apex:column value="{!emp.Project__r.Domain__c}"/>
+<!--  <apex:page standardController="EmployeeProject__c" recordSetVar="Employees" > -->
+<apex:page Controller="ExtensionEmployeeController">
+     <c:NavComponent ></c:NavComponent>
+    <apex:pageBlock title="Employee List">
+        
+        <h2>Employee List</h2>
+    <apex:pageBlockTable value="{!empProject}" var="emp">
+         
+        <apex:column value="{!emp.employee.Name}"/>
+        <apex:column value="{!emp.employee.Department__c}"/>
+        <apex:Column value="{!emp.addr.name}"/>
+        <apex:Column value="{!emp.addr.Pincode__c}"/>
+        <apex:Column value="{!emp.addr.State__c}"/>
+        <apex:Column value="{!emp.addr.City__c}"/>   
+        <apex:column value="{!emp.employee.Id}"/>
+        <!--  <apex:commandButton title="View"/>  -->
+   		<apex:column headerValue="Action">
+       <apex:form >
+           <apex:facet name="header">Action</apex:facet>
+      		<apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}">
+        		<apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}" />
+           </apex:commandButton> 
+         </apex:form>
+       </apex:column> 
+     
+       	<apex:pageBlockTable value="{!emp.projects}" var="proj">
+         	<apex:Column value="{!proj.Name}" headervalue="project name"/>
+            <apex:Column value="{!proj.Domain__c}" headervalue="project Domain"/>
+        </apex:pageBlockTable>   
     </apex:pageBlockTable>
         
-         <apex:pageBlockTable value="{!Employees}" var="emp">
-      
-         <apex:column value="{!emp.Employee__r.Address__r.Name}" />
-        <apex:column value="{!emp.Employee__r.Address__r.State__c}" />
-        <apex:column value="{!emp.Employee__r.Address__r.City__c}" />
-        <apex:column value="{!emp.Employee__r.Address__r.Pincode__c}" />
-        
-    </apex:pageBlockTable>
-        
-        
-        
-        </apex:pageBlockSection>
+      <apex:pageBlockSection title="Detail View">
+         <apex:outputPanel rendered="{!projectsList.size!=0}">
+        <apex:pageBlockTable value="{!projectsList}" var="proj">
+           <apex:column value="{!proj.Name}"/>  
+           <apex:column value="{!proj.Domain__c}"/>    
+            <apex:column value="{!proj.Duration__c}"/> 
+           <apex:column value="{!proj.Priority__c}"/> 
+       </apex:pageBlockTable>
+                     
+        </apex:outputPanel>
+          
+          
+          
+      </apex:pageBlockSection>
     </apex:pageBlock>
 </apex:page>
