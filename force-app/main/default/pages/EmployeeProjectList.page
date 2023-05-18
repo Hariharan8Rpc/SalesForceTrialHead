@@ -1,4 +1,4 @@
-<apex:page Controller="ExtensionEmployeeController">
+<apex:page Controller="ExtensionEmployeeController" showHeader="false" showQuickActionVfHeader="false">
     <c:NavComponent ></c:NavComponent>
     <apex:pageBlock >
        <apex:pageBlockTable value="{!projectsList}" var="proj">

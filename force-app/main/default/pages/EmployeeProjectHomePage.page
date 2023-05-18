@@ -1,4 +1,4 @@
-<apex:page >
+<apex:page showHeader="false" showQuickActionVfHeader="false">
    <c:NavComponent ></c:NavComponent>
     <h1>
         Home Page 
