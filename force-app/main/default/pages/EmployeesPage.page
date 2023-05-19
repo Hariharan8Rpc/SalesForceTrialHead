@@ -1,14 +1,14 @@
 <!--  <apex:page standardController="EmployeeProject__c" recordSetVar="Employees" > -->
 <apex:page Controller="ExtensionEmployeeController" showHeader="false" showQuickActionVfHeader="false">
      <c:NavComponent ></c:NavComponent>
-   <style>
-    .container1{
-flex-wrap: wrap;
-padding: 10px;
-
-display: flex;
-justify-content:flex-start;
-flex-direction: row;
+<style>
+.container1{
+    flex-wrap: wrap;
+    padding: 10px;
+    
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: row;
 }
 
 .child{    
@@ -34,40 +34,22 @@ flex-wrap:nonwrap;
         <apex:Column value="{!emp.addr.Pincode__c}"/>
         <apex:Column value="{!emp.addr.State__c}"/>
         <apex:Column value="{!emp.addr.City__c}"/>   
-        <apex:column value="{!emp.employee.Id}"/>
-        <!--  <apex:commandButton title="View"/>  -->
+        <apex:column value="{!emp.employee.Id}"/>     
    		<apex:column headerValue="Action">
        <apex:form > 
            <apex:facet name="header">Action</apex:facet>
-      		<apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}" reRender="pr">          
+      		<apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}" reRender="pr,pr1,pr2,op1">          
                 <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}" /> 
            </apex:commandButton> 
         </apex:form>
-       </apex:column> 
-   
-       	<apex:pageBlockTable value="{!emp.projects}" var="proj">
-         	<apex:Column value="{!proj.Name}" headervalue="project name"/>
-            <apex:Column value="{!proj.Domain__c}" headervalue="project Domain"/>
-        </apex:pageBlockTable>   
-  
+       </apex:column>   
 </apex:pageBlockTable>
-        
-      <apex:pageBlockSection title="Detail View">
-       <!--  <apex:outputPanel rendered="{!SingleEmplist!=0}">  -->
-         <h1>
-              {!SingleEmplist.employee.Name}
-         </h1>
-        <apex:pageBlockTable value="{!SingleEmplist.projects}" var="proj" id="pr">
-            
-           <apex:column value="{!proj.Name}"/>  
-           <apex:column value="{!proj.Domain__c}"/>    
-            <apex:column value="{!proj.Duration__c}"/> 
-           <apex:column value="{!proj.Priority__c}"/> 
-       </apex:pageBlockTable>
-  <!--    </apex:outputPanel>  -->
-        
+         
+     
 <body>
-    
+    <apex:outputPanel id="op1" >
+    <apex:outputPanel rendered="{!flag}"  >
+     <apex:pageBlockSection id="pr1" title="Employee Detail view">
 <div class="container1">
 <div class="child">
     <div>
@@ -78,21 +60,14 @@ flex-wrap:nonwrap;
             <label> <b> Employee ID:</b>{!SingleEmplist.employee.Id}</label>
         </div>
         <div>
-            <label> <b> Name:</b> {!SingleEmplist.employee.Name}</label>
+            <label> <b> Name:</b>{!SingleEmplist.employee.Name}</label>
         </div>
         <div>
             <label> <b> Department:</b> {!SingleEmplist.employee.Department__c}</label>
-        </div>
-       
+        </div>       
     </div>
 </div>
-
-
 <div class="child">
-  
-  <!--   <h4 *ngIf="!employee.address" class="text-danger">Address not Present</h4> 
-        <div If="employee.address">-->
-    <!--  <apex:outputPanel rendered=" {!SingleEmplist.addr==null || ''}">     -->
             <div>
                 <label><h3>Address</h3></label>
             </div>
@@ -110,19 +85,28 @@ flex-wrap:nonwrap;
             </div>
             <div>
                 <label> <b>Pincode:</b> {!SingleEmplist.addr.Pincode__c}</label>
-            </div>
-         <!--       </apex:outputPanel> -->
+            </div>          
    <!-- </div> --> 
 </div>
 </div>
+       <!--emp detail and address close -->
+</apex:pageBlockSection>
+    <apex:pageBlockSection title="Projects working"  id="pr2">   
 <div class="container2">
     
 <div class="project">
-   
-    <h4>Projects  working</h4>
-    <!-- <h6>{{employee.project.length==0}}</h6> 
-    <h4 *ngIf="!employee.project.length" class="text-danger">No Projects Assigned</h4> -->
-    <!-- <div *ngif="!employee.project.length">  -->
+    <h4 >Projects  working</h4>
+     <apex:outputPanel rendered="{!SingleEmplist.projects.size==0}">
+         <h1>
+             Employee not Working in projects
+         </h1>
+         
+    </apex:outputPanel>
+     <apex:outputPanel rendered="{!SingleEmplist.projects.size!=0}">
+         <h1>
+           Projects Related To this Employee
+         </h1>
+  
   <table class="table">
     <tr>
         <th>Project ID</th>
@@ -133,7 +117,7 @@ flex-wrap:nonwrap;
     </tr>
       <apex:repeat value="{!SingleEmplist.projects}" var="project">
     <tr>      
-     
+     	<td>{!project.Id}</td>
         <td>{!project.Name}</td>
         <td>{!project.Domain__c}</td>
         <td>{!project.Duration__c}</td>
@@ -141,11 +125,15 @@ flex-wrap:nonwrap;
     </tr>
     </apex:repeat>
 </table>
+           </apex:outputPanel>
 <!-- </div> -->
 </div>
 </div>
-              
+     </apex:pageBlockSection>  
+   </apex:outputPanel> 
+    </apex:outputPanel>
+    
 </body>
-      </apex:pageBlockSection>
+    <!--  </apex:pageBlockSection> -->
     </apex:pageBlock>        
 </apex:page>

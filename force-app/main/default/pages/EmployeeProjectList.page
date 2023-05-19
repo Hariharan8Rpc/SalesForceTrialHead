@@ -1,11 +1,112 @@
 <apex:page Controller="ExtensionEmployeeController" showHeader="false" showQuickActionVfHeader="false">
     <c:NavComponent ></c:NavComponent>
+    <style>
+.container1{
+    flex-wrap: wrap;
+    padding: 10px;
+    
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: row;
+}
+
+.child{    
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px;     
+    background-color: rgb(245, 177, 95);
+    min-width: 300px;
+    max-width: 500px;
+}
+.container2{
+flex-wrap:nonwrap;
+}
+.project{
+    min-width: 400px;
+}
+</style>
     <apex:pageBlock >
        <apex:pageBlockTable value="{!projectsList}" var="proj">
            <apex:column value="{!proj.Name}"/>  
            <apex:column value="{!proj.Domain__c}"/>    
             <apex:column value="{!proj.Duration__c}"/> 
            <apex:column value="{!proj.Priority__c}"/> 
+           <apex:column headerValue="Action">
+       <apex:form > 
+           <apex:facet name="header">Action</apex:facet>
+      		<apex:commandButton value="View" action="{!getEmployeesRelatedToProject}" reRender="pr,pr1,pr2,op1">          
+                <apex:param name="EmployeeSearchId" value="{!proj.Id}" assignTo="{!EmployeeSearchId}" /> 
+           </apex:commandButton> 
+        </apex:form>
+       </apex:column>   
        </apex:pageBlockTable>
-    </apex:pageBlock>
+<body>
+<apex:outputPanel id="op1" >
+<apex:outputPanel rendered="{!flag1}"  >
+<apex:pageBlockSection id="pr1" title="Employee Related to project">
+    <div class="container1">
+    <div class="child">
+        <div>
+            <div>
+                <label><h3>Project Details</h3></label>
+            </div>
+            <div>
+                <label> <b> Project ID:</b>{!project.Id}</label>
+            </div>
+            <div>
+                <label> <b> Name:</b>{!project.Name}</label>
+            </div>
+               <div>
+                <label> <b> Domain:</b>{!project.Domain__c}</label>
+            </div>
+            <div>
+                <label> <b> Duration:</b> {!project.Duration__c}</label>
+            </div>    
+               <div>
+                <label> <b> Priority:</b>{!project.Priority__c}</label>
+            </div>
+        </div>
+    </div>
+    </div>
+           <!--emp detail and address close -->
+    </apex:pageBlockSection>
+	<apex:pageBlockSection title="Employees working: {!empInProject.size}"  id="pr2">   
+    <div class="container2">
+    	<div class="project">
+              <apex:outputPanel rendered="{!empInProject.size==0}">
+                     <h1>
+                         No Employees Working in project
+                     </h1>  
+                </apex:outputPanel>  
+                <apex:outputPanel rendered="{!empInProject.size!=0}">
+                    <table class="table">
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Pincode</th>
+                        </tr>
+                        <apex:repeat value="{!empInProject}" var="emp">
+                            <tr>      
+                                <td>{!emp.employee.Id}</td>
+                                <td>{!emp.employee.Name}</td>
+                                <td>{!emp.employee.Department__c}</td>
+                                <td>{!emp.addr.name}</td>
+                                <td>{!emp.addr.City__c}</td>
+                                <td>{!emp.addr.State__c}</td>
+                                <td>{!emp.addr.Pincode__c}</td>
+                            </tr>
+                        </apex:repeat>
+                    </table>
+                </apex:outputPanel>
+    	   </div>
+    </div>
+	</apex:pageBlockSection>  
+</apex:outputPanel> 
+</apex:outputPanel>    
+</body>    
+</apex:pageBlock>
 </apex:page>

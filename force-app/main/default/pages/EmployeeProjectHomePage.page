@@ -2,6 +2,5 @@
    <c:NavComponent ></c:NavComponent>
     <h1>
         Home Page 
-        
     </h1>
 </apex:page>
