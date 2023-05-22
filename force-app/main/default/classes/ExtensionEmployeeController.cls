@@ -55,6 +55,7 @@ public  class ExtensionEmployeeController {
       GetAllProjects();
        flag=false;
        flag1=false;
+       
      }
     
     public List<Project__c> GetEmployeesproject(Id emp1){ 
