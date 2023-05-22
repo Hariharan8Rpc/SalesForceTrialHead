@@ -26,6 +26,7 @@ flex-wrap:nonwrap;
     min-width: 400px;
 }
     </style>
+<body>
     <apex:pageBlock title="Employee List">
     <apex:pageBlockTable value="{!empProject}" var="emp">
         <apex:column value="{!emp.employee.Name}"/>
@@ -46,7 +47,7 @@ flex-wrap:nonwrap;
 </apex:pageBlockTable>
          
      
-<body>
+
     <apex:outputPanel id="op1" >
     <apex:outputPanel rendered="{!flag}"  >
      <apex:pageBlockSection id="pr1" title="Employee Detail view">
@@ -133,7 +134,8 @@ flex-wrap:nonwrap;
    </apex:outputPanel> 
     </apex:outputPanel>
     
-</body>
+
     <!--  </apex:pageBlockSection> -->
-    </apex:pageBlock>        
+    </apex:pageBlock> 
+</body>       
 </apex:page>
