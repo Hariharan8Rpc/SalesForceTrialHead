@@ -3,4 +3,24 @@
     <h1>
         in edit form  {!editId}
     </h1>
+    
+        <apex:pageBlock title="Edit Employee">
+                <!-- <apex:commandButton value="Cancel" action="{!cancel}" /> -->                           
+                            
+          <apex:form >
+            <label> Name</label> 
+            <apex:inputField value="{!employee.Name}"  html-placeholder="Name"  />   <br></br>
+            <apex:inputField value="{!employee.Department__c}" html-placeholder="Department" />
+            <apex:inputField value="{!address.Name}"/>
+            <apex:inputField value="{!address.State__c}"/>
+            <apex:inputField value="{!address.City__c}"/>
+            <apex:inputField value="{!address.Pincode__c}"/>
+            <apex:commandButton value="Save" action="{!save}" />
+            <button>             
+                
+               <a href="{!$Page.EmployeesPage}">Cancel</a>    
+            </button>  
+          </apex:form>
+        </apex:pageBlock>
+
 </apex:page>

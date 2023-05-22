@@ -1,10 +1,12 @@
-public with sharing  class ExtensionEmployeeController extends employeeExtenisonEditController{
+public with sharing  class ExtensionEmployeeController {
     public List<Project__c> projectsList { get; set; }
     public List<Project__c> projectsList1 { get; set; }
     public EmployeeProject SingleEmplist{get;set;}
     Public  List<EmployeeProject> empProject{get;set;}
     public Id EmployeeSearchId {get;set;}
+    public Id editId {get;set;}
     public Project__c project{get;set;}
+    
     public boolean flag{get;set;}
     public boolean flag1{get;set;}
     Public  List<EmployeeProject> empInProject{get;set;}
@@ -38,19 +40,19 @@ public with sharing  class ExtensionEmployeeController extends employeeExtenison
         if (address != null && address.size() > 0) {
         Address__c addr = address[0];
             empProject1.addr=addr;
-             System.debug('null in  addr object'+addr);
+           //  System.debug('null in  addr object'+addr);
        } else {
-          System.debug('null in  addr object');
-       }     
-          //  system.debug('Address'+addr);
+       //   System.debug('null in  addr object');
+       }             
             empProject1.projects=GetEmployeesproject(emp1.Id);   		
-          System.debug('Project '+empProject1.projects);
+        //  System.debug('Project '+empProject1.projects);
              empProject.add(empProject1);          
         } 
-           System.debug('final obj'+empProject);
+       //    System.debug('final obj'+empProject);
     }   
     
     public ExtensionEmployeeController() {
+  
       getEmployees();
       GetAllProjects();
        flag=false;
@@ -87,9 +89,9 @@ public with sharing  class ExtensionEmployeeController extends employeeExtenison
         if (address != null && address.size() > 0) {
         Address__c addr = address[0];
            SingleEmplist1.addr=addr;
-             System.debug('null in  addr object'+addr);
+        //     System.debug('null in  addr object'+addr);
        } else {
-          System.debug('null in  addr object');
+       //   System.debug('null in  addr object');
        } 
         
         
@@ -97,19 +99,7 @@ public with sharing  class ExtensionEmployeeController extends employeeExtenison
      //   SingleEmplist1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:EmployeeSearchId];
         SingleEmplist=SingleEmplist1;
         System.debug('Single EMp list'+SingleEmplist);
-        
-	//projectsList1=GetEmployeesproject(EmployeeSearchId);
-        for( Project__c pro:SingleEmplist.projects){
-            System.debug('project name '+pro.Name);
-        }
-    //    system.debug('single emp list1  '+ SingleEmplist.projects.size!=0);
-        
-        if(SingleEmplist==null){
-             system.debug('single emp list1 inide if '+ SingleEmplist);
-        }else{
-            system.debug('single emp list1 inside else  '+ SingleEmplist);
-        }
-        system.debug('employee id from the get projec t methid'+SingleEmplist.projects);
+      
  //       system.debug('employee111111 id from the get projec t methid'+empId1+'org id '+empid);
     }
     
@@ -127,17 +117,42 @@ public with sharing  class ExtensionEmployeeController extends employeeExtenison
     List<EmployeeProject__c> employees = [SELECT Employee__r.Id, Employee__r.Name, Employee__r.Department__c FROM EmployeeProject__c WHERE Project__r.Id =:EmployeeSearchId];            
         
         for(EmployeeProject__c employeeProj :employees){ 
-              EmployeeProject empProject1= new EmployeeProject();    
+            EmployeeProject empProject1= new EmployeeProject();    
             System.debug('inside the for of emp related to the projecrt'+employeeProj.employee__r.Id);
             empProject1.employee=employeeProj.employee__r;
-          //   Address__c addr=new Address__c();
-        empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		
-             
+          //Address__c addr=new Address__c();
+            empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		             
             empProject.add (empProject1);
             empInProject=empProject;
             System.debug('final list'+empProject);
          // to get employee detail addr field removed
-      //   Employee__c employee=[SELECT Employee__r.Id, Employee__r.Name, Employee__r.Department__c FROM EmployeeProject__c WHERE Project__r.Id =:Project.Id];            
+      	 // Employee__c employee=[SELECT Employee__r.Id, Employee__r.Name, Employee__r.Department__c FROM EmployeeProject__c WHERE Project__r.Id =:Project.Id];            
         }           
-    }   
+    }
+    
+    public void print(){
+  		system.debug('id in else redirectpage  '+editId );
+    }
+    
+     public PageReference redirectToEditPage() {        
+              system.debug('id in else redirectpage'+editId );
+              String secondPageUrl = '/apex/EmployeeEditPage?id=' + editId;
+              PageReference editPage = new PageReference(secondPageUrl);
+              editPage.setRedirect(true);
+              return editPage;
+     }
+    public PageReference deleteRecords(){
+         List<Address__c> address1;   
+       address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:EmployeeSearchId];
+        if (address1 != null && address1.size() > 0) {
+        delete address1[0];
+       } 
+        delete EmployeeSearchId.getSobjectType().newSObject(EmployeeSearchId);
+        
+         String secondPageUrl = '/apex/EmployeesPage';
+              PageReference empPage = new PageReference(secondPageUrl);
+              empPage.setRedirect(true);
+              return empPage;
+        
+	}
  }

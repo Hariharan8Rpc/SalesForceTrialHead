@@ -28,7 +28,7 @@ flex-wrap:nonwrap;
 </style>
 <body>
     <apex:pageBlock title="Employee List">
-    <apex:pageBlockTable value="{!empProject}" var="emp">
+    <apex:pageBlockTable value="{!empProject}" var="emp" id="table">
         <apex:column value="{!emp.employee.Name}"/>
         <apex:column value="{!emp.employee.Department__c}"/>
         <apex:Column value="{!emp.addr.name}"/>
@@ -39,14 +39,25 @@ flex-wrap:nonwrap;
    		<apex:column headerValue="Action">
        <apex:form > 
            <apex:facet name="header">Action</apex:facet>
-      		<apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}" reRender="pr,pr1,pr2,op1">          
-                <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}"  /> 
+        
+         	<apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}" reRender="pr,pr1,pr2,op1">          
+                  <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}"  />                 
            </apex:commandButton> 
-         
+          
+           <apex:commandButton value="Edit" action="{!redirectToEditPage}" reRender="pr,pr1,pr2,op1">          
+                  <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!editId}"  />                 
+           </apex:commandButton> 
+           
+            <apex:commandButton value="Delete" action="{!deleteRecords}" reRender="pr,pr1,pr2,op1,table">           
+                  <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}"  />                 
+           </apex:commandButton> 
+                     
+        <!--   
  			<button>             
                  <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!editId}"  /> 
                <a href="{!$Page.EmployeeEditPage}">Edit</a>    
             </button>   
+        -->
            
         </apex:form>
        </apex:column>   
