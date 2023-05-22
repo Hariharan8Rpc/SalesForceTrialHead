@@ -25,7 +25,7 @@ flex-wrap:nonwrap;
 .project{
     min-width: 400px;
 }
-    </style>
+</style>
 <body>
     <apex:pageBlock title="Employee List">
     <apex:pageBlockTable value="{!empProject}" var="emp">
@@ -40,17 +40,21 @@ flex-wrap:nonwrap;
        <apex:form > 
            <apex:facet name="header">Action</apex:facet>
       		<apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}" reRender="pr,pr1,pr2,op1">          
-                <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}" /> 
+                <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}"  /> 
            </apex:commandButton> 
+         
+ 			<button>             
+                 <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!editId}"  /> 
+               <a href="{!$Page.EmployeeEditPage}">Edit</a>    
+            </button>   
+           
         </apex:form>
        </apex:column>   
 </apex:pageBlockTable>
          
-     
-
-    <apex:outputPanel id="op1" >
-    <apex:outputPanel rendered="{!flag}"  >
-     <apex:pageBlockSection id="pr1" title="Employee Detail view">
+<apex:outputPanel id="op1" >
+<apex:outputPanel rendered="{!flag}"  >
+<apex:pageBlockSection id="pr1" title="Employee Detail view">
 <div class="container1">
 <div class="child">
     <div>
@@ -69,6 +73,7 @@ flex-wrap:nonwrap;
     </div>
 </div>
 <div class="child">
+    <div>
             <div>
                 <label><h3>Address</h3></label>
             </div>
@@ -86,24 +91,26 @@ flex-wrap:nonwrap;
             </div>
             <div>
                 <label> <b>Pincode:</b> {!SingleEmplist.addr.Pincode__c}</label>
-            </div>          
+            </div> 
+    </div>
+
    <!-- </div> --> 
 </div>
 </div>
        <!--emp detail and address close -->
 </apex:pageBlockSection>
     <apex:pageBlockSection title="Projects working"  id="pr2">   
-<div class="container2">
-    
+<div class="container2">    
 <div class="project">
-    <h4 >Projects  working</h4>
+  <!--  <h4 >Projects  working</h4>  -->
+
      <apex:outputPanel rendered="{!SingleEmplist.projects.size==0}">
          <h1>
              Employee not Working in projects
          </h1>
          
     </apex:outputPanel>
-     <apex:outputPanel rendered="{!SingleEmplist.projects.size!=0}">
+<apex:outputPanel rendered="{!SingleEmplist.projects.size!=0}">
          <h1>
            Projects Related To this Employee
          </h1>
@@ -126,15 +133,13 @@ flex-wrap:nonwrap;
     </tr>
     </apex:repeat>
 </table>
-           </apex:outputPanel>
-<!-- </div> -->
+</apex:outputPanel>
+      
 </div>
 </div>
      </apex:pageBlockSection>  
    </apex:outputPanel> 
-    </apex:outputPanel>
-    
-
+    </apex:outputPanel>    
     <!--  </apex:pageBlockSection> -->
     </apex:pageBlock> 
 </body>       

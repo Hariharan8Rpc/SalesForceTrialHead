@@ -1,4 +1,4 @@
-public  class ExtensionEmployeeController {
+public with sharing  class ExtensionEmployeeController extends employeeExtenisonEditController{
     public List<Project__c> projectsList { get; set; }
     public List<Project__c> projectsList1 { get; set; }
     public EmployeeProject SingleEmplist{get;set;}
@@ -55,7 +55,6 @@ public  class ExtensionEmployeeController {
       GetAllProjects();
        flag=false;
        flag1=false;
-       
      }
     
     public List<Project__c> GetEmployeesproject(Id emp1){ 
@@ -73,7 +72,6 @@ public  class ExtensionEmployeeController {
         }
         return projectList;
     }
-    
     
     public void getProjectsRelatedToEmployee(){
         flag=true;

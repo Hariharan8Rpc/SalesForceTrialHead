@@ -1,0 +1,6 @@
+<apex:page controller="employeeExtenisonEditController">
+    <c:NavComponent ></c:NavComponent>
+    <h1>
+        in edit form  {!editId}
+    </h1>
+</apex:page>
