@@ -47,8 +47,8 @@
                                 <div class="child2">
                                     <div>
                                         <apex:form > 
-                                            <apex:commandButton value="Add Emp" action="{!getEmployeesRelatedToProject}" reRender="pr,pr1,pr2,op1,op2">          
-                                                 <apex:param name="EmployeeSearchId" value="{!project.Id}" assignTo="{!EmployeeSearchId}" /> 
+                                            <apex:commandButton value="edit" action="{!redirectToEditProjectPage}" >          
+                                                 <apex:param name="projectId" value="{!project.Id}" assignTo="{!EmployeeSearchId}" /> 
                                             </apex:commandButton> 
                                         </apex:form>
                                     </div>
