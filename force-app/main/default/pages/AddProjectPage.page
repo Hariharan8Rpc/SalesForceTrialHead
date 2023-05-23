@@ -1,0 +1,47 @@
+<apex:page showHeader="false" showQuickActionVfHeader="false" controller="addProjectController">
+       <apex:stylesheet value="{!URLFOR($Resource.customCss)}"/>    
+    <c:NavComponent ></c:NavComponent>
+    <body>
+    <h1>
+       In Add Project Page
+    </h1>
+    <div class="container1">
+        <div class="child">
+     <!--   <apex:pageBlock title="Edit Employee"> -->
+                <!-- <apex:commandButton value="Cancel" action="{!cancel}" /> -->   
+          <apex:form >
+             <table id="custom table">
+                 <tr>
+                 <td>Name :</td>
+                 <td><apex:inputField value="{!project.Name}"  html-placeholder="Project Name"  /> </td>
+                 </tr>
+                 <tr>
+                     <td>Domain :</td>
+                     <td> <apex:inputField value="{!project.Domain__c}" html-placeholder="Domain" /></td>
+                 </tr> 
+            	<tr>
+                 <td>Duration</td>
+                 <td><apex:inputField value="{!project.Duration__c}" html-placeholder="Duration" /></td>
+               </tr>
+               <tr>
+                 <td>Priority :</td>
+                 <td><apex:inputField value="{!project.Priority__c}" html-placeholder="Priority" /></td>
+               </tr>
+             
+               <tr>
+                 <td>  <apex:commandButton value="Save" action="{!addProject}" /></td>
+                 <td>
+                   <button>    
+                       <a href="{!$Page.EmployeesPage}">Cancel</a>    
+                   </button>
+                   </td>
+               </tr>
+              </table>          
+          </apex:form>
+  <!--       </apex:pageBlock>-->
+      </div>
+  </div>
+    
+    </body>    
+    
+</apex:page>

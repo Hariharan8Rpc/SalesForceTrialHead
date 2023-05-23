@@ -1,26 +1,57 @@
 <apex:page controller="employeeExtenisonEditController">
+     <apex:stylesheet value="{!URLFOR($Resource.customCss)}"/>    
     <c:NavComponent ></c:NavComponent>
-    <h1>
-        in edit form  {!editId}
-    </h1>
     
-        <apex:pageBlock title="Edit Employee">
-                <!-- <apex:commandButton value="Cancel" action="{!cancel}" /> -->                           
-                            
+    <body>
+        
+    <h1>
+       In Edit Form
+    </h1>
+       <div class="centered-div">
+    <div class="container1">
+        <div class="child">
+     <!--   <apex:pageBlock title="Edit Employee"> -->
+                <!-- <apex:commandButton value="Cancel" action="{!cancel}" /> -->   
           <apex:form >
-            <label> Name</label> 
-            <apex:inputField value="{!employee.Name}"  html-placeholder="Name"  />   <br></br>
-            <apex:inputField value="{!employee.Department__c}" html-placeholder="Department" />
-            <apex:inputField value="{!address.Name}"/>
-            <apex:inputField value="{!address.State__c}"/>
-            <apex:inputField value="{!address.City__c}"/>
-            <apex:inputField value="{!address.Pincode__c}"/>
-            <apex:commandButton value="Save" action="{!save}" />
-            <button>             
-                
-               <a href="{!$Page.EmployeesPage}">Cancel</a>    
-            </button>  
+             <table id="custom table">
+                 <tr>
+                 <td>Name :</td>
+                 <td><apex:inputField value="{!employee.Name}"  html-placeholder="Name"  /> </td>
+                 </tr>
+                 <tr>
+                     <td>Department :</td>
+                     <td> <apex:inputField value="{!employee.Department__c}" html-placeholder="Department" /></td>
+                 </tr> 
+            	<tr>
+                 <td>Street Name</td>
+                 <td><apex:inputField value="{!address.Name}"/></td>
+               </tr>
+               <tr>
+                 <td>State :</td>
+                 <td><apex:inputField value="{!address.State__c}"/></td>
+               </tr>
+              <tr>
+                 <td>City :</td>
+                 <td><apex:inputField value="{!address.City__c}"/></td>
+               </tr>
+              <tr>
+                 <td>Pincode :</td>
+                 <td colspan="4"> <apex:inputField value="{!address.Pincode__c}"/></td>
+               </tr>
+               <tr>
+                 <td>  <apex:commandButton value="Save" action="{!save}" /></td>
+                 <td>
+                   <button>    
+                       <a href="{!$Page.EmployeesPage}">Cancel</a>    
+                   </button>
+                   </td>
+               </tr>
+              </table>          
           </apex:form>
-        </apex:pageBlock>
-
+  <!--       </apex:pageBlock>-->
+      </div>
+  </div>
+        </div>
+    </body>    
+    
 </apex:page>
