@@ -1,31 +1,7 @@
-<!--  <apex:page standardController="EmployeeProject__c" recordSetVar="Employees" > -->
 <apex:page Controller="ExtensionEmployeeController" showHeader="false" showQuickActionVfHeader="false">
+    <apex:stylesheet value="{!URLFOR($Resource.customCss)}"/>    
      <c:NavComponent ></c:NavComponent>
-<style>
-.container1{
-    flex-wrap: wrap;
-    padding: 10px;
-    
-    display: flex;
-    justify-content:flex-start;
-    flex-direction: row;
-}
 
-.child{    
-    border-radius: 15px;
-    padding: 10px;
-    margin: 5px;     
-    background-color: rgb(245, 177, 95);
-    min-width: 300px;
-    max-width: 500px;
-}
-.container2{
-flex-wrap:nonwrap;
-}
-.project{
-    min-width: 400px;
-}
-</style>
 <body>
     <apex:pageBlock title="Employee List">
     <apex:pageBlockTable value="{!empProject}" var="emp" id="table">
@@ -129,9 +105,9 @@ flex-wrap:nonwrap;
   <table class="table">
     <tr>
         <th>Project ID</th>
-        <th>project Admin</th>
         <th>Title</th>
         <th>Domain</th>
+        <th>Priority</th>
         <th>Duration</th>
     </tr>
       <apex:repeat value="{!SingleEmplist.projects}" var="project">

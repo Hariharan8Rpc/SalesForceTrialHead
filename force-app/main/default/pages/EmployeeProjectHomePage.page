@@ -1,5 +1,6 @@
 <apex:page showHeader="false" showQuickActionVfHeader="false">
-   <c:NavComponent ></c:NavComponent>
+ <apex:stylesheet value="{!URLFOR($Resource.customCss)}"/>    
+  <c:NavComponent ></c:NavComponent>
     <h1>
         Home Page 
     </h1>
