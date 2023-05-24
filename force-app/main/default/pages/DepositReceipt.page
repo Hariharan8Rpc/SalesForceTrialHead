@@ -1,0 +1,287 @@
+<apex:page controller="DepositReceiptcontroller" >
+    <style>
+        .centered-div {    
+        border-style: double;
+         border-width: 5px;
+        <!-- background-color:#ECF8F9; -->
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        
+        }
+        
+        .inner{
+        padding-top:10px;
+        padding: 5px;
+        }
+        
+        body{
+      <!--  background-color:#9DB2BF; -->
+        position: absolute;
+       
+        min-width: 80%;
+        min-height: 60%;
+        max-width:80%;
+        max-height: 60%;
+       
+        margin-left:20px;
+        margin-top:30px
+        }
+        
+        .container{
+        flex-wrap: wrap;
+        padding: 5px;
+        padding-bottom:0px;
+        display: flex;
+        justify-content:space-between;
+        flex-direction: row;
+        }
+        
+        .child{
+        flex-wrap: wrap;
+        padding: 10px;
+        display: flex;
+        justify-content:flex-start;
+        flex-direction: row;
+        border-radius: 15px;
+        padding: 10px;
+        margin: 5px;  
+        }
+        
+        .checkedBox{
+         flex-wrap: wrap;
+        display: flex;
+        justify-content:space-between;
+        flex-direction: row;
+        }
+        .child1{
+        padding-left:10px;
+        }
+        .check{
+       padding-right:5px;
+        }
+		.blank{
+        min-width:100px;
+		border-top:0px;
+        border-left:0px;
+        border-bottom:2px;
+        border-right:0px;
+        border-color:#000;
+        border-style: solid;
+        border-width: 100%;  
+<!--
+        border-bottom: 1px solid #000;
+        font-size: 11pt;
+        display:inline-block;
+        min-width:100%-->
+        }
+        
+      .blankLine{
+       border-bottom: 1px solid #000;
+        font-size: 11pt;
+        display:inline-block;
+        min-width:100%
+       
+        }
+        
+    </style>
+    <body>
+        <div class="centered-div">
+            <div class="inner">
+                
+                <div class="heading" style="font-size: 20px; padding-left:10px;">
+                    <h1><B>Certificate of Deposit Reciept </B></h1>
+                    
+                </div>
+            	
+            <div class="container">
+                <div class="child23234">
+                    <div>
+							<p>This Receipt is issued to </p>      
+                    </div> 
+                    <div>
+                         <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/sannner.png')}"/>
+                    </div>
+               
+                </div>
+                 <div class="child">
+                	<table>
+                        <tr>
+                       	<td> Account Number: </td>
+                         <td class="blank">sample</td>
+                        </tr>
+                        
+                        <tr>
+                       	<td> JRa number: </td>
+                         <td class="blank"></td>
+                        </tr>
+                        
+                        <tr><td>
+                            
+                            </td> </tr>
+                        <tr>
+                       	<td>Amount</td>
+                        <td class="blank">cfx$</td>
+                        </tr>
+                        <tr>
+                       	<td>Data opened </td>
+                         <td class="blank"></td>
+                        </tr>
+                        
+                        <tr>
+                       	<td>Term </td>
+                         <td class="blank"></td>
+                        </tr>
+                         <tr>
+                       	<td>Maturity Date </td>
+                          <td class="blank"></td>
+                        </tr>
+                         <tr>
+                       	<td>Intrest Rate </td>
+                         <td class="blank"> %</td>
+                        </tr>
+                         <tr>
+                       	<td>Annual Percentage yield </td>
+                         <td class="blank">%</td>
+                        </tr>
+                     </table>
+                </div>           
+              </div>   <!-- container end-->
+            <div>
+                <p style="padding-left:10px">
+                	Sandy Spring bank<br></br>
+                    17801 Georgia Ave<br></br>
+                    Olney, MD 20432<br></br>
+                </p>
+            </div>
+				<div>
+					<p style="padding-left:10px">
+                        <b>The account evidenced by this reciept is Subject to further explained in the terms and conditions in account agreement and account disclosure.The account is non  negotiable and non transferable. Only the Items checked apply.</b>
+                    </p>	
+				</div>				
+				
+				<div class="checkedBox">
+                     <div class="child1">
+                         
+                        <div class="check">
+                            
+                           <apex:outputPanel rendered="{!fixedInterestCheckbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!fixedInterestCheckbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <B>Fixed interest Rate</B>
+                            
+                         </div>
+                         <div>
+                             <apex:outputPanel rendered="{!AdditionPermittedCheckbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AdditionPermittedCheckbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <b>Additions Permitted</b>
+                         </div>
+                         <div>
+                             <apex:outputPanel rendered="{!automaticallyRenewableCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!automaticallyRenewableCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <B>Automatically Renewable</B>
+                         </div>
+                    </div>
+                     <div class="child1">
+                         <div>
+                             <apex:outputPanel rendered="{!variableIntrestCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!variableIntrestCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <B>variable intreste Rate</B>
+                         </div>
+                         <div>
+                             <apex:outputPanel rendered="{!singleMaturityCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!singleMaturityCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <b>Single Maturity</b>&nbsp;(Not automatically  renewable)
+                         </div>
+                    </div>
+                     <div class="child1">
+                         <div>
+                             <apex:outputPanel rendered="{!callableCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!callableCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <b>Callable</b>
+                         </div>
+                    </div>
+                     <div class="child1">
+                         <div>
+                             <apex:outputPanel rendered="{!noticeAccountCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!noticeAccountCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <b> Notice Account</b>
+                         </div>
+                    </div>
+				</div>
+			
+<br></br>				<div>
+                <h1>Intrest Will Be</h1>    
+                    
+				</div>
+<br></br>
+					<div style="padding-left:30px; max-width:80%">
+                        <div>
+                            <apex:outputPanel rendered="{!mailCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!mailCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <b> Mailed To The Owner(s)</b>
+                        </div>
+                        <div>
+                            <apex:outputPanel rendered="{!principalCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!principalCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <b> Added TO Principal(Compounded)</b>
+                        </div>
+                        
+                        <div>
+                            <apex:outputPanel rendered="{!paidtoCheckedbox}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/checkedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!paidtoCheckedbox!=true}">
+                                    <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
+                            </apex:outputPanel>
+                             <b> Paid to_____________________Account NO.________________________________ </b>
+                        </div>
+                        <div>
+                            <div class="blankLine">
+                                <hr></hr>
+                            </div>
+                            <div class="blankLine">
+                                
+                            </div>
+
+                        </div>
+					</div>
+            </div>
+        </div>     
+    </body>
+</apex:page>
