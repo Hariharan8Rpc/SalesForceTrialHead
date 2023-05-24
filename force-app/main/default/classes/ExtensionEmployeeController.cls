@@ -172,4 +172,29 @@ public with sharing  class ExtensionEmployeeController {
         editProjectPage.setRedirect(true);
         return editProjectPage;
     }
+    
+     Public List<SelectOption> getAccountNames() {
+        list<Employee__c> finalEmp= new list<Employee__c>();
+        list<Employee__c> emplist= new list<Employee__c>();
+         emplist=[Select id ,name from employee__c];
+         System.debug('Ful emp List'+emplist);
+         list<Employeeproject__C> empPro= new List<Employeeproject__C>();
+         empPro=[select employee__r.id, employee__r.Name From EmployeeProject__c where EmployeeProject__c.Project__r.Id !=:project.id ] ;
+		  System.debug('emp name dsnt contain this project'+empPro);
+         for(EmployeeProject__c  emp: empPro){
+             system.debug(emp.Employee__c);
+         }
+         
+         
+         
+        List<SelectOption> accOptions= new List<SelectOption>();
+        accOptions.add( new SelectOption('','--Select--'));
+          
+        for(EmployeeProject__c empProj : [select employee__r.id, employee__r.Name From EmployeeProject__c where EmployeeProject__c.Project__r.Id !=:project.id ] ) {
+            accOptions.add(new SelectOption(empProj.employee__r.id,empProj.employee__r.Name));
+        }
+        return accOptions;
+    }
+    
+    
 }
