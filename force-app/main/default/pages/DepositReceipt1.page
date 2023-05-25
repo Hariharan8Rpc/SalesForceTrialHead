@@ -1,5 +1,6 @@
-<apex:page controller="DepositReceiptcontroller" renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"  contentType="application/pdf" >
-   <!-- <apex:stylesheet value="{!URLFOR($Resource.DepositCss)}"/>    -->
+<apex:page controller="DepositReceiptcontroller"  renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"  >
+   <!-- <apex:stylesheet value="{!URLFOR($Resource.DepositCss)}"/>    --> 
+    <apex:repeat value="{!accList}" var="acc">
     <html>
 <head>
     <style type="text/css">
@@ -101,7 +102,7 @@
     <body>
         <div class="centered-div">
             <div class="inner">
-                <div class="heading" style="font-size: 13px; padding-left:20px;">
+                <div class="heading" style="font-size:10pt; padding-left:20px;">
                     <h1><B>Certificate of Deposit Reciept </B></h1>
                 </div>
             	
@@ -122,12 +123,12 @@
                  <div class="child1">
                 	<table>
                         <tr>
-                            <td> Account Number:<td class="blank">{!accDetail.accountNumber}</td></td>
+                            <td> Account Number:<td class="blank">{!acc.accountNumber}</td></td>
                         </tr>
                         
                         <tr>
                        	<td> JRa number: </td>
-                         <td class="blank">{!accDetail.jraNumber}</td>
+                         <td class="blank">{!acc.jraNumber}</td>
                         </tr>
                         
                         <tr><td>
@@ -135,28 +136,28 @@
                             </td> </tr>
                         <tr>
                        	<td>Amount</td>
-                        <td class="blank">{!accDetail.amount}$</td>
+                        <td class="blank">{!acc.amount}$</td>
                         </tr>
                         <tr>
                        	<td>Data opened </td>
-                         <td class="blank">{!accDetail.dateOpened}</td>
+                         <td class="blank">{!acc.dateOpened}</td>
                         </tr>
                         
                         <tr>
                        	<td>Term </td>
-                         <td class="blank">{!accDetail.term}</td>
+                         <td class="blank">{!acc.term}</td>
                         </tr>
                          <tr>
                        	<td>Maturity Date </td>
-                          <td class="blank">{!accDetail.maturityDate}</td>
+                          <td class="blank">{!acc.maturityDate}</td>
                         </tr>
                          <tr>
                        	<td>Interest Rate </td>
-                         <td class="blank"> {!accDetail.interestRate}%</td>
+                         <td class="blank"> {!acc.interestRate}%</td>
                         </tr>
                          <tr>
                        	<td>Annual Percentage yield </td>
-                         <td class="blank">{!accDetail.percentageYield}%</td>
+                         <td class="blank">{!acc.percentageYield}%</td>
                         </tr>
                      </table>
                 </div>   
@@ -167,7 +168,7 @@
             <div>
                 <p style="padding-left:10px; white-space: pre-line; max-width:30%">
                 	
-                            {!accDetail.address}
+                            {!acc.address}
                     
                 </p>
         
@@ -291,9 +292,9 @@
                                     <apex:image value="{!URLFOR($Resource.DepositReciptResource,'Images/uncheckedBox.png')}" width="15" height="15"/>                       
                             </apex:outputPanel>
                                 <label style=" font-size: 11pt;font-family: Times New Roman" > Paid to : </label>
-                                <span style=" border-bottom: 1px solid #000;font-size: 11pt;display:inline-block;min-width:30%"> {!accDetail.accountNumber}</span>
+                                <span style=" border-bottom: 1px solid #000;font-size: 11pt;display:inline-block;min-width:30%"> {!acc.accountNumber}</span>
                                 <label style=" font-size: 11pt;font-family: Times New Roman" > Account No : </label>
-                                <span style=" border-bottom: 1px solid #000;font-size: 11pt;display:inline-block;min-width:30%"> {!accDetail.accountNumber}</span>
+                                <span style=" border-bottom: 1px solid #000;font-size: 11pt;display:inline-block;min-width:30%"> {!acc.accountNumber}</span>
                              </div>
                         <div>
                             <div class="blankLcecine">
@@ -311,6 +312,9 @@
     </body>
 		 <div class="footer" style="page-break-before:always;text-align:left">
              <hr></hr>  
+<div>
+    
+
              <div><p>
                     Certificate of Deposit Receipt <br></br>
 					Bankers System TM <br></br>
@@ -323,7 +327,8 @@
 							Page <span id="pageNum"/>
                     </p>    
 				</div>
+</div>
           </div>
 </html>
-
+</apex:repeat>
 </apex:page>
