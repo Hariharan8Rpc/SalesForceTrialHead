@@ -18,12 +18,12 @@
 
 .child{
     flex-wrap: wrap;
-
         padding: 10px;
         display: flex;
         justify-content:flex-start;
         flex-direction: row;
-       
+
+        border-radius: 15px;
         padding: 10px;
         margin: 5px;     
         background-color:#9DB2BF;
@@ -51,6 +51,8 @@
     .button{
         padding-bottom: 10px;
     }
+
+
 
 .container2{
 flex-wrap:nonwrap;

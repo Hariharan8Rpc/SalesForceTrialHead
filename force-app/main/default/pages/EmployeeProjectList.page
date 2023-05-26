@@ -15,7 +15,11 @@
                     <apex:commandButton value="View" action="{!getEmployeesRelatedToProject}" reRender="pr,pr1,pr2,op1,op2">          
                         <apex:param name="EmployeeSearchId" value="{!proj.Id}" assignTo="{!EmployeeSearchId}" /> 
                     </apex:commandButton> 
+                    <apex:commandButton value="Delete" action="{!deleteProject}" reRender="pr,pr1,pr2,op1,op2">          
+                        <apex:param name="EmployeeSearchId" value="{!proj.Id}" assignTo="{!EmployeeSearchId}" /> 
+                    </apex:commandButton> 
                 </apex:form>
+               
             </apex:column>   
         </apex:pageBlockTable>
         <body>
@@ -44,36 +48,25 @@
                                         <label> <b> Priority:</b>{!project.Priority__c}</label>
                                     </div>
                                 </div>  <!--child1 close -->   
-                                <div class="child2">
+                                <div class="child1">
                                     <div>
                                         <apex:form > 
                                             <apex:commandButton value="edit" action="{!redirectToEditProjectPage}" >          
                                                  <apex:param name="projectId" value="{!project.Id}" assignTo="{!EmployeeSearchId}" /> 
                                             </apex:commandButton> 
-                                        </apex:form>
-                                    </div>
-                                    
-                                    <div>
-                                      <!-- <apex:form > 
-                                            <apex:commandButton value="Edit" action="{!getEmployeesRelatedToProject}" reRender="pr,pr1,pr2,op1,op2">          
-                                                <apex:param name="EmployeeSearchId" value="{!proj.Id}" assignTo="{!EmployeeSearchId}" />  
+                                        </apex:form>                    
+                                  
+                                        <apex:form >
+                                        <apex:selectList value="{!selectedEmpId}" size="1" onchange="change()" >
+                                            <apex:selectOptions value="{!EmployeeNames}" />
+                                            <apex:commandButton value="Add Emp" action="{!addEmployeeToProject}" reRender="pr2">                                                     
                                            </apex:commandButton> 
-                                        </apex:form>  -->
+                                        </apex:selectList>  
+                                            </apex:form>
                                     </div>
-                                    
                                 </div>
                             </div>
-                            <div class="child">
-                                <div>
-                                        <label><h3>Project Details</h3></label>
-                                    </div>
-                                    <div>
-                                        <label> <b> Project ID:</b>{!project.Id}</label>
-                                    </div>
-                                <h1>
-                                    hellooo in child pannel
-                                </h1>
-                            </div>
+                           
                         </div>
                         
                         <!--emp detail and address close -->    
@@ -86,7 +79,7 @@
                                         No Employees Working in project
                                     </h1>  
                                 </apex:outputPanel>  
-                                <apex:outputPanel rendered="{!empInProject.size!=0}" id="op30">
+                                <apex:outputPanel rendered="{!empInProject.size!=0}" id="op2" >
                                     <table class="table">
                                         <tr>
                                             <th>Employee ID</th>
