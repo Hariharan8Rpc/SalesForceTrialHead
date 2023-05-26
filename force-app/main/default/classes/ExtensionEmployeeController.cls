@@ -102,6 +102,7 @@ public with sharing  class ExtensionEmployeeController {
     }
     
     public void getEmployeesRelatedToProject(){
+       
         System.debug('getEmployeesRelatedToProject__Call');
         flag1=true;
         system.debug(EmployeeSearchId+'id  Project  id');        
@@ -115,8 +116,10 @@ public with sharing  class ExtensionEmployeeController {
             empProject.add (empProject1);
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
+             getEmployeeNames();
         }           
     }
+    
     public void getprojects() {
         system.debug('getprojects__call');
         Id editId = ApexPages.currentPage().getParameters().get('id');
@@ -151,6 +154,7 @@ public with sharing  class ExtensionEmployeeController {
         if (address1 != null && address1.size() > 0) {
             delete address1[0];
         } 
+        
         delete EmployeeSearchId.getSobjectType().newSObject(EmployeeSearchId);
         String secondPageUrl = '/apex/EmployeesPage';
         PageReference empPage = new PageReference(secondPageUrl);
@@ -174,15 +178,12 @@ public with sharing  class ExtensionEmployeeController {
         emplist=[Select id ,name from employee__c];
         System.debug('Ful emp List'+emplist);
         list<Employeeproject__C> empPro= new List<Employeeproject__C>();
-        empPro=[select employee__r.id, employee__r.Name From EmployeeProject__c where EmployeeProject__c.Project__r.Id =:project.id ] ;
+        empPro=[select employee__r.id, employee__r.Name From EmployeeProject__c where EmployeeProject__c.Project__r.Id =:project.id ];
         System.debug('emp name dsnt contain this project'+empPro);
-
         Map<String,String> finalempmap = new Map<String,String> ();
         Map<String,String> finalempmap1 = new Map<String,String> ();
-        
         for(EmployeeProject__c  emp: empPro){
             finalempmap.put(emp.employee__r.id,emp.employee__r.name);
-         //   finalEmp.add(emp.Employee__r);
         }
         
         for(Employee__c em:emplist){
@@ -194,19 +195,25 @@ public with sharing  class ExtensionEmployeeController {
                 }
             }
         }
-        
-        System.debug('final emp map1 ; '+finalempmap1);
-        
-        
-        ///adding to pick list
+        System.debug('final emp map1 ; '+finalempmap1);  
         List<SelectOption> accOptions= new List<SelectOption>();
+        if(finalempmap1.size()>0){
+        ///adding to pick list
+        system.debug('inside if picklist');
         accOptions.add( new SelectOption('','--Select--'));
         for(String ids:finalempmap1.keySet()){
             accOptions.add(new SelectOption(ids,finalempmap1.get(ids)));
-        }     
-        
-        return accOptions;
-        
+        } 
+             return accOptions;
+        }else{
+            system.debug('inside else picklist');
+            accOptions.add( new SelectOption('','--Select--'));
+        for(Employee__c  emp:emplist){
+            accOptions.add(new SelectOption(emp.Id,emp.Name));
+        } 
+             return accOptions;
+        }
+       
     }
     
     public Void addEmployeeToProject(){
@@ -219,6 +226,7 @@ public with sharing  class ExtensionEmployeeController {
         getEmployeesRelatedToProject();
         System.debug('employee addded to the project '+empPro);
         //selectedEmpId   project.id
+       getEmployeeNames();
     }
     public pageReference deleteProject(){
         system.debug('deleteProject__call  return page ref to EmployeeProjectList ');
@@ -228,13 +236,17 @@ public with sharing  class ExtensionEmployeeController {
         System.debug(Database.delete(empPro));
         delete [select Id, name from project__c where id=:EmployeeSearchId];
     	//GetAllProjects(); //call to get all projects method to refresh the variables
-        
-         String secondPageUrl = '/apex/EmployeeProjectList';
+        String secondPageUrl = '/apex/EmployeeProjectList';
         PageReference projectListPage = new PageReference(secondPageUrl);
         projectListPage.setRedirect(true);
         return projectListPage;
     }
-        
     
+    public void deleteEmployeeFromProject(){
+        system.debug('deleteEmployeeFromProject__call');
+		delete [select id,name from employeeProject__c where employee__r.id=:editId];
+        getEmployeesRelatedToProject();
+        getEmployeeNames();
+    }
     
 }

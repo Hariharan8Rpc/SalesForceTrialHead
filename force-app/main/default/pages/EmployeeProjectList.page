@@ -59,7 +59,7 @@
                                         <apex:form >
                                         <apex:selectList value="{!selectedEmpId}" size="1" onchange="change()" >
                                             <apex:selectOptions value="{!EmployeeNames}" />
-                                            <apex:commandButton value="Add Emp" action="{!addEmployeeToProject}" reRender="pr2">                                                     
+                                            <apex:commandButton value="Add Emp" action="{!addEmployeeToProject}" reRender="pr2,pr1">                                                     
                                            </apex:commandButton> 
                                         </apex:selectList>  
                                             </apex:form>
@@ -89,6 +89,7 @@
                                             <th>City</th>
                                             <th>State</th>
                                             <th>Pincode</th>
+                                            <th> Action</th>
                                         </tr>
                                         <apex:repeat value="{!empInProject}" var="emp">
                                             <tr>      
@@ -99,6 +100,13 @@
                                                 <td>{!emp.addr.City__c}</td>
                                                 <td>{!emp.addr.State__c}</td>
                                                 <td>{!emp.addr.Pincode__c}</td>
+                                                <td>
+                                                    <apex:form >                                                    
+                                                        <apex:commandButton value="Delete" action="{!deleteEmployeeFromProject}" reRender="pr2,pr1">        
+                                                            <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!editId}" /> 
+                                                        </apex:commandButton> 
+                                                    </apex:form>
+                                                </td>
                                             </tr>
                                         </apex:repeat>
                                     </table>
