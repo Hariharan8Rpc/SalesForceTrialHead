@@ -2,10 +2,10 @@ public with sharing  class ExtensionEmployeeController {
     public List<Project__c> projectsList { get; set; }
     public List<Project__c> projectsList1 { get; set; }
     public EmployeeProject SingleEmplist{get;set;}
-    Public  List<EmployeeProject> empProject{get;set;}
+    Public List<EmployeeProject> empProject{get;set;}
     public Id EmployeeSearchId {get;set;}
     public Id editId {get;set;}
-     Public Id selectedEmpId{get;set;} 
+    Public Id selectedEmpId{get;set;} 
     public Project__c project{get;set;}
     
     public boolean flag{get;set;}
@@ -28,7 +28,6 @@ public with sharing  class ExtensionEmployeeController {
         public Employee__c employee { get; set; }
         public List<Project__c> projects { get; set; }
         public Address__c addr { get; set; }
-        
         public EmployeeProject() {
             employee = new Employee__c();
             projects = new List<Project__c>();
@@ -46,8 +45,7 @@ public with sharing  class ExtensionEmployeeController {
                 SELECT id,Name,Department__c 
                 From Employee__c where id=:emp1.Id
             ];
-            empProject1.employee=employee;
-            
+            empProject1.employee=employee;            
             List<Address__c> address;   
             address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :emp1.Id];
             if (address != null && address.size() > 0) {
@@ -102,7 +100,6 @@ public with sharing  class ExtensionEmployeeController {
     }
     
     public void getEmployeesRelatedToProject(){
-       
         System.debug('getEmployeesRelatedToProject__Call');
         flag1=true;
         system.debug(EmployeeSearchId+'id  Project  id');        
@@ -116,7 +113,7 @@ public with sharing  class ExtensionEmployeeController {
             empProject.add (empProject1);
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
-             getEmployeeNames();
+            getEmployeeNames();
         }           
     }
     
@@ -124,7 +121,7 @@ public with sharing  class ExtensionEmployeeController {
         system.debug('getprojects__call');
         Id editId = ApexPages.currentPage().getParameters().get('id');
         if(editId !=null){
-        project=[select id, Name,Domain__c,Duration__c,Priority__c From project__c where id=:editId];
+            project=[select id, Name,Domain__c,Duration__c,Priority__c From project__c where id=:editId];
         }
         system.debug('project in edit'+project);
     }
@@ -173,7 +170,7 @@ public with sharing  class ExtensionEmployeeController {
     
     Public List<SelectOption> getEmployeeNames() {
         system.debug('getEmployeeNames__call return list option picklist');
-      //  list<Employee__c> finalEmp= new list<Employee__c>();
+        //  list<Employee__c> finalEmp= new list<Employee__c>();
         list<Employee__c> emplist= new list<Employee__c>();
         emplist=[Select id ,name from employee__c];
         System.debug('Ful emp List'+emplist);
@@ -195,25 +192,25 @@ public with sharing  class ExtensionEmployeeController {
                 }
             }
         }
+        
         System.debug('final emp map1 ; '+finalempmap1);  
         List<SelectOption> accOptions= new List<SelectOption>();
         if(finalempmap1.size()>0){
-        ///adding to pick list
-        system.debug('inside if picklist');
-        accOptions.add( new SelectOption('','--Select--'));
-        for(String ids:finalempmap1.keySet()){
-            accOptions.add(new SelectOption(ids,finalempmap1.get(ids)));
-        } 
-             return accOptions;
+            ///adding to pick list
+            system.debug('inside if picklist');
+            accOptions.add( new SelectOption('','--Select--'));
+            for(String ids:finalempmap1.keySet()){
+                accOptions.add(new SelectOption(ids,finalempmap1.get(ids)));
+            } 
+            return accOptions;
         }else{
             system.debug('inside else picklist');
             accOptions.add( new SelectOption('','--Select--'));
-        for(Employee__c  emp:emplist){
-            accOptions.add(new SelectOption(emp.Id,emp.Name));
-        } 
-             return accOptions;
+            for(Employee__c  emp:emplist){
+                accOptions.add(new SelectOption(emp.Id,emp.Name));
+            } 
+            return accOptions;
         }
-       
     }
     
     public Void addEmployeeToProject(){
@@ -221,21 +218,22 @@ public with sharing  class ExtensionEmployeeController {
         EmployeeProject__c empPro = new EmployeeProject__c();
         empPro.name=Project.Name+'emp'+selectedEmpId;
         empPro.Employee__c=selectedEmpId;
-		empPro.Project__c=project.id;
+        empPro.Project__c=project.id;
         insert empPro;
         getEmployeesRelatedToProject();
         System.debug('employee addded to the project '+empPro);
         //selectedEmpId   project.id
        getEmployeeNames();
     }
+    
     public pageReference deleteProject(){
         system.debug('deleteProject__call  return page ref to EmployeeProjectList ');
         list<EmployeeProject__c> empPro = new list<EmployeeProject__c>();
-		empPro=[select id,name from EmployeeProject__c where project__r.id=:EmployeeSearchId];
+        empPro=[select id,name from EmployeeProject__c where project__r.id=:EmployeeSearchId];
         system.debug('employee in project deleted ; '+empPro);
         System.debug(Database.delete(empPro));
         delete [select Id, name from project__c where id=:EmployeeSearchId];
-    	//GetAllProjects(); //call to get all projects method to refresh the variables
+        //GetAllProjects(); //call to get all projects method to refresh the variables
         String secondPageUrl = '/apex/EmployeeProjectList';
         PageReference projectListPage = new PageReference(secondPageUrl);
         projectListPage.setRedirect(true);
@@ -244,7 +242,7 @@ public with sharing  class ExtensionEmployeeController {
     
     public void deleteEmployeeFromProject(){
         system.debug('deleteEmployeeFromProject__call');
-		delete [select id,name from employeeProject__c where employee__r.id=:editId];
+        delete [select id,name from employeeProject__c where employee__r.id=:editId];
         getEmployeesRelatedToProject();
         getEmployeeNames();
     }
