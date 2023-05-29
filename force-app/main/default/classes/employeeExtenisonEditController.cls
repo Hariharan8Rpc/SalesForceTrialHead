@@ -1,4 +1,4 @@
-public virtual with sharing class employeeExtenisonEditController {
+public  class employeeExtenisonEditController {
     public Employee__c employee{get;set;}
     public Id editId{get;set;}
     public address__C address{get;set;}

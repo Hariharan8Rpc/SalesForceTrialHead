@@ -246,5 +246,4 @@ public with sharing  class ExtensionEmployeeController {
         getEmployeesRelatedToProject();
         getEmployeeNames();
     }
-    
 }
