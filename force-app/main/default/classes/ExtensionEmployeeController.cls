@@ -223,7 +223,6 @@ public with sharing  class ExtensionEmployeeController {
         getEmployeesRelatedToProject();
         System.debug('employee addded to the project '+empPro);
         //selectedEmpId   project.id
-       getEmployeeNames();
     }
     
     public pageReference deleteProject(){
