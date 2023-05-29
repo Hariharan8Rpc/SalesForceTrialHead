@@ -1,4 +1,4 @@
-public with sharing  class ExtensionEmployeeController {
+public class ExtensionEmployeeController {
     public List<Project__c> projectsList { get; set; }
     public List<Project__c> projectsList1 { get; set; }
     public EmployeeProject SingleEmplist{get;set;}
@@ -7,11 +7,9 @@ public with sharing  class ExtensionEmployeeController {
     public Id editId {get;set;}
     Public Id selectedEmpId{get;set;} 
     public Project__c project{get;set;}
-    
     public boolean flag{get;set;}
     public boolean flag1{get;set;}
-    Public  List<EmployeeProject> empInProject{get;set;}
-    //for add update existing project 
+    Public List<EmployeeProject> empInProject{get;set;}
     
     public ExtensionEmployeeController() {
         system.debug(' constructor__call');
@@ -114,6 +112,7 @@ public with sharing  class ExtensionEmployeeController {
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
             getEmployeeNames();
+            
         }           
     }
     

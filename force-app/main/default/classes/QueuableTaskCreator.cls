@@ -5,7 +5,7 @@ public with sharing class QueuableTaskCreator  implements Queueable{
  List<Contact> contacts =new List<Contact>();
     
     public QueuableTaskCreator(String recId) {
-        this.recId=recId;
+        this .recId=recId;
         }
         
         public void execute(QueueableContext context){
@@ -14,7 +14,7 @@ public with sharing class QueuableTaskCreator  implements Queueable{
             tsk.WhatId=recId; 
             insert tsk;
             for (Integer i = 0; i < 500; i++) {
-                Contact con=new Contact(LastName='test'+' - '+string.valueOf(i),AccountId = recId);
+                Contact con=new Contact(LastName='test'+' - '+string.valueOf(i),AccountId =recId);
                 contacts.add(con);
             }
             insert contacts;

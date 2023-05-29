@@ -1,7 +1,5 @@
 global with sharing class ProcessAccounts implements Database.Batchable<Sobject>,Database.Stateful {
-   // to execute bacth job in ananonymous window
-    // ProcessAccounts bjob =new  ProcessAccounts();
-    // database.executeBatch(bjob);
+   
     global Database.QueryLocator start(Database.BatchableContext bc){
         return  Database.getQueryLocator([SELECT Id,Name,AccountNumber from Account]);
     }
