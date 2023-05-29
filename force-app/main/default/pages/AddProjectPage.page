@@ -19,7 +19,7 @@
                      <td>Domain :</td>
                      <td> <apex:inputField value="{!project.Domain__c}" html-placeholder="Domain" /></td>
                  </tr> 
-            	<tr>
+                <tr>
                  <td>Duration</td>
                  <td><apex:inputField value="{!project.Duration__c}" html-placeholder="Duration" /></td>
                </tr>

@@ -1,7 +1,6 @@
-<apex:page controller="employeeExtenisonEditController" showHeader="false" showQuickActionVfHeader="false"> >
+<apex:page controller="employeeExtenisonEditController" showHeader="false" showQuickActionVfHeader="false">
     <apex:stylesheet value="{!URLFOR($Resource.customCss)}"/>    
     <c:NavComponent ></c:NavComponent>
-    
     <body>
         <h1>
             In Edit Form
@@ -23,22 +22,22 @@
                             </tr> 
                             <tr>
                                 <td>Street Name</td>
-                                <td><apex:inputField value="{!address.Name}"/></td>
+                                <td><apex:inputField value="{!address.Name}" html-placeholder="Address" /></td>
                             </tr>
                             <tr>
                                 <td>State :</td>
-                                <td><apex:inputField value="{!address.State__c}"/></td>
+                                <td><apex:inputField value="{!address.State__c}" html-placeholder="State" /></td>
                             </tr>
                             <tr>
                                 <td>City :</td>
-                                <td><apex:inputField value="{!address.City__c}"/></td>
+                                <td><apex:inputField value="{!address.City__c}" html-placeholder="City" /></td>
                             </tr>
                             <tr>
                                 <td>Pincode :</td>
-                                <td colspan="4"> <apex:inputField value="{!address.Pincode__c}"/></td>
+                                <td colspan="4"> <apex:inputField value="{!address.Pincode__c}" html-placeholder="Pincode" /></td>
                             </tr>
                             <tr>
-                                <td>  <apex:commandButton value="Save" action="{!save}" /></td>
+                                <td>  <apex:commandButton value="Save" action="{!save}"  /></td>
                                 <td>
                                     <button>    
                                         <a href="{!$Page.EmployeesPage}">Cancel</a>    
@@ -52,5 +51,4 @@
             </div>
         </div>
     </body>    
-    
 </apex:page>

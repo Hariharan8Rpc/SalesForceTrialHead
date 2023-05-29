@@ -12,11 +12,11 @@
         <apex:Column value="{!emp.addr.State__c}"/>
         <apex:Column value="{!emp.addr.City__c}"/>   
         <apex:column value="{!emp.employee.Id}"/>     
-   		<apex:column headerValue="Action">
+        <apex:column headerValue="Action">
        <apex:form > 
            <apex:facet name="header">Action</apex:facet>
         
-         	<apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}" reRender="pr,pr1,pr2,op1">          
+            <apex:commandButton value="View" action="{!getProjectsRelatedToEmployee}" reRender="pr,pr1,pr2,op1">          
                   <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!EmployeeSearchId}"  />                 
            </apex:commandButton> 
           
@@ -29,7 +29,7 @@
            </apex:commandButton> 
                      
         <!--   
- 			<button>             
+            <button>             
                  <apex:param name="EmployeeSearchId" value="{!emp.employee.Id}" assignTo="{!editId}"  /> 
                <a href="{!$Page.EmployeeEditPage}">Edit</a>    
             </button>   
@@ -112,7 +112,7 @@
     </tr>
       <apex:repeat value="{!SingleEmplist.projects}" var="project">
     <tr>      
-     	<td>{!project.Id}</td>
+        <td>{!project.Id}</td>
         <td>{!project.Name}</td>
         <td>{!project.Domain__c}</td>
         <td>{!project.Duration__c}</td>

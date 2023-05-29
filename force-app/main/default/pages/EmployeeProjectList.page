@@ -3,7 +3,7 @@
     <c:NavComponent ></c:NavComponent>
     <style>
     </style>
-    <apex:pageBlock >
+    <apex:pageBlock title="Project Detail Page">
         <apex:pageBlockTable value="{!projectsList}" var="proj">
             <apex:column value="{!proj.Name}"/>  
             <apex:column value="{!proj.Domain__c}"/>    
@@ -48,26 +48,23 @@
                                         <label> <b> Priority:</b>{!project.Priority__c}</label>
                                     </div>
                                 </div>  <!--child1 close -->   
-                                <div class="child1">
-                                    <div>
-                                        <apex:form > 
-                                            <apex:commandButton value="edit" action="{!redirectToEditProjectPage}" >          
-                                                 <apex:param name="projectId" value="{!project.Id}" assignTo="{!EmployeeSearchId}" /> 
-                                            </apex:commandButton> 
-                                        </apex:form>                    
-                                  
-                                        <apex:form >
-                                        <apex:selectList value="{!selectedEmpId}" size="1" onchange="change()" >
+                                <div class="childnin">
+                                    <apex:form > 
+                                        <apex:commandButton value="edit" action="{!redirectToEditProjectPage}" >          
+                                            <apex:param name="projectId" value="{!project.Id}" assignTo="{!EmployeeSearchId}" /> 
+                                        </apex:commandButton> 
+                                    </apex:form>   
+                                    <apex:form >
+                                        <apex:selectList value="{!selectedEmpId}" size="1">
                                             <apex:selectOptions value="{!EmployeeNames}" />
-                                            <apex:commandButton value="Add Emp" action="{!addEmployeeToProject}" reRender="pr2,pr1">                                                     
-                                           </apex:commandButton> 
+                                            <apex:commandButton value="Add Emp" action="{!addEmployeeToProject}" reRender="pr2,pr1,op1">                                                     
+                                            </apex:commandButton> 
                                         </apex:selectList>  
-                                            </apex:form>
-                                    </div>
+                                    </apex:form>
+                                </div>    
                                 </div>
                             </div>
-                           
-                        </div>
+                     
                         
                         <!--emp detail and address close -->    
                     </apex:pageBlockSection>
@@ -79,7 +76,7 @@
                                         No Employees Working in project
                                     </h1>  
                                 </apex:outputPanel>  
-                                <apex:outputPanel rendered="{!empInProject.size!=0}" id="op2" >
+                                <apex:outputPanel rendered="{!empInProject.size>0}" id="op2" >
                                     <table class="table">
                                         <tr>
                                             <th>Employee ID</th>

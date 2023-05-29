@@ -38,13 +38,13 @@
         min-width: 250px;
         margin: 5px; 
         margin-right: 0px;    
-        /* background-color: rgb(33, 233, 133); */
+       background-color: rgb(33, 233, 133); 
         /* min-width: 75px;
         max-width: 75px; */
     }
     .child2{
         padding: 10px;
-        /* background-color: rgb(33, 233, 133); */
+        background-color: rgb(33, 233, 133);
         float:right;
         max-width: 400px;
     }
@@ -62,7 +62,7 @@ flex-wrap:nonwrap;
 }
 
 body{        
-   background-color: #DDE6ED;
+   background-color: #C4DFDF;
 }
 
 
