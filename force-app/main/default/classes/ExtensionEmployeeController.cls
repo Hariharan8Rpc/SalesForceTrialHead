@@ -170,7 +170,7 @@ public class ExtensionEmployeeController {
     Public List<SelectOption> getEmployeeNames() {
         system.debug('getEmployeeNames__call return list option picklist');
         //  list<Employee__c> finalEmp= new list<Employee__c>();
-        list<Employee__c> emplist= new list<Employee__c>();
+                list<Employee__c> emplist= new list<Employee__c>();
         emplist=[Select id ,name from employee__c];
         System.debug('Ful emp List'+emplist);
         list<Employeeproject__C> empPro= new List<Employeeproject__C>();
