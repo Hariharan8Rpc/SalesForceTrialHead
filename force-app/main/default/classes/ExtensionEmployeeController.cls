@@ -210,6 +210,7 @@ public class ExtensionEmployeeController {
             } 
             return accOptions;
         }
+        
     }
     
     public Void addEmployeeToProject(){
@@ -218,8 +219,11 @@ public class ExtensionEmployeeController {
         empPro.name=Project.Name+'emp'+selectedEmpId;
         empPro.Employee__c=selectedEmpId;
         empPro.Project__c=project.id;
-        insert empPro;
-        getEmployeesRelatedToProject();
+       // insert empPro;
+          Database.insert (empPro,false);
+       
+       getEmployeesRelatedToProject();
+        getEmployeeNames();
         System.debug('employee addded to the project '+empPro);
         //selectedEmpId   project.id
     }
