@@ -14,7 +14,6 @@ public  class employeeExtenisonEditController {
         
         List<Address__c> address1;   
         address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:editId];
-               
         if (address1 != null && address1.size() > 0) {
             address = address1[0];
         } else {
