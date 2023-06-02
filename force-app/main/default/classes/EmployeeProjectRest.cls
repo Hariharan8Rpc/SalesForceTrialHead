@@ -4,7 +4,6 @@
 
 
 global with sharing class EmployeeProjectRest {
-
     @HttpDelete
     global static void doDelete() {
         RestRequest req = RestContext.request;
@@ -27,16 +26,16 @@ global with sharing class EmployeeProjectRest {
     global static String doPost(String Name,
         String Department,String addrName,String City,String State, Integer Pincode) {
             System.debug('in the post menthod'+Name+ ' '+Department );
-/*     json body 
-{
-"Name" : "demo with addr",
-"Department" : "ceses",
-"addrName" :"trial",
-"City":"manglore",
-"Pincode":574747,
-"State":"maglore"
-}
-*/
+        /*     json body 
+        {
+        "Name" : "demo with addr",
+        "Department" : "ceses",
+        "addrName" :"trial",
+        "City":"manglore",
+        "Pincode":574747,
+        "State":"maglore"
+        }
+        */
         Address__c addr =new Address__c();
         addr.Name=addrName;
         addr.City__c=City;
@@ -49,6 +48,35 @@ global with sharing class EmployeeProjectRest {
         em.Department__c=Department;
         em.Address__c=addr.Id;
         insert em;
+        return em.Id;
+    }
+// update 
+ @HttpPut
+    global static String doPut(String Name,
+        String Department,String addrName,String City,String State, Integer Pincode) {
+            System.debug('in the post menthod'+Name+ ' '+Department );
+        /*     json body 
+        {
+        "Name" : "demo with addr",
+        "Department" : "ceses",
+        "addrName" :"trial",
+        "City":"manglore",
+        "Pincode":574747,
+        "State":"maglore"
+        }
+        */
+        Address__c addr =new Address__c();
+        addr.Name=addrName;
+        addr.City__c=City;
+        addr.Pincode__c=Pincode;
+        addr.State__c=State;
+        upsert addr;
+        System.debug( 'Addr in the rest'+addr); 
+        Employee__c em = new Employee__c(); 
+        em.Name = name;
+        em.Department__c=Department;
+        em.Address__c=addr.Id;
+        upsert em;
         return em.Id;
     }
 }
