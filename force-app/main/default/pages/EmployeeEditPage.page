@@ -1,0 +1,54 @@
+<apex:page controller="employeeExtenisonEditController" showHeader="false" showQuickActionVfHeader="false">
+    <apex:stylesheet value="{!URLFOR($Resource.customCss)}"/>    
+    <c:NavComponent ></c:NavComponent>
+    <body>
+        <h1>
+            In Edit Form
+        </h1>
+        <div class="centered-div">
+            <div class="container1">
+                <div class="child">
+                    <!--   <apex:pageBlock title="Edit Employee"> -->
+                    <!-- <apex:commandButton value="Cancel" action="{!cancel}" /> -->   
+                    <apex:form >
+                        <table id="custom table">
+                            <tr>
+                                <td>Name :</td>
+                                <td><apex:inputField value="{!employee.Name}"  html-placeholder="Name"  /> </td>
+                            </tr>
+                            <tr>
+                                <td>Department :</td>
+                                <td> <apex:inputField value="{!employee.Department__c}" html-placeholder="Department" /></td>
+                            </tr> 
+                            <tr>
+                                <td>Street Name</td>
+                                <td><apex:inputField value="{!address.Name}" html-placeholder="Address" /></td>
+                            </tr>
+                            <tr>
+                                <td>State :</td>
+                                <td><apex:inputField value="{!address.State__c}" html-placeholder="State" /></td>
+                            </tr>
+                            <tr>
+                                <td>City :</td>
+                                <td><apex:inputField value="{!address.City__c}" html-placeholder="City" /></td>
+                            </tr>
+                            <tr>
+                                <td>Pincode :</td>
+                                <td colspan="4"> <apex:inputField value="{!address.Pincode__c}" html-placeholder="Pincode" /></td>
+                            </tr>
+                            <tr>
+                                <td>  <apex:commandButton value="Save" action="{!save}"  /></td>
+                                <td>
+                                    <button>    
+                                        <a href="{!$Page.EmployeesPage}">Cancel</a>    
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>          
+                    </apex:form>
+                    <!--       </apex:pageBlock>-->
+                </div>
+            </div>
+        </div>
+    </body>    
+</apex:page>

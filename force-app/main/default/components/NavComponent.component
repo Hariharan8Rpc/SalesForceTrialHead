@@ -1,0 +1,35 @@
+<apex:component >
+    <style>
+        .navbar {
+        background-color: #f2f2f2;
+        overflow: hidden;
+        }
+        .navbar a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        }
+        
+        .navbar a:hover {
+        background-color: #ddd;
+        }
+        .navbar a.active {
+        background-color: #4CAF50;
+        color: white;
+        }
+    </style>
+    
+    <div class="navbar">
+        <a class="activea" href="{!$Page.EmployeeProjectHomePage}">Home</a>
+        <a href="{!$Page.EmployeesPage}">Employee List</a>
+        <a href="{!$Page.EmployeeProjectList}">Our Projects</a>
+        <a href="{!$Page.AddProjectPage}">Add/Update Project</a>
+        <a href="{!$Page.EmployeeEditPage}">Add/Edit Employee</a>
+        
+        
+    </div>
+    
+</apex:component>
