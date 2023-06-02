@@ -19,8 +19,6 @@ global with sharing class EmployeeProjectRest {
         RestRequest req = RestContext.request;
         RestResponse res = RestContext.response;
         String empId = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
-        // Account result = [SELECT Id, Name, Phone, Website FROM Account WHERE Id = :accountId];
-     //   Employee__c em=[SELECT id, name,Address__c,Department__c from Employee__c where id=:empId];
      Employee__c em=[select id,name,department__c,(select id,name,state__C,city__C,pincode__c from address__r) from Employee__c where id=:empId];    
         return em;
     }
