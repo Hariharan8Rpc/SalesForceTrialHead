@@ -5,6 +5,7 @@
 
 global with sharing class AccountRest {
 
+    
     @HttpDelete
     global static void doDelete() {
         RestRequest req = RestContext.request;
