@@ -4,6 +4,7 @@ public with sharing class AccountService {
         Name = accountName,
         AccountNumber = accountNumber,
         TickerSymbol = tickerSymbol
+          
     //    System.debug('sYMBOL'+TicketSymbol);
       );
       return newAcct;
