@@ -132,8 +132,16 @@ public class ExtensionEmployeeController {
         for(EmployeeProject__c employeeProj :employees){ 
             EmployeeProject empProject1= new EmployeeProject();    
             empProject1.employee=employeeProj.employee__r;
+            List<Address__c> address;   
+            address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :empProject1.employee.Id];		
+            if (address != null && address.size() > 0) {
+                empProject1.addr = address[0];
+                SingleEmplist1.addr=addr;
+            }
+
+
             empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		             
-            empProject.add (empProject1);
+           // empProject.add (empProject1);
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
             getEmployeeNames();
@@ -176,9 +184,7 @@ public class ExtensionEmployeeController {
          if (address1 != null && address1.size() > 0) {
              delete address1[0];
          } 
-
         delete EmployeeSearchId.getSobjectType().newSObject(EmployeeSearchId);
-        
         String secondPageUrl = '/apex/EmployeesPage';
         PageReference empPage = new PageReference(secondPageUrl);
         empPage.setRedirect(true);
@@ -197,7 +203,7 @@ public class ExtensionEmployeeController {
     Public List<SelectOption> getEmployeeNames() {
         system.debug('getEmployeeNames__call return list option picklist');
         //  list<Employee__c> finalEmp= new list<Employee__c>();
-                list<Employee__c> emplist= new list<Employee__c>();
+        list<Employee__c> emplist= new list<Employee__c>();
         emplist=[Select id ,name from employee__c];
         System.debug('Ful emp List'+emplist);
         list<Employeeproject__C> empPro= new List<Employeeproject__C>();
@@ -237,7 +243,6 @@ public class ExtensionEmployeeController {
             } 
             return accOptions;
         }
-        
     }
     
     public Void addEmployeeToProject(){
@@ -261,8 +266,7 @@ public class ExtensionEmployeeController {
         empPro=[select id,name from EmployeeProject__c where project__r.id=:EmployeeSearchId];
         system.debug('employee in project deleted ; '+empPro);
         System.debug(Database.delete(empPro));
-        delete [select Id, name from project__c where id=:EmployeeSearchId];
-        //GetAllProjects(); //call to get all projects method to refresh the variables
+        delete [select Id, name from project__c where id=:EmployeeSearchId];        
         String secondPageUrl = '/apex/EmployeeProjectList';
         PageReference projectListPage = new PageReference(secondPageUrl);
         projectListPage.setRedirect(true);
