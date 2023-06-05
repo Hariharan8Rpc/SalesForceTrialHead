@@ -33,7 +33,7 @@ public class ExtensionEmployeeController {
         }
     }   
     
-    public  void getEmployees1(){      
+    public  void getEmployees(){      
         system.debug('getEmployees__call');
         empProject = new List<EmployeeProject>();
         List<Employee__c> employees = [SELECT Id FROM Employee__c];
@@ -56,37 +56,31 @@ public class ExtensionEmployeeController {
         }        
     }   
 
-    public void getEmployees(){
+    public void getEmployees1(){
      //   Employee__c employee=[select id,name,department__c, address__r from Employee__c where id=:empId];   
         system.debug('getEmployees__call');
         empProject = new List<EmployeeProject>();
-        List<Employee__c> employees = [select id,name,department__c, Address__c from Employee__c];
+        List<Employee__c> employees = [select id,name,department__c,Address__r.Name,Address__r.Pincode__c, Address__r.State__c,Address__r.City__C from Employee__c];
         for(Employee__c emp1 :employees){            
             EmployeeProject empProject1= new EmployeeProject();                        
             empProject1.employee=emp1;            
             List<Address__c> address;   
-            // address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :emp1.Id];
-            // if (address != null && address.size() > 0) {
-            //     Address__c addr = address[0];
-            //     //empProject1.addr=addr;
-            // } else {
-            // }     
-            
+             address =emp1.Address__r;
+            if (address != null && address.size() > 0) {
+                empProject1.addr=address[0];
+                
+              System.debug('addrwss in the   '+address);
+            } else {
+            }     
             System.debug('in if block  of the  he t method'+emp1.Address__r=='');
 
-          //    empProject1.addr=emp1.Address__r;   
+         
             empProject1.projects=GetEmployeesproject(emp1.Id);   		            
             empProject.add(empProject1);          
         }        
 
     }
 
-
-
-
-
-
-    
     public List<Project__c> GetEmployeesproject(Id emp1){ 
         system.debug('GetEmployeesproject__call__param '+emp1);
         List<Project__c> projectList = new List<Project__c>();
