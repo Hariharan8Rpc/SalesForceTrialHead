@@ -33,7 +33,7 @@ public class ExtensionEmployeeController {
         }
     }   
     
-    public  void getEmployees(){      
+    public  void getEmployees1(){      
         system.debug('getEmployees__call');
         empProject = new List<EmployeeProject>();
         List<Employee__c> employees = [SELECT Id FROM Employee__c];
@@ -55,6 +55,37 @@ public class ExtensionEmployeeController {
             empProject.add(empProject1);          
         }        
     }   
+
+    public void getEmployees(){
+     //   Employee__c employee=[select id,name,department__c, address__r from Employee__c where id=:empId];   
+        system.debug('getEmployees__call');
+        empProject = new List<EmployeeProject>();
+        List<Employee__c> employees = [select id,name,department__c, Address__c from Employee__c];
+        for(Employee__c emp1 :employees){            
+            EmployeeProject empProject1= new EmployeeProject();                        
+            empProject1.employee=emp1;            
+            List<Address__c> address;   
+            // address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :emp1.Id];
+            // if (address != null && address.size() > 0) {
+            //     Address__c addr = address[0];
+            //     //empProject1.addr=addr;
+            // } else {
+            // }     
+            
+            System.debug('in if block  of the  he t method'+emp1.Address__r=='');
+
+          //    empProject1.addr=emp1.Address__r;   
+            empProject1.projects=GetEmployeesproject(emp1.Id);   		            
+            empProject.add(empProject1);          
+        }        
+
+    }
+
+
+
+
+
+
     
     public List<Project__c> GetEmployeesproject(Id emp1){ 
         system.debug('GetEmployeesproject__call__param '+emp1);
@@ -145,13 +176,15 @@ public class ExtensionEmployeeController {
     
     public PageReference deleteRecords(){
         system.debug('deleteRecords__call_return page ref to EmployeesPage');
-        List<Address__c> address1;   
+         List<Address__c> address1;   
         address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:EmployeeSearchId];
-        if (address1 != null && address1.size() > 0) {
-            delete address1[0];
-        } 
-        
+
+         if (address1 != null && address1.size() > 0) {
+             delete address1[0];
+         } 
+
         delete EmployeeSearchId.getSobjectType().newSObject(EmployeeSearchId);
+        
         String secondPageUrl = '/apex/EmployeesPage';
         PageReference empPage = new PageReference(secondPageUrl);
         empPage.setRedirect(true);

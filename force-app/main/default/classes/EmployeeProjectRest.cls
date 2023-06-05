@@ -66,17 +66,53 @@ global with sharing class EmployeeProjectRest {
         }
         */
         Address__c addr =new Address__c();
+        List<Address__c> address1;   
+      //  String query1=('select id,name, state__c, city__c, pincode__c from address__C where Name=:addrName');
+        //Database.query(query1);
+        address1=[select id,name, state__c, city__c, pincode__c from address__C where Name=:addrName];
+        System.debug('condition of addr +'+address1 != null && address1.size() > 0 );
+        System.debug('condition other'+ !address1.isEmpty());
+        if (!address1.isEmpty()) {
+        addr.id=address1[0].Id;
         addr.Name=addrName;
-        addr.City__c=City;
+        addr.city__c=City;
         addr.Pincode__c=Pincode;
         addr.State__c=State;
-        upsert addr;
-        System.debug( 'Addr in the rest'+addr); 
+        address1[0]=addr;
+            System.debug('address1[0] in if'+address1[0]);
+        upsert address1[0];
+          System.debug('inside address debug updaet block in if');
+        } else{
+        System.debug('new address  in else block');        
+        addr.Name=addrName;
+        addr.city__c=City;
+        addr.Pincode__c=Pincode;
+        addr.State__c=State;
+        address1.add(addr);
+        System.debug('address1[0] in else'+address1[0]);
+        upsert address1[0];
+        }
+
         Employee__c em = new Employee__c(); 
+        List<Employee__c> emp =[Select id, NAME, Department__c from Employee__c where Name=:name];
+        System.debug('condition of emp'+emp != null && emp.size() > 0);
+        if (emp != null && emp.size() > 0) {
+        em.Id=emp[0].Id;
         em.Name = name;
         em.Department__c=Department;
-        em.Address__c=addr.Id;
-        upsert em;
-        return em.Id;
+        em.Address__c=address1[0].Id;
+        emp[0]=em;
+
+        upsert  emp[0];
+        return  emp[0].Id;
+        }else{
+        //    Employee__c em = new Employee__c(); 
+            em.Name = name;
+            em.Department__c=Department;
+            em.Address__c=address1[0].Id;            
+            upsert em;
+            return  em.Id;
+        }
+       
     }
 }
