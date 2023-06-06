@@ -1,4 +1,4 @@
-<apex:page sidebar="false"  renderAs="pdf" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"   showHeader="false"  >
+<apex:page sidebar="false" renderAs="pdf" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"   showHeader="false"  >
 <html>
     <head>
       
@@ -11,7 +11,6 @@
 
     div{
     
-
    padding:0px;
   margin:0px; 
 }
@@ -30,6 +29,11 @@
     background-color:#130142;
     height: 20%;
     justify-content: left;
+   
+
+    border: 2px solid red;
+    border-radius:0px 0px 30px 10px;
+        /* border-bottom-right-radius: 100px; */
 }
 .main{
     background-color:#ffffff;
@@ -38,11 +42,9 @@
 }
 .footer{
     background-color:#130142;
-        height:20%
-    
+        height:20%    
 }
 .contact{
-   
 padding-left: 30px;
 }
 
@@ -52,7 +54,6 @@ padding-left: 30px;
         
         <div class="outermain">
         <div class="header">
-
         <tr>
             <td> <div> <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/BankLogo.png')}" width="60px" height="60px"/></div></td>
             <td Style="padding-left:10px"> <div style="color: white">  <H2>
@@ -85,7 +86,7 @@ padding-left: 30px;
             </div>
             </div>
             
- <div class="footer"  style="  height:70px;">
+ <div class="footer" style="height:70px;">
         <div style="background-color: red">
             <hr></hr>
         </div>
