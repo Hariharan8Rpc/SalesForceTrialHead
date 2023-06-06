@@ -139,9 +139,8 @@ public class ExtensionEmployeeController {
                 SingleEmplist1.addr=addr;
             }
 
-
-            empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		             
-           // empProject.add (empProject1);
+         //   empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		             
+           empProject.add (empProject1);
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
             getEmployeeNames();

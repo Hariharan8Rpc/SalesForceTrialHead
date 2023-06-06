@@ -7,6 +7,7 @@
         .centered-div {    
         border-style: double;
         border-width: 10px;
+        padding-bottom: 50px;
         <!-- background-color:#ECF8F9; -->
         position: absolute; 
         }
@@ -18,6 +19,7 @@
         
         body{
       <!--  background-color:#9DB2BF; -->
+      
       font-size: 11pt;
         }
         
@@ -90,8 +92,9 @@
         	content:element(footer);
         }
 }
-        
         div.footer {
+        height:10%;
+        padding-top: 5px; 
         position: running(footer);
         }
         #pageNum:before{
@@ -99,6 +102,7 @@
         }
 </style>
 </head>
+        
     <body>
         <div class="centered-div">
             <div class="inner">
@@ -307,28 +311,24 @@
                         </div>
 					</div>
             </div>
-        </div>     
-        
+        </div>      
     </body>
-		 <div class="footer" style="page-break-before:always;text-align:left">
-             <hr></hr>  
-<div>
-    
+<div class="footer">
+         <hr></hr>      
+         <div><p>
+              Certificate of Deposit Receipt <br></br>
+              Bankers System TM <br></br>
+              Walters kluwer Financial Services @ 1994, 2008
+            </p></div>
 
-             <div><p>
-                    Certificate of Deposit Receipt <br></br>
-					Bankers System TM <br></br>
-					Walters kluwer Financial Services @ 1994, 2008
-					</p>
-				</div>
-				<div style="text-align:right">">
-                	<p>
-                        CDREC-BK-LAZ 3/11/2008  <br></br>
-							Page <span id="pageNum"/>
-                    </p>    
-				</div>
-</div>
-          </div>
+            <div style="text-align:right">
+                <p>
+                    CDREC-BK-LAZ 3/11/2008  <br></br>
+                    Page <span id="pageNum"/>
+                </p>    
+            </div>    
+    </div>   
 </html>
+<div style="page-break-before: always;"></div>
 </apex:repeat>
 </apex:page>
