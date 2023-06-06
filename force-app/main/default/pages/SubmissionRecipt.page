@@ -84,21 +84,22 @@ padding-left: 30px;
                 Email us at | <a  style="color:red">sampleBank@gmail.com   </a></dv>
             </div>
             </div>
-
-    
-    <div class="footer">
+            
+ <div class="footer"  style="  height:70px;">
         <div style="background-color: red">
             <hr></hr>
         </div>
-        <div style="background-color:#130142; display:flex; -ms-flex-align:end">  
-            <div style=" background-color:#130142; display:flex;" > 
-                        <h3 style="color: rgb(224, 65, 65);padding-left:20px"><b >samplebank.com</b></h3>
+        <div style="background-color:#130142; ">  
+            <div style=" float:left;background-color:#130142;" > 
+                 <h3 style="color: rgb(224, 65, 65);padding-left:20px width:100%"><b >samplebank.com</b></h3>
             </div>
-            <div style="background-color:#130142; display:flex;"> 
+            <div style=" float:right;background-color:#130142;"> 
                     <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/Footer1.png')}" width="60px" height="60px" />
                     <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/Footer2.png')}" width="60px" height="60px" />
             </div>   
         </div>     
+        <div  style="max-height:200px;"> &nbsp; </div>
+       
     </div>
 </div>
 </body>
