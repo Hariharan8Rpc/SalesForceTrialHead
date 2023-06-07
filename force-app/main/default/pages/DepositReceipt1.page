@@ -1,6 +1,7 @@
-<apex:page controller="DepositReceiptcontroller"  renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"  >
+<apex:page controller="DepositReceiptcontroller"  showHeader="false"  renderAs="pdf" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"  >
    <!-- <apex:stylesheet value="{!URLFOR($Resource.DepositCss)}"/>    --> 
     <apex:repeat value="{!accList}" var="acc">
+       <!--  <apex:variable var="count" value="{}"/>  -->
     <html>
 <head>
     <style type="text/css">
@@ -88,21 +89,29 @@
       
 @page{
   counter-incerement:pages;
-        @bottom-left{
+        page-break:always; page-break-inside:avoid;
+        @bottom-left{    
+         
         	content:element(footer);
         }
+        margin-bottom:3cm;
 }
-        div.footer {
-        height:10%;
-        padding-top: 5px; 
+        div.footer {     
+        height:70px;
+        padding-top: 0px; 
         position: running(footer);
         }
         #pageNum:before{
         content:counter(page);
-        }
+        }                                    
+        #pagecount:before {
+               content: counter(pages);
+       }
+        
+        
+        
 </style>
 </head>
-        
     <body>
         <div class="centered-div">
             <div class="inner">
@@ -170,10 +179,8 @@
                 </table>  
               </div>                  
             <div>
-                <p style="padding-left:10px; white-space: pre-line; max-width:30%">
-                	
-                            {!acc.address}
-                    
+                <p style="padding-left:10px; white-space: pre-line; max-width:30%">                	
+                            {!acc.address}                    
                 </p>
         
             </div>
@@ -315,20 +322,35 @@
     </body>
 <div class="footer">
          <hr></hr>      
-         <div><p>
+         <div style="float:left" ><p>
               Certificate of Deposit Receipt <br></br>
               Bankers System TM <br></br>
               Walters kluwer Financial Services @ 1994, 2008
-            </p></div>
+            </p>
+       </div>
 
-            <div style="text-align:right">
-                <p>
-                    CDREC-BK-LAZ 3/11/2008  <br></br>
-                    Page <span id="pageNum"/>
-                </p>    
+            <div style="float:right;">
+                
+                <div>
+                   <p>
+                        CDREC-BK-LAZ 3/11/2008
+                    </p>
+                </div>
+                <div>
+                  <p>
+                        Page <span id="pageNum"/> of  <span id="pagecount"/>
+                  </p>
+                </div>
             </div>    
-    </div>   
+    </div>       
 </html>
-<div style="page-break-before: always;"></div>
+  
+  <p>
+      {!count}
+</p>
+  <apex:outputPanel rendered="{!count<4}">
+  <div style="page-break-before:always;"></div> 
+</apex:outputPanel>
 </apex:repeat>
+ 
 </apex:page>

@@ -52,8 +52,10 @@ global class PostOfficeEndPoint {
             // Map<String,cls_PostOffice1> map = new Map<String,cls_PostOffice1>();
             Http http=new Http();
             String addr=String.ValueOf(postalCode);
-           
-            String url='https://api.postalpincode.in/pincode/'+addr;
+            postOfficeMetadata__mdt metaurl = postOfficeMetadata__mdt.getInstance('post');
+            System.debug('metadaTA'+metaurl);
+            // String url='https://api.postalpincode.in/pincode/'+addr;
+            String url=metaurl.url__c+addr;
             HttpRequest req = new HttpRequest();
             req.setEndpoint(url);
             req.setMethod('GET');
@@ -70,7 +72,7 @@ global class PostOfficeEndPoint {
               //  cls_PostOffice1 result = (cls_PostOffice1) JSON.deserialize(res.getBody(), cls_PostOffice1.class);
               // system.debug(result);
               }
-           System.debug(postOffices);
+        //   System.debug(postOffices);
             // for(cls_PostOffice1 s:postOffices){ 
             //     System.debug(s.PostOffice);
             //  System.debug(s.PostOffice.size());     					

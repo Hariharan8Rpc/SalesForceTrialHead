@@ -9,6 +9,7 @@ public class DepositReceiptcontroller {
     public boolean mailCheckedbox{get;set;}
     public boolean principalCheckedbox{get;set;}
     public boolean paidtoCheckedbox{get;set;}
+    public Integer count{get;set;}
     public AccountDetail  accDetail{get;set;}
     public List<AccountDetail> accList{get;set;}
     class AccountDetail{
@@ -38,11 +39,14 @@ public class DepositReceiptcontroller {
         mailCheckedbox=true;
         principalCheckedbox=true;
         paidtoCheckedbox=true;
+        count =0;
+      
         list<AccountDetail>acclist1= new list<AccountDetail>();
-        for(Integer i=0;i<1;i++){
+        for(Integer i=0;i<4;i++){
+            count=i;
             AccountDetail account = new AccountDetail();
             account.accountNumber = 12345+i;
-            account.jraNumber = 56789;
+            account.jraNumber = 56789+i+10;
             account.amount = 1000;
         	Date date1=Date.today();
             account.dateOpened = date1.format();
