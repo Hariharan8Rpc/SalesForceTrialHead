@@ -2,7 +2,6 @@ global class PostOfficeEndPoint {
     // https://api.postalpincode.in/pincode/571201   
 
     public static Integer postalCode{get;set;}
-    
     public static List<PostOfficeEndPoint.cls_PostOffice1> PostOffice {get;set;}    
        global class cls_PostOffice1 {
             @AuraEnabled
@@ -12,7 +11,6 @@ global class PostOfficeEndPoint {
         //  public cls_PostOffice[] PostOffice;
            @AuraEnabled
            public List<cls_PostOffice> PostOffice {get;set;}    
-
            //  public List<Cls_PostOffice> PostOffice = new List<Cls_PostOffice>();
         }
 
