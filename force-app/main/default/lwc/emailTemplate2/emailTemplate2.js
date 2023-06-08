@@ -39,6 +39,9 @@ export default class emailTemplate2 extends LightningElement {
             .catch(error => {
                 console.log(error);
             });
+
+
+            
     }
 
     @wire(getRecord, { recordId: '$recordId', fields })
