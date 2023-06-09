@@ -39,9 +39,6 @@ export default class emailTemplate2 extends LightningElement {
             .catch(error => {
                 console.log(error);
             });
-
-
-            
     }
 
     @wire(getRecord, { recordId: '$recordId', fields })
@@ -158,5 +155,6 @@ handleBodyChange(event){
             variant: 'error'
         });
         this.dispatchEvent(toastEvent);
-    }    
+    } 
+  
 }
