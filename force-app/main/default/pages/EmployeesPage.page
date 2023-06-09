@@ -115,8 +115,8 @@
         <td>{!project.Id}</td>
         <td>{!project.Name}</td>
         <td>{!project.Domain__c}</td>
-        <td>{!project.Duration__c}</td>
-        <td>{!project.Priority__c} months</td>
+        <td>{!project.Priority__c} </td>
+        <td>{!project.Duration__c} Months</td>
     </tr>
     </apex:repeat>
 </table>

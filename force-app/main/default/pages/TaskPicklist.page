@@ -1,0 +1,42 @@
+<apex:page controller="AccountPicklist">
+     <style type="text/css">
+        p,b{ font-weight: bold;
+                background-color:#E4DCCF;
+      }
+         .error{
+         background-color:red;
+         }
+         
+    </style>
+        <apex:form >
+        <apex:pageBlock title="Account Name" id="pb">
+        <apex:actionFunction name="change" action="{!refreshContactList}" />            
+        <apex:selectList value="{!selectedAccId}" size="1" onchange="change()">
+        <apex:selectOptions value="{!AccountNames}" />
+        <apex:commandButton value="Display Contact" action="{!refreshContactList}" />
+        <apex:commandButton value="ADD Contact" action="{!AddContact}"  />
+        </apex:selectList>         
+        <br/><br/>
+         <b>Related Contacts</b>   
+       <apex:outputPanel rendered="{!conlist.size==0}">
+        <p>
+           No Contact Related To this Account
+           </p>
+        </apex:outputPanel>
+        
+       <apex:outputPanel rendered="{!conlist.size!=0}">
+          <apex:pageBlockTable title="Contacts" value="{!conlist}" var="c" id="pt">
+                <apex:column value="{!c.Name}"/>
+                <apex:column value="{!c.Phone}"/>
+                <apex:column value="{!c.accountId}"/>
+            </apex:pageBlockTable>
+            <apex:commandButton value="First" action="{!fstbtn}" disabled="{!prv}" reRender="pt" />
+            <apex:commandButton value="Previous" action="{!prvbtn}" disabled="{!prv}" reRender="pt" />
+            <apex:commandButton value="Next" action="{!nextbtn}"   disabled="{!nxt}" reRender="pt" />
+            <apex:commandButton value="End" action="{!endbtn}"  disabled="{!nxt}" reRender="pt" />            
+        </apex:outputPanel>
+    </apex:pageBlock>
+           
+</apex:form> 
+   
+</apex:page>
