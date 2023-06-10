@@ -15,6 +15,8 @@ global with sharing class AccountRest {
         delete account;
     }
   
+    
+    
     @HttpGet
     global static Account doGet() {
         RestRequest req = RestContext.request;
