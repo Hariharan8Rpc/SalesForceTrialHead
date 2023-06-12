@@ -144,17 +144,17 @@ public class ExtensionEmployeeController {
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
             getEmployeeNames();
-            
-        }           
-    }
-    
+        
+        }                                                                           
+}                                                                   
+
     public void getprojects() {
         system.debug('getprojects__call');
         Id editId = ApexPages.currentPage().getParameters().get('id');
         if(editId !=null){
             project=[select id, Name,Domain__c,Duration__c,Priority__c From project__c where id=:editId];
-        }
-        system.debug('project in edit'+project);
+        }                                                                               
+        system.debug('project in edit'+project);                                                
     }
     
     public pageReference addProject(){
