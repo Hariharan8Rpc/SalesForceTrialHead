@@ -1,6 +1,27 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 export default class EmployeeProjectNav extends NavigationMixin(LightningElement){
+    navigateToHome() {
+        this[NavigationMixin.Navigate]({
+          type: 'standard__namedPage',
+          attributes: {
+            pageName: 'c__EmpProjectHome'
+          }
+        });
+    }
+
+    navigateToEmployeeList() {
+        this[NavigationMixin.Navigate]({
+          type: 'standard__namedPage',
+          attributes: {
+            componentName: 'c__EmployeeList'
+          }
+        });
+    }
+
+
+    EmployeeList
+
     navToHomeComponent() {
         this[NavigationMixin.Navigate]({
             type: 'standard__component',
@@ -11,8 +32,6 @@ export default class EmployeeProjectNav extends NavigationMixin(LightningElement
         });
     }   navToEmpListComponent
     
-
-
     navToEmpListComponent() {
         const pageReference = {
             type: 'standard__component',
