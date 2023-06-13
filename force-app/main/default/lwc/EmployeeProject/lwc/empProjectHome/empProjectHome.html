@@ -1,5 +1,11 @@
 <template>
-    <c-employee-project-nav></c-employee-project-nav>
+    <c-employee-project-nav onvaluechange={handleValueChange}></c-employee-project-nav>
+    <template if:true={showEmployeeListPage}>
+        <c-employee-list></c-employee-list>
+      </template>
+      <template if:true={showProjectListPage}>
+        <c-employee-project-list></c-employee-project-list>
+      </template>
     <lightning-card>
         <h1>in home paeg </h1>
     </lightning-card>
