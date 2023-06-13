@@ -7,13 +7,19 @@ export default class EmpProjectHome extends LightningElement {
 
     @track showEmployeeListPage=false;
     @track showProjectListPage=false;
+    message='counter value from child';
+
     handleValueChange(event) {
-      this.enableComponent = event.detail;
+      this.message=event.detail.name;
+      this.enableComponent = event.detail.name;
+      console.log("in parent  "+enableComponent );
       selectOption();   
     }
+
     selectOption() {
         switch (this.enableComponent) {
           case 'employeeList':
+            console.log("in parent  "+this.enableComponent );
             this.showEmployeeListPage=true;
             this.showProjectListPage=false;
             break;

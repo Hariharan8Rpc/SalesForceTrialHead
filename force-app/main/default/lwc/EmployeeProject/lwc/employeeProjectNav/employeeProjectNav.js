@@ -1,18 +1,28 @@
-import { LightningElement,track } from 'lwc';
+import { LightningElement,track,api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-export default class EmployeeProjectNav extends NavigationMixin(LightningElement){
+export default class EmployeeProjectNav extends LightningElement{
+    @api count = 0;
+      showEmployeeList1() {
+        value='employeeList';
+        const valueChangeEvent = new CustomEvent('valuechange', { detail: this.value });
+        console.log('employeelist+++ '+valueChangeEvent);
+        this.dispatchEvent(valueChangeEvent);
+      }
+
+      showProjectList1() {
+        value='projectList';
+        const valueChangeEvent = new CustomEvent('valuechange', { detail: this.value });
+        console.log("projectList +++ "+valueChangeEvent);
+        this.dispatchEvent(valueChangeEvent);
+      }
 
       showEmployeeList() {
         value='employeeList';
-        const valueChangeEvent = new CustomEvent('valuechange', { detail: value });
-        console.log("employeelist+++ "+valueChangeEvent);
-        this.dispatchEvent(valueChangeEvent);
-      }
-      showProjectList() {
-        value='projectList';
-        const valueChangeEvent = new CustomEvent('valuechange', { detail: value });
-        console.log("projectList +++ "+valueChangeEvent);
-        this.dispatchEvent(valueChangeEvent);
+        this.dispatchEvent(new CustomEvent('changecomponenttoemployee',{
+          detail:{
+            name:'increSE COUNT'+(++this.count)
+          }
+        }));
       }
 
 
