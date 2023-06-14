@@ -1,5 +1,54 @@
 <template>
     <!-- <c-employee-project-nav></c-employee-project-nav> -->
     <h1>in Employee list page </h1> 
+  <lightning-card title="Employee 
+  detail Page">
+    <template if:true={employeeList}>
+        <div class="slds-m-around_medium">
+            <!-- <lightning-badge label={postalCodeDetails.Message}></lightning-badge> -->
+           
+                    <!-- <lightning-badge label={office1.Message}></lightning-badge> -->
+                        <div class="slds-table_bordered slds-table_striped slds-table_fixed-layout">
+                            <table class="slds-table slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-text-title_caps">
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Name">Name</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Circle">Department</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="District">Address</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Block">City</div>
+                                        </th>                                       
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Country">State</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Pincode">Pincode</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={employeeList} for:item="emp">
+                                        <tr key={emp.employee.Id}>
+                                            <td data-label="Name">{emp.employee.Name}</td>
+                                            <td data-label="Circle">{emp.employee.Department__c}</td>
+                                            <td data-label="District">{emp.addr.Name}</td>                                            
+                                            <td data-label="State">{emp.addr.City__c}</td>
+                                            <td data-label="Country">{emp.addr.State__c}</td>
+                                            <td data-label="Pincode">{emp.addr.Pincode__c}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+        </div>
+    </template>
+
+  </lightning-card>
         
 </template>
