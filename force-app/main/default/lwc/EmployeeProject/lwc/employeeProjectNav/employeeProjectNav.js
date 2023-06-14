@@ -1,29 +1,37 @@
 import { LightningElement,track,api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 export default class EmployeeProjectNav extends LightningElement{
-    @api count = 0;
-      showEmployeeList1() {
-        value='employeeList';
-        const valueChangeEvent = new CustomEvent('valuechange', { detail: this.value });
-        console.log('employeelist+++ '+valueChangeEvent);
-        this.dispatchEvent(valueChangeEvent);
-      }
-
-      showProjectList1() {
-        value='projectList';
-        const valueChangeEvent = new CustomEvent('valuechange', { detail: this.value });
-        console.log("projectList +++ "+valueChangeEvent);
-        this.dispatchEvent(valueChangeEvent);
-      }
-
-      showEmployeeList() {
-        value='employeeList';
-        this.dispatchEvent(new CustomEvent('changecomponenttoemployee',{
-          detail:{
-            name:'increSE COUNT'+(++this.count)
+  @api
+  sendEventToParent() {
+      const event = new CustomEvent('myevent', {
+          detail: {
+              message: 'Hello from child component!'
           }
-        }));
+      });
+      this.dispatchEvent(event);
+  }
+   
+  @api
+  showEmployeeList() {
+   const value='employeeList';
+    const event = new CustomEvent('showemployeelist', {
+      detail: {
+          message:value
       }
+  });
+  this.dispatchEvent(event);
+  }
+  
+  @api
+  showProjectList() {
+   const value='projectList';
+    const event = new CustomEvent('showprojectlist', {
+      detail: {
+          message:value
+      }
+  });
+  this.dispatchEvent(event);
+  }
 
 
     // navigateToHome() {

@@ -7,19 +7,28 @@ export default class EmpProjectHome extends LightningElement {
 
     @track showEmployeeListPage=false;
     @track showProjectListPage=false;
-    message='counter value from child';
+    @track message;
 
-    handleValueChange(event) {
-      this.message=event.detail.name;
-      this.enableComponent = event.detail.name;
-      console.log("in parent  "+enableComponent );
-      selectOption();   
+  //   handleChildEvent(event) {
+  //     const message = event.detail.message;
+  //     this.message=message;
+  //     console.log('Received message from child component: ' + message);
+  //     // Process the event data or trigger actions as needed
+  // }
+
+
+  handleCompChange(event) {
+      const message=event.detail.message;
+      this.enableComponent=message;
+      this.message=message;
+      console.log('in parent  '+message +'vgbhnjhbgvfcd'+this.enableComponent);
+      this.selectOption();   
     }
 
     selectOption() {
         switch (this.enableComponent) {
           case 'employeeList':
-            console.log("in parent  "+this.enableComponent );
+            console.log("in parent switch  "+this.enableComponent);
             this.showEmployeeListPage=true;
             this.showProjectListPage=false;
             break;

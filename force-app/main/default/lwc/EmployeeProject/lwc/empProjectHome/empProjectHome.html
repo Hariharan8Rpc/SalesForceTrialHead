@@ -1,12 +1,12 @@
 <template>
-
-    <c-employee-project-nav onchangecomponenttoemployee={handleValueChange} ></c-employee-project-nav>
-   
-    <lightning-card>
-       <P>
-        {message}
+     <lightning-card>
+      <!-- <c-employee-project-nav onshowemployeelist={handleCompChange} ></c-employee-project-nav> -->
+      <c-employee-project-nav onshowprojectlist={handleCompChange} onshowemployeelist={handleCompChange}></c-employee-project-nav>
+      <h1>in home paeg </h1>
+      <P>
+       In {message}   Page
        </p>
-        <h1>in home paeg </h1>
+        
         <template if:true={showEmployeeListPage}>
             <c-employee-list></c-employee-list>
           </template>
