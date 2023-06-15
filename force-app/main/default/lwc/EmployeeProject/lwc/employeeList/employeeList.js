@@ -35,7 +35,11 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
   wiredgetEmployee({error,data}){    
         if(data){
             this.employeeList=JSON.stringify(data);
+            const converted =this.employeeList;
             console.log('employee List form front end '+JSON.stringify(data));
+            // console.log('inner dataaaa-----'+converted.addr.Name);
+
+            // console.log('inner dataaaa-----'+converted.addr);
   }
 }
 }
