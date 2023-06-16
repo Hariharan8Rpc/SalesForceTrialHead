@@ -19,9 +19,7 @@ public class EmployeeControllerLwc1 {
     public boolean flag{get;set;}
     public boolean flag1{get;set;}
     @AuraEnabled
-    Public List<EmployeeProject> empInProject{get;set;}
-    
-  
+    Public List<EmployeeProject> empInProject{get;set;}  
     public EmployeeControllerLwc1() {
         system.debug(' constructor__call');
         Project__c  project1 = new Project__c();
@@ -90,7 +88,12 @@ public class EmployeeControllerLwc1 {
         return projectList;
     }
     
-
+//   to  get all project detail
+    @AuraEnabled (cacheable=true)
+    public static List<Project__c> GetAllProjects(){
+        system.debug('__call');
+        return [Select id,Name,Domain__c,Duration__c,Priority__c from Project__c];
+    }
 
 
 
@@ -141,11 +144,7 @@ public class EmployeeControllerLwc1 {
 //         SingleEmplist=SingleEmplist1;
 //         System.debug('Single EMp list'+SingleEmplist);
 //     }
-//     // @AuraEnabled (cacheable=true)
-//     public void GetAllProjects(){
-//         system.debug('__call');
-//         projectsList=[Select id,Name,Domain__c,Duration__c,Priority__c from Project__c];
-//     }
+
 //     // @AuraEnabled (cacheable=true)
 //     public void getEmployeesRelatedToProject(){
 //         System.debug('getEmployeesRelatedToProject__Call');

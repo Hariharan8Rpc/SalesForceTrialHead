@@ -1,0 +1,103 @@
+<apex:component >    
+<html>
+    <head>
+        <style type="text/css">
+    body{      
+    /* background-color:#9DB2BF; */    
+    }
+   div{    
+       padding:0px;
+       margin:0px; 
+}
+.outermain{
+    background-color:#ffffff;
+
+    /* background-color:#F5EFE7; */
+    min-height: 60%;
+    height: 80%;
+    width: 85%;
+    margin:15% 10%;    
+    }
+      
+.header{
+    padding-left:10px;
+    background-color:#130142;
+    height: 20%;
+    justify-content: left;
+   
+
+    border: 2px solid red;
+    border-radius:0px 0px 30px 10px;
+        /* border-bottom-right-radius: 100px; */
+}
+.main{
+    background-color:#ffffff;
+
+        padding-left:10px;
+}
+.footer{
+    background-color:#130142;
+        height:20%    
+}
+.contact{
+padding-left: 30px;
+}
+
+</style>
+    </head>
+    <body>
+        
+        <div class="outermain">
+        <div class="header">
+        <tr>
+            <td> <div> <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/BankLogo.png')}" width="60px" height="60px"/></div></td>
+            <td Style="padding-left:10px"> <div style="color: white">  <H2>
+                <B >Sample Bank</B>
+                </H2></div>
+                </td>
+        </tr>
+            <hr style="background-color: red"></hr>      
+        </div>
+        
+            <div class="main">
+            <div style="color: rgb(7, 29, 90)" >
+            <p style="color: rgb(173, 5, 5)"> <b> THANKYOU FOR CHOOSING SAMPLE BANK!</b></p>
+            <p>We're so glad that you  applied for an Sample Bank Online Advantage Checking.</p>
+            <p><h4><b> What Happens Next?</b></h4></p>
+            <P>Your Requested to open an account(s) is currently under review. You'll reviece an email within one bussiness  day regarding the status of your application.<br></br> </p>
+          <p> You can also see real time status updates by <a href="#">clicking here</a> To protect your personal information . you'll be asked to  verify your test name. email address anad four digits of your social security number.<br></br>
+            <h4><b> We've Get Your Back</b></h4>
+            Sometimes you want to talk to a human .We get it our online account opening specialists are available <b>Monday - Froday,8:00 AM-5:00 PM ET</b> to answer your questions or help you finish your application.
+
+            </P>
+            </div>
+            <div class ="contact">
+              <div>
+                <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/call.PNG')}" width="20px" height="20px" />
+                Give our Team call | <a  style="color:red">123456789</a> </div>
+              <dv>
+                <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/mail.PNG')}" width="20px" height="20px" />
+                Email us at | <a  style="color:red">sampleBank@gmail.com   </a></dv>
+            </div>
+            </div>
+            
+ <div class="footer" style="height:70px;">
+        <div style="background-color: red">
+            <hr></hr>
+        </div>
+        <div style="background-color:#130142; ">  
+            <div style=" float:left;background-color:#130142;" > 
+                 <h3 style="color: rgb(224, 65, 65);padding-left:20px width:100%"><b >samplebank.com</b></h3>
+            </div>
+            <div style=" float:right;background-color:#130142;"> 
+                    <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/Footer1.png')}" width="60px" height="60px" />
+                    <apex:image value="{!URLFOR($Resource.SubmissionRecipt1,'SubmissionReciptResource/Footer2.png')}" width="60px" height="60px" />
+            </div>   
+        </div>     
+        <div  style="max-height:200px;"> &nbsp; </div>
+       
+    </div>
+</div>
+</body>
+</html>
+</apex:component>
