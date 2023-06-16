@@ -45,4 +45,17 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
             // console.log('inner dataaaa-----'+converted.addr);
           }
 }
+
+
+//modal  code  
+openModal() {
+  // to open modal set isModalOpen tarck value as true
+  this.isModalOpen = true;
+
+}
+
+closeModal() { // to close modal set isModalOpen tarck value as false
+  this.isModalOpen = false;
+}
+// modal code end
 }
