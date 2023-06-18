@@ -15,8 +15,6 @@ global with sharing class AccountRest {
         Account account = [SELECT Id FROM Account WHERE Id = :accountId];
         delete account;
     }
-  
-    
     
     @HttpGet
     global static Account doGet() {
