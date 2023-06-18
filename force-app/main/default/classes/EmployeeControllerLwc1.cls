@@ -3,8 +3,10 @@ public class EmployeeControllerLwc1 {
     public List<Project__c> projectsList { get; set; }
     @AuraEnabled
     public List<Project__c> projectsList1 { get; set; }
+
     @AuraEnabled
     public EmployeeProject SingleEmplist{get;set;}
+
     @AuraEnabled
     Public List<EmployeeProject> empProject{get;set;}
     @AuraEnabled
@@ -95,7 +97,29 @@ public class EmployeeControllerLwc1 {
         return [Select id,Name,Domain__c,Duration__c,Priority__c from Project__c];
     }
 
-
+    @AuraEnabled (cacheable=true)
+    public static EmployeeProject getProjectsRelatedToEmployee(Id EmployeeSearchId){
+        system.debug('getProjectsRelatedToEmployee__call');
+        // flag=true;
+        // system.debug('flag value in page  after initiate '+flag);
+        EmployeeProject SingleEmplist1= new EmployeeProject();
+        SingleEmplist1.projects=GetEmployeesproject(EmployeeSearchId);
+        SingleEmplist1.employee=[
+            SELECT id,Name,Department__c 
+            From Employee__c where id=:EmployeeSearchId
+        ];
+        List<Address__c> address;   
+        address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :EmployeeSearchId];
+        if (address != null && address.size() > 0) {
+            Address__c addr = address[0];
+            SingleEmplist1.addr=addr;
+        } else {
+        }   
+        System.debug('Single EMp list'+SingleEmplist1);
+        return  SingleEmplist1;
+        // SingleEmplist=SingleEmplist1;
+        // System.debug('Single EMp list'+SingleEmplist);
+    }
 
 //     @AuraEnabled (cacheable=true)
 //     public static void getEmployees1(){
@@ -114,36 +138,14 @@ public class EmployeeControllerLwc1 {
 //               System.debug('addrwss in the   '+address);
 //             } else {
 //             }     
-//             System.debug('in if block  of the  he t method'+emp1.Address__r=='');
-
-         
+//             System.debug('in if block  of the  he t method'+emp1.Address__r=='');         
 //             empProject1.projects=GetEmployeesproject(emp1.Id);   		            
 //             empProject.add(empProject1);          
 //         }        
 
 //     }
 
-//     // @AuraEnabled (cacheable=true)
-//     public void getProjectsRelatedToEmployee(){
-//         system.debug('getProjectsRelatedToEmployee__call');
-//         flag=true;
-//         system.debug('flag value in page  after initiate '+flag);
-//         EmployeeProject SingleEmplist1= new EmployeeProject();
-//         SingleEmplist1.projects=GetEmployeesproject(EmployeeSearchId);
-//         SingleEmplist1.employee=[
-//             SELECT id,Name,Department__c 
-//             From Employee__c where id=:EmployeeSearchId
-//         ];
-//         List<Address__c> address;   
-//         address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :EmployeeSearchId];
-//         if (address != null && address.size() > 0) {
-//             Address__c addr = address[0];
-//             SingleEmplist1.addr=addr;
-//         } else {
-//         }    
-//         SingleEmplist=SingleEmplist1;
-//         System.debug('Single EMp list'+SingleEmplist);
-//     }
+
 
 //     // @AuraEnabled (cacheable=true)
 //     public void getEmployeesRelatedToProject(){
