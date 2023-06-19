@@ -56,7 +56,7 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
       console.log('inside the log call result'+result);
     console.log('single emp list'+JSON.stringify(result));
     this.singleEmpList=result;
-    console.log('single emp list1  addr ' + JSON.stringify(this.singleEmpList.addr));
+    console.log('single emp list1  addr  from  backend ' + JSON.stringify(this.singleEmpList.addr.Name));
     })
   }
 
