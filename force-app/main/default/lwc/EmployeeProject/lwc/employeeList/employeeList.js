@@ -37,10 +37,9 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
 @wire(getEmployees)
   wiredgetEmployee({error,data}){    
         if(data){
-            this.employeeList=data;
-            const converted =this.employeeList;
+            this.employeeList=data;        
             console.log('employee List form front end '+JSON.stringify(data));
-             console.log('inner dataaaa-----'+converted);
+          
             //  data.forEach(item => {
             //   console.log('lop var'+JSON.stringify(item.addr)); // John, Jane
             //     console.log('  inside loop'+JSON.stringify(item.employee['Name']));
@@ -57,6 +56,7 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
     console.log('single emp list'+JSON.stringify(result));
     this.singleEmpList=result;
     console.log('single emp list1  addr  from  backend ' + JSON.stringify(this.singleEmpList.addr.Name));
+    console.log('single emp list1  addr  from  backend ' + this.singleEmpList.addr.Name);
     })
   }
 
