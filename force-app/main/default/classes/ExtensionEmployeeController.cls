@@ -136,7 +136,6 @@ public class ExtensionEmployeeController {
             address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :empProject1.employee.Id];		
             if (address != null && address.size() > 0) {
                 empProject1.addr = address[0];
-                SingleEmplist1.addr=addr;
             }
 
          //   empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		             
@@ -144,7 +143,6 @@ public class ExtensionEmployeeController {
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
             getEmployeeNames();
-        
         }                                                                           
 }                                                                   
 
@@ -179,7 +177,6 @@ public class ExtensionEmployeeController {
         system.debug('deleteRecords__call_return page ref to EmployeesPage');
          List<Address__c> address1;   
         address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:EmployeeSearchId];
-
          if (address1 != null && address1.size() > 0) {
              delete address1[0];
          } 

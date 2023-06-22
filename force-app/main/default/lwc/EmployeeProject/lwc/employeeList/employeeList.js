@@ -1,6 +1,8 @@
 import { LightningElement,wire,track } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getEmployees from '@salesforce/apex/employeeControllerLwc1.getEmployees';
 import getSingleEmployee from '@salesforce/apex/employeeControllerLwc1.getProjectsRelatedToEmployee';
+import deleteRecord from '@salesforce/apex/employeeControllerLwc1.getdeleteRecords';
 import { NavigationMixin } from 'lightning/navigation';
 import Name from '@salesforce/schema/Employee__c.Name';
 import Department from '@salesforce/schema/Employee__c.Department__c';
@@ -12,7 +14,12 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
 @track employeeList;
 @track isShowModal = false;
 @track empid;
+@track name;
 @track singleEmpList;
+handleNameChange(event){
+  this.name = event.target.value;
+  console.log(this.name);
+} 
     //     @wire(getListUi, { objectApiName: OBJECT_API_NAME, listViewApiName: null })
 // objectRecords;
 // get columns() {
@@ -71,5 +78,41 @@ showModalBox(event) {
 hideModalBox() {  
   this.isShowModal = false;
 }
+
+deleteEmployee(event){
+    this.empid=event.target.name;
+    //    delete method calll
+    deleteRecord({ deleteId:this.empid })
+    .then(result => {
+      if(result=='true'){
+    console.log('inside the log call result'+result);
+    console.log('single emp list'+JSON.stringify(result));
+    this.showSuccessToast(result+'success'+this.empid);
+      }else{
+        this.showErrorToast('Error'+error);
+      }
+})
+.catch((error) => {
+  this.showErrorToast(error);
+})
+}
+
+showSuccessToast(message) {
+  const toastEvent = new ShowToastEvent({
+      title: 'Deleted',
+      message: message, //'Your email was sent successfully.',
+      variant: 'success'
+  });
+  this.dispatchEvent(toastEvent);
+}
+
+showErrorToast(message) {
+  const toastEvent = new ShowToastEvent({
+      title: 'Error',
+      message:message,
+      variant: 'error'
+  });
+  this.dispatchEvent(toastEvent);
+} 
 // modal code end
 }

@@ -120,6 +120,29 @@ public class EmployeeControllerLwc1 {
         // SingleEmplist=SingleEmplist1;
         // System.debug('Single EMp list'+SingleEmplist);
     }
+    @AuraEnabled (cacheable=true)
+    public static boolean getdeleteRecords(Id deleteId){
+        system.debug('deleteRecords__call_return page ref to EmployeesPage');
+         List<Address__c> address1;   
+        address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:deleteId];
+
+         if (address1 != null && address1.size() > 0) {
+       //    delete address1;
+         } 
+    //    delete deleteId.getSobjectType().newSObject(deleteId);
+        Employee__c  emp1=[Select id, name from Employee__c where id=:deleteId];
+     //    delete emp1;
+        List<Employee__c> em= [Select Id,name from Employee__c where id=:deleteId];
+        if(em != null && em.size()>0){
+            System.debug('after delete chcekc  if+'+em);
+            return true;
+        }else{
+            System.debug('after delete chcek else+'+em);
+            return false;
+        }
+    }
+
+
 
 //     @AuraEnabled (cacheable=true)
 //     public static void getEmployees1(){
@@ -201,20 +224,7 @@ public class EmployeeControllerLwc1 {
 //         return editPage;
 //     }
     
-//     public PageReference deleteRecords(){
-//         system.debug('deleteRecords__call_return page ref to EmployeesPage');
-//          List<Address__c> address1;   
-//         address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:EmployeeSearchId];
 
-//          if (address1 != null && address1.size() > 0) {
-//              delete address1[0];
-//          } 
-//         delete EmployeeSearchId.getSobjectType().newSObject(EmployeeSearchId);
-//         String secondPageUrl = '/apex/EmployeesPage';
-//         PageReference empPage = new PageReference(secondPageUrl);
-//         empPage.setRedirect(true);
-//         return empPage;
-//     }
     
 //     public PageReference redirectToEditProjectPage() {  
 //         system.debug('redirectToEditProjectPage__call return pagerefTo EmployeeSearchId');
