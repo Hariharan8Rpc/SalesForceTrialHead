@@ -136,11 +136,7 @@ public class ExtensionEmployeeController {
             address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :empProject1.employee.Id];		
             if (address != null && address.size() > 0) {
                 empProject1.addr = address[0];
-            }
-
-            
-
-         //   empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		             
+            } //   empProject1.addr=[Select id,name,city__c,state__c,Pincode__c from Address__c where Employee__r.Id=:empProject1.employee.Id];		             
            empProject.add (empProject1);
             empInProject=empProject;
             System.debug('final emp list related to project on view  button  click '+empProject);
