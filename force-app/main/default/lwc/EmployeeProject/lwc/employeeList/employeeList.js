@@ -37,12 +37,6 @@ handleNameChange(event){
         if(data){
             this.employeeList=data;        
             console.log('employee List form front end '+JSON.stringify(data));
-          
-            //  data.forEach(item => {
-            //   console.log('lop var'+JSON.stringify(item.addr)); // John, Jane
-            //     console.log('  inside loop'+JSON.stringify(item.employee['Name']));
-          // });
-            // console.log('inner dataaaa-----'+converted.addr);
           }
 }
 // method for getting single employe detail on ID

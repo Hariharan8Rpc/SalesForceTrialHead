@@ -56,19 +56,18 @@ public class EmployeeControllerLwc1 {
         List<EmployeeProject> empProject = new List<EmployeeProject>();
         List<Employee__c> employees = [SELECT Id FROM Employee__c];
         for(Employee__c emp1 :employees){            
-            EmployeeProject empProject1= new EmployeeProject();                        
-            Employee__c employee=[
-                SELECT id,Name,Department__c 
-                From Employee__c where id=:emp1.Id
-            ];
-            empProject1.employee=employee;            
-            List<Address__c> address;   
-            address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :emp1.Id];
-            if (address != null && address.size() > 0) {
-                Address__c addr = address[0];
-                empProject1.addr=addr;
-            } else {
-            }             
+            EmployeeProject empProject1= new EmployeeProject();                       
+            Employee__c employee = [SELECT id,Name,Department__c ,Address__r.Id,Address__r.Name,Address__r.City__c ,Address__r.State__c ,Address__r.Pincode__c From Employee__c where id=:emp1.Id];
+       //   Employee__c employee = [SELECT id,Name,Department__c Address__r.Id,Address__r.Name,Address__r.State__c,Address__r.Department__c,Address__r.City__C,Address__r.Pincode__c From Employee__c where id=:emp1.Id];
+            empProject1.employee=employee;    
+                //   address is directly added with the related list no  need to use external query
+            // List<Address__c> address;   
+            // address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :emp1.Id];
+            // if (address != null && address.size() > 0) {
+            //     Address__c addr = address[0];
+            //     empProject1.addr=addr;
+            // } else {
+            // }             
             empProject1.projects=GetEmployeesproject(emp1.Id);   		            
             empProject.add(empProject1);          
         }  
@@ -109,7 +108,8 @@ public class EmployeeControllerLwc1 {
             From Employee__c where id=:EmployeeSearchId
         ];
         List<Address__c> address;   
-        address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :EmployeeSearchId];
+       //  address  =[SELECT address__r.id,address__r.name ,address__r.City__c,address__r.State__c,address__r.Pincode__c FROM employee__C WHERE Id =:EmployeeSearchId ];
+      address = [SELECT Id, Name, City__c, State__c, Pincode__c FROM Address__c WHERE Employee__r.Id = :EmployeeSearchId];
         if (address != null && address.size() > 0) {
             Address__c addr = address[0];
             SingleEmplist1.addr=addr;

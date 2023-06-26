@@ -43,11 +43,11 @@
                                     <template for:each={employeeList} for:item="emp">
                                         <tr key={emp}>
                                             <td data-label="Name">{emp.employee.Name}</td>                                        
-                                            <td data-label="Circle">{emp.employee.Department__c}</td>
-                                            <td data-label="District">{emp.addr.Name}</td>                                            
-                                            <td data-label="State">{emp.addr.City__c}</td>
-                                            <td data-label="Country">{emp.addr.State__c}</td>
-                                            <td data-label="Pincode">{emp.addr.Pincode__c}</td>
+                                            <td data-label="Circle">{emp.employee.Department__c}</td>                                         
+                                            <td data-label="Address">{emp.employee.Address__r.Name}</td>                                            
+                                            <td data-label="State">{emp.employee.Address__r.City__c}</td>
+                                            <td data-label="Country">{emp.employee.Address__r.State__c}</td>
+                                            <td data-label="Pincode">{emp.employee.Address__r.Pincode__c}</td>
                                             <td data-label="Action">
                                             <lightning-button variant="success" label="Edit" name={emp.employee.Id}
                                                 title="Reassign Queue" onclick={showModalBox} class="slds-m-left_x-small">
