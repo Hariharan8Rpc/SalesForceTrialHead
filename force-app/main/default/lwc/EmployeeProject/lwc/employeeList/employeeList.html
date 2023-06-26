@@ -89,9 +89,24 @@
         <p>Employee Detail View</p>
          <div class="container188">
             <div class="child87">
-                <lightning-input id="recipients-to" type="text" value={name} onchange={handleNameChange} variant="label-hidden"></lightning-input> 
+                <lightning-record-edit-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+            >
+                <lightning-input-field field-name={name}> </lightning-input-field>
+                <lightning-input-field field-name={department}> </lightning-input-field>
+                <lightning-input-field field-name={address}> </lightning-input-field>
+                <lightning-input-field field-name={city}> </lightning-input-field>
+                <lightning-input-field field-name={state}> </lightning-input-field>
+                <lightning-input-field field-name={pincode}> </lightning-input-field>
+                <div class="slds-var-m-top_medium">
+                    <lightning-button variant="brand" type="submit" label="Save">
+                    </lightning-button>
+                </div>
+            </lightning-record-edit-form>
+
                 <div>
-                    <div>
+                    <div>                      
                         <label><h3>Employee Details:</h3></label>                        
                     </div>
                     <div>

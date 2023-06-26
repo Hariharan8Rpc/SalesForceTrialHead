@@ -1,4 +1,4 @@
-import { LightningElement,wire,track } from 'lwc';
+import { LightningElement,wire,track,api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getEmployees from '@salesforce/apex/employeeControllerLwc1.getEmployees';
 import getSingleEmployee from '@salesforce/apex/employeeControllerLwc1.getProjectsRelatedToEmployee';
@@ -8,7 +8,7 @@ import Name from '@salesforce/schema/Employee__c.Name';
 import Department from '@salesforce/schema/Employee__c.Department__c';
 import Address from '@salesforce/schema/Employee__c.Address__c';
 import { getListUi } from 'lightning/uiListApi';
-
+import MY_CUSTOM_OBJECT from '@salesforce/schema/Employee__c';
 
 export default class EmployeeList extends NavigationMixin(LightningElement) {
 @track employeeList;
@@ -16,6 +16,17 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
 @track empid;
 @track name;
 @track singleEmpList;
+// 
+@api recordId;
+@api objectApiName;
+name=Name;
+department=Department;
+address=Address;
+city=Address.City__c;
+state=Address.State__C;
+pincode=Address.Pincode__c;
+objectApiName=MY_CUSTOM_OBJECT;
+
 handleNameChange(event){
   this.name = event.target.value;
   console.log(this.name);
@@ -57,6 +68,7 @@ handleNameChange(event){
 // method for getting single employe detail on ID
   getEmployee(){
     console.log('insidde method call '+ this.empid);
+    this.recordId=this.empid;
     getSingleEmployee({ EmployeeSearchId:this.empid })
     .then(result => {
       console.log('inside the log call result'+result);
