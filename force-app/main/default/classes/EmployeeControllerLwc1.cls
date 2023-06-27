@@ -3,10 +3,8 @@ public class EmployeeControllerLwc1 {
     public List<Project__c> projectsList { get; set; }
     @AuraEnabled
     public List<Project__c> projectsList1 { get; set; }
-
     @AuraEnabled
     public EmployeeProject SingleEmplist{get;set;}
-
     @AuraEnabled
     Public List<EmployeeProject> empProject{get;set;}
     @AuraEnabled
