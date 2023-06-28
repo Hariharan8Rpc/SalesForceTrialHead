@@ -50,10 +50,10 @@
                                             <td data-label="Pincode">{emp.employee.Address__r.Pincode__c}</td>
                                             <td data-label="Action">
                                             <lightning-button variant="success" label="Edit" name={emp.employee.Id}
-                                                title="Reassign Queue" onclick={showModalBox} class="slds-m-left_x-small">
+                                                title="Edit" onclick={showModalBox} class="slds-m-left_x-small">
                                             </lightning-button>
                                             <lightning-button variant="destructive" label="Delete"  name={emp.employee.Id}
-                                                title="Reassign Queue" onclick={deleteEmployee}  class="slds-m-left_x-small">
+                                                title="Delete" onclick={deleteEmployee}  class="slds-m-left_x-small">
                                             </lightning-button>                                               
                                             </td>
                                         </tr>
