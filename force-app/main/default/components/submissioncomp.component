@@ -1,4 +1,4 @@
-<apex:component >    
+<apex:component access="global">    
 <html>
     <head>
         <style type="text/css">

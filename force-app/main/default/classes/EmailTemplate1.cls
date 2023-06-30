@@ -12,7 +12,8 @@ public with sharing class EmailTemplate1 {
             // template id  of the template so it can be populated in the template
           //  Id templateId='00X2w000000OAmlEAG';
             Id whatid1=contId;
-          String  templateName='DemoMail';
+            // this template contains the custom vf component 
+          String  templateName='DemoMail1';
             //Classic eMail Template
             Id templateId = [SELECT Id FROM EmailTemplate WHERE Name = :templateName AND IsActive = true].Id;
             system.debug('inside the classs id    '+templateId);
