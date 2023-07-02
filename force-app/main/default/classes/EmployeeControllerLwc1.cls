@@ -48,7 +48,6 @@ public class EmployeeControllerLwc1 {
         }
     }   
 
-
     @AuraEnabled (cacheable=true)
     public static List<EmployeeProject>  getEmployees(){      
         system.debug('getEmployees__call');
