@@ -80,7 +80,6 @@ public class EmployeeControllerLwc1 {
             FROM EmployeeProject__c
             WHERE Employee__r.Id = :emp1
         ];
-        
         for (EmployeeProject__c empProject : employeeProjects) {         
             projectList.add(empProject.Project__r);
         }
@@ -162,10 +161,8 @@ public class EmployeeControllerLwc1 {
 //             System.debug('in if block  of the  he t method'+emp1.Address__r=='');         
 //             empProject1.projects=GetEmployeesproject(emp1.Id);   		            
 //             empProject.add(empProject1);          
-//         }        
-
+//         }       
 //     }
-
 
 
 //     // @AuraEnabled (cacheable=true)
