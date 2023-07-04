@@ -117,24 +117,27 @@ public class EmployeeControllerLwc1 {
         // SingleEmplist=SingleEmplist1;
         // System.debug('Single EMp list'+SingleEmplist);
     }
-    @AuraEnabled (cacheable=true)
+    @AuraEnabled
+    //  (cacheable=true)
     public static boolean getdeleteRecords(Id deleteId){
         system.debug('deleteRecords__call_return page ref to EmployeesPage');
          List<Address__c> address1;   
-        address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:deleteId];
-
-         if (address1 != null && address1.size() > 0) {
-       //    delete address1;
-         } 
-    //    delete deleteId.getSobjectType().newSObject(deleteId);
-        Employee__c  emp1=[Select id, name from Employee__c where id=:deleteId];
-     //    delete emp1;
-        List<Employee__c> em= [Select Id,name from Employee__c where id=:deleteId];
+         delete [select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:deleteId];
+        // address1=[select id,name, state__c, city__c, pincode__c from address__C where employee__r.id=:deleteId];
+        //  if (address1 != null && address1.size() > 0) {
+        //  delete address1;
+        //  } 
+        //delete deleteId.getSobjectType().newSObject(deleteId);
+        // Employee__c  emp1=[Select id, name from Employee__c where id=:deleteId];
+        //     delete emp1;   
+            
+        delete [Select id, name from Employee__c where id=:deleteId];
+        List<Employee__c> em = [Select Id,name from Employee__c where id=:deleteId];
         if(em != null && em.size()>0){
-            System.debug('after delete chcekc  if+'+em);
+            System.debug('after delete chcekc  if+'+em+'Exception  from the DElete controlll');
             return true;
         }else{
-            System.debug('after delete chcek else+'+em);
+            System.debug('after delete chcek else+'+em +'Exception  from the DElete controlll');
             return false;
         }
     }
