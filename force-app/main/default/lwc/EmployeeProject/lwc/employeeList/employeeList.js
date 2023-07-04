@@ -70,10 +70,11 @@ deleteEmployee(event){
     //    delete method calll
     deleteRecord({ deleteId:this.empid })
     .then(result => {
-      if(result=='true'){
+      console.log('single emp list '+JSON.stringify(result));
+      if(JSON.stringify(result)=='true'){
     console.log('inside the log call result'+result);
     console.log('single emp list'+JSON.stringify(result));
-    this.showSuccessToast(result+'success'+this.empid);
+    this.showSuccessToast(result +'Record Deleted'+this.empid);
       }else{
         this.showErrorToast('Error'+error);
       }
